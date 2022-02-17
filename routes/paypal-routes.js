@@ -1,7 +1,9 @@
+// Import of the express and Paypal-rest-sdk Modules
 const router = require('express').Router();
 const paypal = require('paypal-rest-sdk');
 
-//please comment the code so everyone understands
+
+// The payment details that Paypal uses to initiate a transaction.
 
 router.post('/pay', (req, res) => {
     const create_payment_json = {
@@ -45,6 +47,7 @@ router.post('/pay', (req, res) => {
   
   });
 
+// In case the operation is successful
   router.get('/success', (req, res) => {
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
@@ -53,17 +56,18 @@ router.post('/pay', (req, res) => {
       "payer_id": payerId,
       "transactions": [{
           "amount": {
-              "currency": "SEK", //consider changing to SEK?
+              "currency": "SEK",
               "total": "25.00"
           }
       }]
     };
 
+    // If the user cancels the operation, the page sends 'Cancelled'
     router.get('/cancel', (req, res) => res.send('Cancelled'));
   
   // Obtains the transaction details from paypal
     paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
-        //When error occurs when due to non-existent transaction, throw an error else log the transaction details in the console then send a Success string reposponse to the user.
+        //When error occurs when due to non-existent transaction, throw an error else log the transaction details in the console then send a Success string response to the user.
       if (error) {
           console.log(error.response);
           throw error;
@@ -74,4 +78,5 @@ router.post('/pay', (req, res) => {
   });
   });
 
+  // Export of the paypal-routes Module
 module.exports = router;

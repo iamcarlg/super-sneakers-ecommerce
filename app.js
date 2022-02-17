@@ -104,6 +104,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /***********************************************************/
 
+// The App is listening on PORT 3000 locally and on process.env.PORT When deployed on the web
 app.listen(process.env.PORT || 3000);
 
 //connect express app to routes
