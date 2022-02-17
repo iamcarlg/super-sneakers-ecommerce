@@ -1,2 +1,7 @@
 node_modules/
 config/
+
+# Prevention of build artifacts from going into revision control
+npm-debug.log
+.DS_Store
+/*.env
