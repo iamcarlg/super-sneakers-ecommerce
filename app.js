@@ -53,7 +53,8 @@ paypal.configure({
 /************************************************* */
 //connect mongoose to MongoDB
 mongoose.connect(dbURI)
-.then((result) => app.listen(port)) // see if you can add a console.log to show successful connection
+// .then((result) => app.listen(port)) // see if you can add a console.log to show successful connection
+.then((result) => console.log(port)) // see if you can add a console.log to show successful connection
 .catch((err) => console.log(err));
 
 /***********************************************************/
@@ -103,7 +104,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /***********************************************************/
 
-// app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);
 
 //connect express app to routes
 app.use('/users', userRoutes);
