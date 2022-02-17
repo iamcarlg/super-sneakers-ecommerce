@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--It's something -->
+  <%- include("./partials/head.ejs") %>
+
+  <%- include("./partials/nav.ejs") %>
+<p> TEST</p>
+
+  <div class="details content">
+    <h2 class="product-title"><%= product.title %></h2>
+    <div class="content">
+      <p><%= product.description %></p>
+    </div>
+    <img width = "250" height = "250" src="/uploads/<%= product.picture%>"/>
+    <a class="delete" data-doc="<%= product._id %>">delete</a>
+
+    <form action="/paypal/pay" method="post">
+      <input type="submit" value="Buy">
+    </form>
+
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+  <!--Delete btn script-->
+  <script>
+    const trashcan = document.querySelector('a.delete');
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/shop/products/${trashcan.dataset.doc}`;
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then((data) => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+     
+  </script>
+
+</html> 

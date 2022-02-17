@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/head.ejs") %>
+
+<%- include("./partials/nav.ejs") %>
+
+  <div class="create-blog content">
+    <form action="/shop/products" method="POST" enctype="multipart/form-data">
+        <label for="title">title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="gender">gender:</label>
+        <input type="text" id="gender" name="gender" required>
+        <label for="brand">brand:</label>
+        <input type="text" id="brand" name="brand" required>
+        <label for="picture">picture:</label>
+        <input type="file" accept="image/*" id="picture" name="picture"  required>
+      
+        <label for="description">description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <label for="price">price:</label>
+        <input type="number" id="price" name="price" required>
+        <button>Submit</button>
+      </form>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+
+</html>

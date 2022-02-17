@@ -1,0 +1,100 @@
+
+  /* Cards css start */
+
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+  .card-body .btn-update {
+      background-color: #FF416C;
+      color: white;
+      width:100%;
+  }
+
+  .card-body .btn-update:hover {
+    background-color: #FF416C;
+    color: white;
+}
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .card-img {
+    border-radius: 5px 5px 0 0;
+    padding: 2px 16px;
+    width: 250px;
+    height: 300px;
+    border-radius: 5%;
+    border-color: #FF416C;
+  }
+
+  
+/* Float  columns side by side */
+.column{
+    float: left;
+    width: 30%;
+    padding: 50px 10px 10px 10px;
+    padding-left: 50px;
+  }
+  
+/* Remove extra left and right margins, due to padding */
+.row {
+    margin: 0 -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+ /* Responsive columns whit break*/
+ 
+ @media screen and (max-width: 1500px) and (min-width: 950px) {
+  .column{
+    width: 50%;
+    display: block;
+    margin-bottom: 20px;
+    padding: 10%;
+  }
+}
+
+ @media screen and (max-width: 950px) {
+
+.column{
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+      padding: 10%;
+}
+
+.card{
+  width: 80%;
+}
+.card-img{
+  border-radius: 5px 5px 0 0;
+  padding: 2px 16px;
+  width: 150px;
+  height: 270px;
+  object-fit: contain;
+}
+
+.card-body .btn-update{
+      font-size: small;
+      width: 50%;
+}
+
+.d-flex{
+    padding-right: 5%;
+    width: 60%;
+}
+
+}
