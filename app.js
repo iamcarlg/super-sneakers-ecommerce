@@ -103,7 +103,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /***********************************************************/
 
-app.listen(process.env.PORT || 3000);
+// app.listen(process.env.PORT || 3000);
 
 //connect express app to routes
 app.use('/users', userRoutes);
