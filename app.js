@@ -103,6 +103,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /***********************************************************/
 
+app.listen(port);
+
 //connect express app to routes
 app.use('/users', userRoutes);
 app.use('/profile', profileRoutes);
