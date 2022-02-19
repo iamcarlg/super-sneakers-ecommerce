@@ -1,40 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<!--It's something -->
-  <%- include("./partials/head.ejs") %>
+<%- include("../partials/head.ejs") %>
 
-  <%- include("./partials/nav.ejs") %>
-<p> TEST</p>
+  <body>
+    <%- include("../partials/nav.ejs") %>
 
-  <div class="details content">
-    <h2 class="product-title"><%= product.title %></h2>
-    <div class="content">
-      <p><%= product.description %></p>
+    <div class="container-flow">
+      <!-- Products cards start -->
+      <div class="row">
+        <div class="column">
+          <div class="card ">
+            <div class="card-body ">
+              <h3 class="title">
+                <%= product.title %>
+              </h3>
+              <img src="/uploads/resized/<%= product.picture%>" />
+              <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+                <h4>
+                  <%= product.brand %>
+                </h4> <span class="star"><a href="#"><i class="fa fa-star"></i></a></span>
+              </div>
+              <p class="price"> Price:
+                <%= product.price %>
+              </p>
+              <p class="description">
+                <%= product.description %>
+              </p>
+              <div class="px-2 mt-3">
+                <button class="btn btn-card " action="/paypal/pay" method="post">By
+                </button>
+                <button class="btn btn-card"><a class="delete" data-doc="<%= product._id %>">Delete</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <img width = "250" height = "250" src="/uploads/<%= product.picture%>"/>
-    <a class="delete" data-doc="<%= product._id %>">delete</a>
 
-    <form action="/paypal/pay" method="post">
-      <input type="submit" value="Buy">
-    </form>
 
-  </div>
+    <%- include("../partials/footer.ejs") %>
 
-  <%- include("./partials/footer.ejs") %>
+      <!--Delete btn script-->
+      <script>
+        const trashcan = document.querySelector('a.delete');
+        trashcan.addEventListener('click', (e) => {
+          const endpoint = `/shop/products/${trashcan.dataset.doc}`;
+          fetch(endpoint, {
+            method: 'DELETE',
+          })
+            .then(response => response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch(err => console.log(err));
+        });
 
-  <!--Delete btn script-->
-  <script>
-    const trashcan = document.querySelector('a.delete');
-    trashcan.addEventListener('click', (e) => {
-      const endpoint = `/shop/products/${trashcan.dataset.doc}`;
-      fetch(endpoint, {
-        method: 'DELETE',
-      })
-      .then(response => response.json())
-      .then((data) => window.location.href = data.redirect)
-      .catch(err => console.log(err));
-    });
-     
-  </script>
+      </script>
 
-</html> 
+  </body>

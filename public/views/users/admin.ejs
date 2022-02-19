@@ -1,101 +1,83 @@
-
 <%- include("../partials/head.ejs") %>
 
-  <body>
-    <%- include("../partials/nav.ejs") %>
-      <h2><center>Admin crud operations Products</center></h2>
+<body>
+  <%- include("../partials/nav.ejs") %>
+   
+    <div class="container-flow">
+      <!--Search for specific product , calls 'search_products()'-->
 
+        <form class="form-inline d-flex justify-content-around md-form form-sm mt-0 ">
+        <input id="searchbar" onkeyup="search_products()" type="text" required class="form-control me-2" placeholder="Search"
+          aria-label="Search">
+          </form> 
+   
 
+          <!-- Responsive Crud table start (looping through all our products in our db and show them whit crud operations) -->
+          <div class="table-responsive-sm">
+             <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Crud Op</th>
 
-      <!--What is this code for? Explain plz. START-->
-      <!-- <nav>
-          <ul> -->
-      <!--  <li><a href="/auth/logout">Logout</a></li> -->
-      <!-- <li><a href="/auth/login">Login</a></li>
-            <li><a href="/">Homepage</a></li>
-          </ul>
-        </nav>
-        <header>
-          <h1>Login using...</h1>
-        </header>
-        <main>
-          <a class="google-btn" href="/auth/google">Google+</a>
-        </main> -->
-
-      <!--What is this code for? Explain plz. END-->
-      <div class="container-flow" >
-      <div class="row">
-
-        <% if (products.length> 0) { %>
-          <% products.forEach(product=> { %>
-            <div class="column">
-              <div class="card" >
-                  <div class="card-body"> 
-                    <img class="card-img" src="/uploads/<%= product.picture%>">
-
-            
-                 <a class="single" href="/shop/products/<%= product._id %>"> <!--Does that when clicking on the product we go to productdetails.ejs-->
-                  <h3 class="title">
-                    <%= product.title %>
-                  </h3>
-                  <p class="gender">
-                    <%= product.gender %>
-                  </p>
-                  <p class="brand">
-                    <%= product.brand %>
-                  </p>
-                  <!-- <div class="img-box">
-                  <img src="/uploads/<%= product.picture%>" />
-                </div> -->
-                  <p class="description">
-                    <%= product.description %>
-                  </p>
-                  <p class="price">
-                    <%= product.price %>
-                  </p>
-            
-                    <!--TEsting to get update produuct by id to work-->
-                    <a class="single" href="/shop/edit-form/<%= product._id %>"><!--Takes us to edit-form route to update-->
-                      <button class="btn"> Update products <%= product._id %> </button> </a>
+              </tr>
+            </thead>
+            <% if (products.length> 0) { %>
+              <% products.forEach(product=> { %>
+            <tbody>
+             
+              <tr>
+                <td> <%= product.title %></td>
+                <td> <%= product.brand %></td>
+                <td>    <%= product.price %></td>
+                <td>   
+                  <div class="px-2 mt-3">
+                  <a class="single" href="/shop/products/<%= product._id %>">
+                    <button class="btn btn-form">Delete/By</button>
                   </a>
-                 </a> 
+                  <a class="single" href="/shop/edit-form/<%= product._id %>">
+                    <button class="btn btn-form ">Update</button>
+                  </a>
                 </div>
-              </div>
-            </div>
-            <% }) %>
+              </td>
+              <% }) %>
               <% } else { %>
                 <p>There are no products to display...</p>
                 <% } %>
-      </div>
-</div>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+       
+    </div>
 
-      <%- include("../partials/footer.ejs") %>
+    <%- include("../partials/footer.ejs") %>
 
-    
+      <!-- Have all the JS code last down in the page in every EJS file-->
+      <script>
 
+        // JavaScript code. Place in JS folder if possible
+        //Search function
+        function search_products() {
+          let input = document.getElementById('searchbar').value
+          input = input.toLowerCase();
 
-        <!-- Have all the JS code last down in the page in every EJS file-->
-        <script>
-          //Explain?? 
+           // The search bar dose not work from when i changed to table, Can it be becuase it stands card-body here?(we dont have card-body anymore)
 
-          // JavaScript code. Place in JS folder if possible
-          //Search function
-          function search_products() {
-            let input = document.getElementById('searchbar').value
-            input = input.toLowerCase();
+          let column = document.getElementsByClassName('card-body');
+          let card_title = document.getElementsByClassName('title');
 
-            let column = document.getElementsByClassName('card-body');
-            let card_title = document.getElementsByClassName('title');
-
-            for (i = 0; i < card_title.length; i++) {
-              if (!card_title[i].innerHTML.toLowerCase().includes(input)) {
-                column[i].style.display = "none";
-              }
-              else {
-                column[i].style.display = "inline";
-              }
+          for (i = 0; i < card_title.length; i++) {
+            if (!card_title[i].innerHTML.toLowerCase().includes(input)) {
+              column[i].style.display = "none";
+            }
+            else {
+              column[i].style.display = "inline";
             }
           }
-        </script>
+        }
+      </script>
 
-  </body>
+</body>

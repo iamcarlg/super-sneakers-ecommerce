@@ -1,69 +1,72 @@
+/* Every ejs file calls this css */
 
-  body{
-    margin: 20px auto;
-    padding: 0 20px;
-    font-family: 'Noto Serif', serif;
-  }
-  
-p, h1, h2, h3, a, ul{
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  color: #222;
+body{
+  font-family: 'Noto Serif', serif;
 }
 
-
 nav{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 60px;
-  padding-bottom: 10px;
-  text-transform: uppercase;
+display: flex;
+justify-content: space-between;
+margin-bottom: 60px;
+padding-bottom: 10px;
+text-transform: uppercase;
 }
 
 nav ul{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
 }
 nav li{
-  list-style-type: none;
-  margin-left: 20px;
+list-style-type: none;
+margin-left: 20px;
 }
 nav h1{
-  font-size: 3em;
+font-size: 3em;
 }
 nav p, nav a{
-  color: #777;
-  font-weight: 300;
+color: #777;
+font-weight: 300;
 }
 
 /* Style for searchbar and shoppingcart/login */
-  .d-flex .btn{
-    background-color: #FF416C;
-    border-color: #FF416C;
-    color: white;
-  }
-  
-  .d-flex .btn:hover{
-    background-color: #FF416C;
-    border-color: #FF416C;
-    color: white;
-  }
-  
-  .fas {
-      color: #FF416C;
-  } 
+.d-flex .btn{
+  background-color: #b10e0e;
+  border-color: #b10e0e;
+  color: #ffffff;
+}
+
+.d-flex .btn:hover{
+  background-color: #b10e0e;
+  border-color: #b10e0e;
+  color: white;
+}
+
+.fas {
+    color: #b10e0e;
+} 
 
 
-  
- /* Footer css start */
- .page-footer .container{
-  padding-top: 10%;
+
+/* Footer css start */
+/*footer{} Styles the footer whit readiant color style */
+footer{ 
+font-weight: 500;
+background-color: #b10e0e;
+background-image:
+  linear-gradient(
+    to top right, 
+    #fdf8f2, #b10e0e
+  );
+  margin-top: 10%;
+}
+
+.page-footer .container{
+padding-top: 10%;
 }
 
 .page-footer .fab{
-color: #FF416C;
+color: #491111;
 }
 
 .footer-copyright a {

@@ -1,30 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
 
 <%- include("./partials/head.ejs") %>
 
 <%- include("./partials/nav.ejs") %>
-
+<h2>Add Product</h2>
   <div class="create-blog content">
     <form action="/shop/products" method="POST" enctype="multipart/form-data">
-        <label for="title">title:</label>
-        <input type="text" id="title" name="title" required>
-        <label for="gender">gender:</label>
-        <input type="text" id="gender" name="gender" required>
-        <label for="brand">brand:</label>
-        <input type="text" id="brand" name="brand" required>
-        <label for="picture">picture:</label>
+        <label for="title">Title:</label>
+        <input class="form-control" type="text" id="title" name="title" required>
+
+        <label for="gender">Gender:</label>
+        <input class="form-control" type="text" id="gender" name="gender" required>
+
+        <label for="brand">Brand:</label>
+        <input class="form-control" type="text" id="brand" name="brand" required >
+       
+       
+       
+        <label for="picture">Picture:</label>
         <input type="file" accept="image/*" id="picture" name="picture"  required>
       
-        <label for="description">description:</label>
-        <textarea id="description" name="description" required></textarea>
-        <label for="price">price:</label>
-        <input type="number" id="price" name="price" required>
-        <button>Submit</button>
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="description" required></textarea>
+        
+        <label for="price">Price:</label>
+        <input class="form-control"  type="number" id="price" name="price" required>
+        <button  class="btn btn-card" >Submit</button>
       </form>
   </div>
 
   <%- include("./partials/footer.ejs") %>
 
-
-</html>

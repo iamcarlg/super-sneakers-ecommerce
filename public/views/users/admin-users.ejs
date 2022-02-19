@@ -1,0 +1,47 @@
+<%- include("../partials/head.ejs") %>
+
+<body>
+  <%- include("../partials/nav.ejs") %>
+   
+    <div class="container-flow">
+
+      <h2>User Crud page</h2>
+   
+
+          <!-- Responsive Crud table start (looping through all our products in our db and show them whit crud operations) -->
+          <div class="table-responsive-sm">
+             <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Id</th>
+
+              </tr>
+            </thead>
+            <% if (users.length> 0) { %>
+              <% users.forEach(users=> { %>
+            <tbody>
+             
+              <tr>
+                <td> <%= users.name %></td>
+                <td> <%= users._id %></td>
+
+              <% }) %>
+              <% } else { %>
+                <p>There are no users to display...</p>
+                <% } %>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+       
+    </div>
+
+    <%- include("../partials/footer.ejs") %>
+
+      <!-- Have all the JS code last down in the page in every EJS file-->
+      <script>
+
+      </script>
+
+</body>

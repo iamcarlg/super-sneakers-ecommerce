@@ -2,20 +2,22 @@
 <html lang="en">  
 
 
-  <div class="container-flow">
+    
     <header class="header-global">
       <nav class="navbar navbar-expand-lg navbar-light">
         <nav class="navbar navbar-light">
           <a class="navbar-logo">
-           <img class="navbar-logo" src="../uploads/logo.png" width="40" height="40" alt="Logo"> <!-- Our company logo, do so it links to homepage?-->
+           <img class="navbar-logo" src="/uploads/logo.png" width="40" height="40" alt="Logo"> <!-- Our company logo, do so it links to homepage?-->
           </a>
         </nav>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          
+          <ul class="navbar-nav mr-auto ">
 
             <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -42,11 +44,6 @@
             </li>
           </ul>
 
-          <!--Search for specific product in navbar, calls 'search_products()'-->
-          <form class="d-flex">
-            <input id="searchbar" onkeyup="search_products()" type = "text" class="form-control me-2" placeholder="Search" aria-label="Search">
-            <!-- <button class="btn btn" >Search</button> dont need this btn -->
-
           <a class="navbar-brand" href = "./shoppingCart.html">
             
             <i class="fas fa-shopping-cart fa-lg" tabindex="-1" aria-disabled="true" data-toggle="modal"
@@ -58,51 +55,13 @@
             
             <i class="fa fa-sign-in fa-lg" width = "300" height = "550" tabindex="-1" aria-disabled="true" data-toggle="modal"
               data-target="#cartModal" aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation" style="color: #FF416C; cursor : pointer;"></i>
+              aria-label="Toggle navigation" style="color: #b10e0e; cursor : pointer;"></i>
           </a>
-          </form>
         </div>
       </nav>
     </header>
     <!--/NAVBAR ENDS/-->
 
-    </div>
 
-
-<!-- 
-<nav>
-    <div class="site-title">
-      <a href="/"><h1>Product Ninja</h1></a>
-      <p>A Net Ninja Site</p>
-    </div>
-    <ul>
-      <li><a href="/">Products</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/shop/products/post">New Product</a></li>
-    </ul>
-  </nav> -->
-
-      <!-- Have all the JS code last down in the page in every EJS file-->
-      <script>
-        //Explain?? 
-
-        // JavaScript code. Place in JS folder if possible
-        function search_products() {
-          let input = document.getElementById('searchbar').value
-          input = input.toLowerCase();
-
-          let column = document.getElementsByClassName('single');
-          let card_title = document.getElementsByClassName('title');
-
-          for (i = 0; i < card_title.length; i++) {
-            if (!card_title[i].innerHTML.toLowerCase().includes(input)) {
-              column[i].style.display = "none";
-            }
-            else {
-              column[i].style.display = "inline";
-            }
-          }
-        }
-      </script>
 
   </html>

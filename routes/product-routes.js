@@ -10,13 +10,17 @@ const multer  = require('multer')
 const path = require('path');
 const { Mongoose } = require('mongoose');
 
+//for rezise img in backend
+const sharp = require('sharp')
+//FS Interacts with sharp/multer to resize img
+const fs = require('fs')
+
 /***********************************************************/
 
 //route for retrieving all products in the database
 router.get('/products', (req, res) => {
     Product.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
     .then((result) => {
-        //I changed to 'admin' because this is our admin page /J 17/2
         res.render('admin', {title: 'product details' ,products: result}); //change to res.render when returning in ejs views (refer to net ninja youtube video) LOOK AT THIS LATER THIS MAKES NO SENSE
     })
     .catch((err) => {
@@ -34,7 +38,7 @@ router.get('/products/post', (req, res) => {
 //file storing
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null,process.cwd() + '/public/uploads')
+      cb(null,process.cwd() + '/public/uploads/')
     },
     filename: function (req, file, cb) {
       cb(null,  Date.now() + path.extname(file.originalname)) 
@@ -45,6 +49,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     dest: 'uploads',
     storage: storage,
+    
     fileFilter(req,file,cb) {
         if(!file.originalname.match(/.(jpg|png)$/)){
             return cb(new Error('Please upload picture in jpg/png format'))
@@ -54,9 +59,19 @@ const upload = multer({
  });
 
 
-// Upload Product/picture
+ //upload product whit rezised img
  router.post('/products', upload.single('picture'), async (req, res) => {
     console.log(req.file);
+
+    const { filename: image } = req.file;
+
+    await sharp(req.file.path)
+     .resize(200, 200)
+     .jpeg({ quality: 90 })
+     .toFile(
+         path.resolve(req.file.destination,'resized',image)
+     )
+     fs.unlinkSync(req.file.path)
 
     let product = new Product({
     title: req.body.title,
@@ -72,7 +87,25 @@ const upload = multer({
     } catch (error){
         console.log(error);
     }
-})
+});
+// // Upload Product/picture -- Delete when don't needed
+//  router.post('/products', upload.single('picture'), async (req, res) => {
+//     console.log(req.file);
+//     let product = new Product({
+//     title: req.body.title,
+//     gender: req.body.gender,
+//     brand: req.body.brand,
+//     description: req.body.description,
+//     picture: req.file.filename,
+//     price: req.body.price
+//     });
+//     try {
+//         product = await product.save();
+//         res.redirect('/shop/products')
+//     } catch (error){
+//         console.log(error);
+//     }
+// })
 
 
 

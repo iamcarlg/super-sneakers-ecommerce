@@ -5,7 +5,8 @@ const User = require('../models/user-model');
 router.get('/usersProfiles', (req, res) => {
     User.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
     .then((result) => {
-       res.json(result) //change to res.render when returning in ejs views (refer to net ninja youtube video)
+      // res.json(result) //change to res.render when returning in ejs views (refer to net ninja youtube video)
+      res.render('admin-users', {title: 'users details' ,users: result});  //I don't know if the users: results are as it should. You may have to change it so it's calls the users in db
     })
     .catch((err) => {
         console.log(err);
