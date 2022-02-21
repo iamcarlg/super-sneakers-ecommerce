@@ -1,5 +1,9 @@
 <%- include("../partials/head.ejs") %>
 
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+
 <body>
   <%- include("../partials/nav.ejs") %>
    
@@ -8,19 +12,20 @@
 
         <form class="form-inline d-flex justify-content-around md-form form-sm mt-0 ">
         <input id="searchbar" onkeyup="search_products()" type="text" required class="form-control me-2" placeholder="Search"
-          aria-label="Search">
+          aria-label="Search" />
+          <a href="javascript:location.reload(true)">Refresh Page</a>
           </form> 
    
 
           <!-- Responsive Crud table start (looping through all our products in our db and show them whit crud operations) -->
-          <div class="table-responsive-sm">
+          <div class="table-responsive-sm" >
              <table class="table">
         
               <tr>
-               <!---Phil did this-->   <th scope="col">picture</th>
+               <!---Phil did this-->   <th scope="col">Picture</th>
                 <th scope="col">Title</th>
-                <th scope="col">Price</th>
                 <th scope="col">Brand</th>
+                <th scope="col">Price</th>
                 
                 <th scope="col">Crud Op</th>
               
@@ -30,11 +35,11 @@
             <% if (products.length> 0) { %>
               <% products.forEach(product=> { %>
                 
-            <tbody>
+            <tbody id = "geeks">
               <tr>
              
                    <!---Phil did this--> <td> <img src="/uploads/resized/<%= product.picture%>" /></td> 
-                <td> <%= product.title %></td>
+                <td class = "table-title"> <%= product.title %></td>
                 <td> <%= product.brand %></td>
                 <td>    <%= product.price %></td>
                 <td>   
@@ -66,24 +71,41 @@
 
         // JavaScript code. Place in JS folder if possible
         //Search function
-        function search_products() {
-          let input = document.getElementById('searchbar').value
-          input = input.toLowerCase();
+        // function search_products() {
 
-           // The search bar dose not work from when i changed to table, Can it be becuase it stands card-body here?(we dont have card-body anymore)
+        //   let input = document.getElementById('searchbar').value
+        //   input = input.toLowerCase();
 
-          let column = document.getElementsByClassName('card-body');
-          let card_title = document.getElementsByClassName('title');
+        //    // The search bar dose not work from when i changed to table, Can it be becuase it stands card-body here?(we dont have card-body anymore)
 
-          for (i = 0; i < card_title.length; i++) {
-            if (!card_title[i].innerHTML.toLowerCase().includes(input)) {
-              column[i].style.display = "none";
-            }
-            else {
-              column[i].style.display = "inline";
-            }
-          }
-        }
+        //   let column = document.getElementsByClassName('table');
+        //   let card_title = document.getElementsByClassName('table-title');
+
+        //   for (i = 0; i < card_title.length; i++) {
+        //     if (!card_title[i].innerHTML.toLowerCase().includes(input)) {
+        //       column[i].style.display = "none";
+
+        //     }
+        //     else {
+              
+        //       column[i].style.display = "table";
+
+        //     }
+        //   }
+
+        // }
+
+
+            $(document).ready(function() {
+                $("#searchbar").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#geeks tr").filter(function() {
+                        $(this).toggle($(this).text()
+                        .toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+
       </script>
 
 </body>

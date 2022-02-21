@@ -22,14 +22,10 @@
   }
  
  .table th{
-  background-color: #b10e0e;
-  background-image:
-  linear-gradient(
-    to top right, 
-    #fdf8f2, #b10e0e
-  );
+  background-color: #b10e0eec;
+  color: white;
   margin-top: 10%;
-  border-top: ridge 1px  #b10e0e;
+  border-top: ridge 1px  #b10e0eec;
 
   }
 
