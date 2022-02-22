@@ -146,22 +146,34 @@ router.delete('/products/:id', (req, res) => {
         })
 });
 
-router.put('/edit-form/:id', async (req,res) => {
-    const id = req.params.id;
-    await Product.findByIdAndUpdate(id , req.body, {useFindAndModify: false})
-   .then(data => {
-       if(!data) {
-           res.status(404).send({
-               message: `Cannot update products with id: ${id}`
-           });
+router.put('/edit-form/:id', upload.single('picture'), async (req, res)=>{
+    req.product = await Product.findByIdAndUpdate(req.params.id);
+    let product = req.product;
+    product.title = req.body.title;
+    product.gender = req.body.gender;
+    product.brand = req.body.brand;
+    product.description = req.body.description;
+    product.price = req.body.price;
+    product.picture = req.file.filename;
 
-       } else res.redirect('/shop/products')
-   })
-   .catch(err => {
-       res.status(500).send({
-           message: "Error updating product with id" + id
-       })
-   })
-})
+    try {
+        const { filename: image } = req.file;
+        await sharp(req.file.path)
+            .resize(200, 200)
+            .jpeg({ quality: 90 })
+            .toFile(
+                path.resolve(req.file.destination, 'resized', image)
+            )
+        fs.unlinkSync(req.file.path)
+
+        product = await product.save();
+        //redirect to show route
+        res.redirect('/shop/products')
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 
 module.exports = router;
