@@ -24,9 +24,13 @@
               <p class="description">
                 <%= product.description %>
               </p>
-              <div class="px-2 mt-3">
-                <button class="btn btn-card " action="/paypal/pay" method="post">Buy
-                </button>
+              <div class="px-2 mt-3" style = "display: flex; justify-content: space-around;">
+
+                <form action="/paypal/pay" method="post">
+                  
+                  <button class="btn btn-card " >Buy</button>
+
+                </form>
                 <button class="btn btn-card"><a class="delete" data-doc="<%= product._id %>">Delete</a></button>
               </div>
             </div>
