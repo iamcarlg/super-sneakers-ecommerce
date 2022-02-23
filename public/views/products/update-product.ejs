@@ -5,7 +5,7 @@
 <%- include("./partials/nav.ejs") %>
 <!--Edit-form page to update a product-->
 <div class="create-blog content">
-  <form action="/shop/edit-form/<%=product.id %>?_method=PUT" method="POST"> <!--Edit-form page to update a product-->
+  <form action="/shop/edit-form/<%=product.id %>?_method=PUT" method="POST" enctype='multipart/form-data'> <!--Edit-form page to update a product-->
       <label for="title">Title:</label>
       <input type="text"  class="form-control" placeholder="title" name="title" value="<%= product.title %>">
 
@@ -18,6 +18,9 @@
       <label for="description">Description:</label>
       <input type="text"  class="form-control" placeholder="description" name="description" value="<%= product.description%>">
 
+      <label for="picture">Picture:</label>
+      <input type="file"  class="form-control" placeholder="picture" name="picture" value="<%= product.picture%>">
+
       <label for="price">Price:</label>
       <input type="text"  class="form-control" placeholder="price" name="price" value="<%= product.price%>">
 
@@ -26,4 +29,5 @@
 </div>
 
 <%- include("./partials/footer.ejs") %>
+
 
