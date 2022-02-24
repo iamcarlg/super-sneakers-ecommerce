@@ -17,6 +17,8 @@ const fs = require('fs')
 
 /***********************************************************/
 
+
+/************************************************************/
 //route for retrieving all products in the database
 router.get('/products', (req, res) => {
     Product.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)

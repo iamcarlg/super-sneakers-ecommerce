@@ -68,6 +68,11 @@ app.get('/', function (req, res) {
     res.redirect('/shop/products'); //change later to res.render('whatever')?
 });
 
+// Rendering the Admin page
+app.get('/shop/admin', (req, res) => {
+    res.redirect('/admin')
+})
+
 //404 page (page not found redirect)
 app.get((req, res) => {
     res.status(404).render('404', { title: '404' });

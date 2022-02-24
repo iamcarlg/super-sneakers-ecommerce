@@ -2,6 +2,33 @@ const router = require('express').Router();
 const { Mongoose } = require('mongoose');
 const User = require('../models/user-model');
 
+
+// Rendering the men products page
+// router.get('/all_products_men', (req, res) => {
+//     res.render('/all_products_men')
+// })
+
+router.get('/home', (req, res) => {
+    res.render('index');
+// The homepage
+});
+
+
+router.get('/products-men', (req, res) => {
+    res.render('all_products_men');
+
+});
+
+router.get('/products-women', (req, res) => {
+    res.render('all_products_women');
+
+});
+
+router.get('/about', (req, res) => {
+    res.render('about');
+
+});
+
 router.get('/usersProfiles', (req, res) => {
     User.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
     .then((result) => {
