@@ -1,0 +1,53 @@
+.gender-cards{
+text-align: center;
+}
+
+/* 
+Behövs lägga text på bilderna */
+.holder-img{
+    width: 30%;
+    padding: 5px;
+    display:inline-block;
+    /* This css underneith is for the text on the img */
+    position: relative;
+    /* text-align: center;
+    color: #000000;
+    font-family: Arial, sans-serif; */
+}
+
+.cat-img {   
+    margin: 0% 1%;
+    width: 100%;
+    height:auto;
+  }
+
+  
+/* Bottom right text */
+.text-block-cat {
+    position: absolute;
+    bottom: 40%;
+    right: 15%;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.384);
+    color: #ffffff;
+  }
+
+  .gender-link:hover{
+      text-decoration: none;
+  }
+
+
+  /* Here the breadcrump style starts */
+  .breadcrumb-nav .breadcrumb{
+    color: #e9ecef7e;
+    background-color: #e9ecef54;
+    border-radius: 0%;
+  }
+
+  .breadcrumb-item{
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb-item.active{
+    margin: 0%;
+  }

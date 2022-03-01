@@ -1,0 +1,40 @@
+<%- include("../partials/head.ejs") %>
+
+<body>
+
+  <%- include("../partials/nav.ejs") %>
+
+  <nav class="breadcrumb-nav" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Library</li>
+    </ol>
+  </nav>
+
+    <!--/CATEGORY CARDS (code whitout js connections, later one we need to ad js functionallity etc)/-->
+    <div class="gender-cards">
+      <a class="gender-link" href="/shop/products-women">
+    <div class="holder-img"> 
+        <img  class="cat-img" src="../uploads/womenindex.jpg" alt="">
+        <!-- <div class="centered">Centered women</div> -->
+        <div class="text-block-cat">
+          <h4>Women</h4>
+          <p>Browse our latest collection</p>
+        </div>
+     </div>
+    </a>
+    <a class="gender-link" href="/shop/products-men">
+     <div class="holder-img"> 
+        <img class="cat-img" src="../uploads/menindex.jpg" alt="">
+        <!-- <div class="centered">Centered man</div> -->
+        <div class="text-block-cat">
+          <h4>Men</h4>
+          <p>Browse our latest collection</p>
+        </div>
+      </div>
+      </a>
+    </div>
+
+
+  <%- include("../partials/footer.ejs") %>
+</body>

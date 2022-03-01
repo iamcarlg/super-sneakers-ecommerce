@@ -14,15 +14,6 @@ router.get('/home', (req, res) => {
 });
 
 
-router.get('/products-men', (req, res) => {
-    res.render('all_products_men');
-
-});
-
-router.get('/products-women', (req, res) => {
-    res.render('all_products_women');
-
-});
 
 router.get('/about', (req, res) => {
     res.render('about');

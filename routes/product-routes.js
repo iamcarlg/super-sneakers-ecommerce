@@ -17,18 +17,31 @@ const fs = require('fs')
 
 /***********************************************************/
 
-
-/************************************************************/
-//route for retrieving all products in the database
-router.get('/products', (req, res) => {
-    Product.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
+//admin start
+//route for admin CRUD functions on products
+//http://localhost:3000/shop/adminproducts
+router.get('/adminproducts', (req, res) => {
+    Product.find() 
     .then((result) => {
-        res.render('admin', {title: 'product details' ,products: result}); //change to res.render when returning in ejs views (refer to net ninja youtube video) LOOK AT THIS LATER THIS MAKES NO SENSE
+        res.render('admin', {title: 'product details' ,products: result}); 
     })
     .catch((err) => {
         console.log(err);
     });
 });
+
+
+/************************************************************/
+//route for retrieving all products in the database
+// router.get('/products', (req, res) => {
+//     Product.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
+//     .then((result) => {
+//         res.render('admin', {title: 'product details' ,products: result}); //change to res.render when returning in ejs views (refer to net ninja youtube video) LOOK AT THIS LATER THIS MAKES NO SENSE
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+// });
 
 //product posting route
 router.get('/products/post', (req, res) => {
@@ -90,38 +103,7 @@ const upload = multer({
         console.log(error);
     }
 });
-// // Upload Product/picture -- Delete when don't needed
-//  router.post('/products', upload.single('picture'), async (req, res) => {
-//     console.log(req.file);
-//     let product = new Product({
-//     title: req.body.title,
-//     gender: req.body.gender,
-//     brand: req.body.brand,
-//     description: req.body.description,
-//     picture: req.file.filename,
-//     price: req.body.price
-//     });
-//     try {
-//         product = await product.save();
-//         res.redirect('/shop/products')
-//     } catch (error){
-//         console.log(error);
-//     }
-// })
 
-
-
-//route for retrieving a specific product from the database
-router.get('/products/:id', (req, res) => {
-    const id = req.params.id;
-    Product.findById(id)
-        .then(result => {
-            res.render('product-details', {title: 'product details' ,product: result});
-        })
-        .catch(err => {
-            res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
-        });
-});
 
 //comments please
 router.get('/edit-form/:id', (req, res) => {
@@ -176,6 +158,16 @@ router.put('/edit-form/:id', upload.single('picture'), async (req, res)=>{
     }
 });
 
+//rote for our product men and women
 
+router.get('/products-men', (req, res) => {
+    res.render('all_products_men');
+
+});
+
+router.get('/products-women', (req, res) => {
+    res.render('all_products_women');
+
+});
 
 module.exports = router;

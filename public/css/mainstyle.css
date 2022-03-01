@@ -1,14 +1,13 @@
 /* Every ejs file calls this css */
 
 body{
-  font-family: 'Noto Serif', serif;
+  font-family: Arial, sans-serif;
 }
 
 nav{
 display: flex;
 justify-content: space-between;
-margin-bottom: 60px;
-padding-bottom: 10px;
+/* margin-bottom: 2%; */
 text-transform: uppercase;
 }
 
