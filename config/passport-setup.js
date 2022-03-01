@@ -4,16 +4,20 @@ const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 const User = require('../models/user-model');
 
+
+//add comment
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
+//add comment
 passport.deserializeUser((id, done) => {
     User.findById(id).then((user) => {
         done(null,user)
     });
 });
 
+//add comment
 passport.use(new GoogleStrategy({
         //options for the google strategy
         callbackURL: '/auth/redirect',

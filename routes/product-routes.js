@@ -1,7 +1,9 @@
 //import the express router
 const router = require('express').Router();
 
-const { append, render } = require('express/lib/response');
+//what is this?
+const { append, render } = require('express/lib/response'); 
+
 //call the database model for products
 const Product = require('../models/product-model');
 
@@ -17,39 +19,28 @@ const fs = require('fs')
 
 /***********************************************************/
 
-//admin start
-//route for admin CRUD functions on products
-//http://localhost:3000/shop/adminproducts
-router.get('/adminproducts', (req, res) => {
+//we need to make it so that the women shoes go to the women and mens shoes go to mens
+//route for admin CRUD functions on products (/admin/products)
+router.get('/products', (req, res) => {
     Product.find() 
     .then((result) => {
-        res.render('admin', {title: 'product details' ,products: result}); 
+        res.render('products-men', {title: 'product details' ,products: result}); 
     })
     .catch((err) => {
         console.log(err);
     });
 });
 
+/***********************************************************/
 
-/************************************************************/
-//route for retrieving all products in the database
-// router.get('/products', (req, res) => {
-//     Product.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
-//     .then((result) => {
-//         res.render('admin', {title: 'product details' ,products: result}); //change to res.render when returning in ejs views (refer to net ninja youtube video) LOOK AT THIS LATER THIS MAKES NO SENSE
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
-// });
-
-//product posting route
-router.get('/products/post', (req, res) => {
-    res.render('product-post', {title: 'post new product'});
+//product posting page
+router.get('/post', (req, res) => {
+    res.render('product-post', {title: 'Add Product'});
 });
 
+/***********************************************************/
 
-// we need to move this to a separate file
+//we need to move this to a separate file
 //file storing
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -73,8 +64,11 @@ const upload = multer({
     }
  });
 
+/***********************************************************/
 
- //upload product whit rezised img
+
+//can you add some comments in this
+ //post product with img (img will be resized) this resize wont format correctly for our shop page btw
  router.post('/products', upload.single('picture'), async (req, res) => {
     console.log(req.file);
 
@@ -98,24 +92,40 @@ const upload = multer({
     });
     try {
         product = await product.save();
-        res.redirect('/shop/products')
+        res.redirect('/admin/products') //check if its correct
     } catch (error){
         console.log(error);
     }
 });
 
+/***********************************************************/
 
-//comments please
-router.get('/edit-form/:id', (req, res) => {
+router.get('/products/:id', (req, res) => {
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
-            res.render('update-product', {title: 'product details' ,product: result});
+            res.render('product-details', {title: 'product details', product: result });
         })
         .catch(err => {
             res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
         });
 });
+
+/***********************************************************/
+
+//comments please
+router.get('/update/:id', (req, res) => {
+    const id = req.params.id;
+    Product.findById(id)
+        .then(result => {
+            res.render('product-update', {title: 'product details' , products: result});
+        })
+        .catch(err => {
+            res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
+        });
+});
+
+/***********************************************************/
 
 //route for deleting an existing product
 router.delete('/products/:id', (req, res) => {
@@ -123,14 +133,17 @@ router.delete('/products/:id', (req, res) => {
 
     Product.findByIdAndDelete(id)
         .then(result => {
-            res.json({ redirect: '/shop/products' });
+            res.json({ redirect: '/admin/products' });
         })
         .catch(err => {
             console.log(err);
         })
 });
 
-router.put('/edit-form/:id', upload.single('picture'), async (req, res)=>{
+/***********************************************************/
+
+//route for updating our products (change the resize to how we want and then try to implement thumbnails on the admin page)
+router.put('/update/:id', upload.single('picture'), async (req, res)=>{
     req.product = await Product.findByIdAndUpdate(req.params.id);
     let product = req.product;
     product.title = req.body.title;
@@ -152,22 +165,26 @@ router.put('/edit-form/:id', upload.single('picture'), async (req, res)=>{
 
         product = await product.save();
         //redirect to show route
-        res.redirect('/shop/products')
+        res.redirect('/admin/products')
     } catch (error) {
         console.log(error);
     }
 });
 
-//rote for our product men and women
+/***********************************************************/
 
-router.get('/products-men', (req, res) => {
-    res.render('all_products_men');
-
+//route for mens products
+router.get('/men', (req, res) => {
+    res.render('products-men');
 });
 
-router.get('/products-women', (req, res) => {
-    res.render('all_products_women');
+/***********************************************************/
 
+//route for our women products
+router.get('/women', (req, res) => {
+    res.render('products-women');
 });
+
+/***********************************************************/
 
 module.exports = router;

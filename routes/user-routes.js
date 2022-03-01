@@ -1,48 +1,16 @@
 const router = require('express').Router();
-const { Mongoose } = require('mongoose');
+const { Mongoose } = require('mongoose'); //is this needed? i dont think so
+
+//call the mongoose user model
 const User = require('../models/user-model');
 
+//call authentication code
+const {authUser, authRole} = require('../config/authentication');
+const ROLE = require('../models/user-roles')
 
-// Rendering the men products page
-// router.get('/all_products_men', (req, res) => {
-//     res.render('/all_products_men')
-// })
+/***********************************************************/
 
-router.get('/home', (req, res) => {
-    res.render('index');
-// The homepage
-});
-
-
-
-router.get('/about', (req, res) => {
-    res.render('about');
-
-});
-
-router.get('/usersProfiles', (req, res) => {
-    User.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
-    .then((result) => {
-      // res.json(result) //change to res.render when returning in ejs views (refer to net ninja youtube video)
-      res.render('admin-users', {title: 'users details' ,users: result});  //I don't know if the users: results are as it should. You may have to change it so it's calls the users in db
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
-
-router.get('/search/:id', (req, res) => {
-    const id = req.params.id;
-    User.findById(id)
-        .then(result => {
-            res.json(result)
-            console.log(result)
-        })
-        .catch(err => {
-            res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
-        });
-});
-
+//add comment
 router.delete('/delete/:id', (req, res) => {
     const id = req.params.id;
 
@@ -59,8 +27,14 @@ router.delete('/delete/:id', (req, res) => {
         })
 });
 
+/***********************************************************/
 
+//this page renders the profile page that is only accessible after login
+router.get('/profile', authUser, (req, res) => { //, authRole(ROLE.ADMIN)
+    res.render('profile', {user: req.user});
+});
 
+/***********************************************************/
 
 module.exports = router;
 

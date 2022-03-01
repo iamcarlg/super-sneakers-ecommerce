@@ -1,10 +1,14 @@
-// Import of the express and Paypal-rest-sdk Modules
+//Import of the express and Paypal-rest-sdk Modules
 const router = require('express').Router();
+
+//imports the paypal rest SDK
 const paypal = require('paypal-rest-sdk');
 
+/***********************************************************/
 
+
+//make sure this isnt hard-coded
 // The payment details that Paypal uses to initiate a transaction.
-
 router.post('/pay', (req, res) => {
     const create_payment_json = {
       "intent": "sale",
@@ -47,6 +51,9 @@ router.post('/pay', (req, res) => {
   
   });
 
+/***********************************************************/
+
+//make sure its not hard-coded
 // In case the operation is successful
   router.get('/success', (req, res) => {
     const payerId = req.query.PayerID;
@@ -78,5 +85,7 @@ router.post('/pay', (req, res) => {
   });
   });
 
-  // Export of the paypal-routes Module
+/***********************************************************/
+
+// Export of the paypal-routes Module
 module.exports = router;

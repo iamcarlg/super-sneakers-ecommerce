@@ -4,8 +4,8 @@ const app = express();
 
 //package to override the post method to create put method
 const methodOverride = require('method-override');
-app.use(methodOverride('_method')); // call the override function
 
+//add comment
 const port = process.env.port || 3000; //sets the localhost port to 3000
 
 //import bodyParser to call data with req.body
@@ -19,11 +19,11 @@ const dbURI = keys.mongodb.dbURI; //MongoDB
 const mongoose = require('mongoose'); //Mongoose
 
 //import routes
+const baseRoutes = require("./routes/base-routes");
 const userRoutes = require("./routes/user-routes");
 const authRoutes = require("./routes/auth-routes");
-const profileRoutes = require("./routes/profile-routes");
+const adminRoutes = require("./routes/admin-routes");
 const productRoutes = require("./routes/product-routes");
-const cartRoutes = require("./routes/cart-routes");
 const paypalRoutes = require('./routes/paypal-routes');
 
 //import cookieSession. is used to control the current user session
@@ -43,6 +43,11 @@ const paypal = require('paypal-rest-sdk');
 
 /***********************************************************/
 
+// call the override function to change post to put
+app.use(methodOverride('_method')); 
+
+/***********************************************************/
+
 //configure paypal
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -51,6 +56,7 @@ paypal.configure({
   });
 
 /************************************************* */
+
 //connect mongoose to MongoDB
 mongoose.connect(dbURI)
 // .then((result) => app.listen(port)) // see if you can add a console.log to show successful connection
@@ -61,17 +67,6 @@ mongoose.connect(dbURI)
 
 //takes url encoded data and passes it into an object that can be used on a request object
 app.use(express.urlencoded({ extended: true }));
-
-
-//render the index route
-app.get('/', function (req, res) {
-    res.redirect('/shop/products'); //change later to res.render('whatever')?
-});
-
-// Rendering the Admin page
-app.get('/shop/admin', (req, res) => {
-    res.redirect('/admin')
-})
 
 //404 page (page not found redirect)
 app.get((req, res) => {
@@ -102,7 +97,7 @@ app.use(passport.session());
 app.set('view engine', 'ejs');
 
 //connect our views with our public folder
-app.set('views', [__dirname + '/public/views', __dirname + '/public/views/users',  __dirname + '/public/views/orders', __dirname + '/public/views/payments', __dirname + '/public/views/products']);
+app.set('views', [__dirname + '/public/views/base', __dirname + '/public/views/admin', __dirname + '/public/views/users',  __dirname + '/public/views/orders', __dirname + '/public/views/payments', __dirname + '/public/views/products']);
 
 //static folder that makes files in public folder show as views
 app.use(express.static(path.join(__dirname, 'public')));
@@ -110,14 +105,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 /***********************************************************/
 
 // The App is listening on PORT 3000 locally and on process.env.PORT When deployed on the web
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || port);
 
 //connect express app to routes
+app.use('/', baseRoutes);
 app.use('/users', userRoutes);
-app.use('/profile', profileRoutes);
 app.use('/auth', authRoutes);
 app.use('/shop', productRoutes);
-app.use('/cart', cartRoutes);
+app.use('/admin', adminRoutes);
 app.use('/paypal', paypalRoutes);
 
 /***********************************************************/

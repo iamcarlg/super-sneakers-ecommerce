@@ -1,0 +1,97 @@
+<%- include("../partials/head.ejs") %>
+
+  <body>
+    <%- include("../partials/nav.ejs") %>
+
+      <div class="container-flow">
+
+        <!--Search for specific product , calls 'search_products()'-->
+        <form class="form-inline d-flex justify-content-around md-form form-sm mt-0 ">
+          <input id="searchbar" onkeyup="search_products()" type="text" required class="form-control me-2"
+            placeholder="Search" aria-label="Search" />
+        </form>
+
+        <a class="single" href="/shop/post/">
+          <!--make sure these are correct -->
+          <button class="btn btn-form">Add Product</button>
+        </a>
+
+        <!-- Responsive Crud table start (looping through all our products in our db and show them whit crud operations) -->
+        <div class="table-responsive-sm">
+          <table class="table">
+
+            <tr>
+              <!---Phil did this-->
+              <th scope="col">Picture</th>
+              <th scope="col">Title</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Price</th>
+
+              <th scope="col">Actions</th>
+
+
+            </tr>
+            </thead>
+            <% if (products.length> 0) { %>
+              <% products.forEach(product=> { %>
+
+                <tbody id="table-body">
+                  <tr>
+
+                    <!---Phil did this-->
+                    <td> <img src="/uploads/resized/<%= product.picture%>" /></td>
+                    <td class="table-title">
+                      <%= product.title %>
+                    </td>
+                    <td>
+                      <%= product.brand %>
+                    </td>
+                    <td>
+                      <%= product.price %>
+                    </td>
+                    <td>
+                      <div class="px-2 mt-3">
+
+                        <a class="single" href="/shop/products/<%= product._id %>">
+                          <!--make sure these are correct -->
+                          <button class="btn btn-form">Delete/Buy</button>
+                        </a>
+                        <a class="single" href="/shop/update/<%= product._id %>">
+                          <button class="btn btn-form ">Update</button>
+                        </a>
+                        <a class="single" href="/shop/update/<%= product._id %>"> <!--Change href to product page-->
+                          <button class="btn btn-form ">To Product</button>
+                        </a>
+                      </div>
+                    </td>
+                    <% }) %>
+                      <% } else { %>
+                        <p>There are no products to display...</p>
+                        <% } %>
+                  </tr>
+                </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <%- include("../partials/footer.ejs") %>
+
+        <!-- Have all the JS code last down in the page in every EJS file-->
+        <!-- We should move all scripts to a separate scripts folder and call the folder instead, i think thats best practise -->
+        <script>
+
+          //Search functionality
+          $(document).ready(function () {
+            $("#searchbar").on("keyup", function () {
+              var value = $(this).val().toLowerCase();
+              $("#table-body tr").filter(function () {
+                $(this).toggle($(this).text()
+                  .toLowerCase().indexOf(value) > -1)
+              });
+            });
+          });
+
+        </script>
+
+  </body>

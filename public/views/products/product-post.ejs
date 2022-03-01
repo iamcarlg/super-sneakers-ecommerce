@@ -1,10 +1,12 @@
 
-<%- include("./partials/head.ejs") %>
+<%- include("../partials/head.ejs") %>
 
-<%- include("./partials/nav.ejs") %>
+<%- include("../partials/nav.ejs") %>
+
+<!--This should be a modal!-->
 <h2>Add Product</h2>
   <div class="create-blog content">
-    <form action="/shop/products" method="POST" enctype="multipart/form-data">
+    <form action="/shop/products" method="POST" enctype="multipart/form-data"> <!--kolla på routen-->
         <label for="title">Title:</label>
         <input class="form-control" type="text" id="title" name="title" required>
 
@@ -12,9 +14,7 @@
         <input class="form-control" type="text" id="gender" name="gender" required>
 
         <label for="brand">Brand:</label>
-        <input class="form-control" type="text" id="brand" name="brand" required >
-       
-       
+        <input class="form-control" type="text" id="brand" name="brand" required>
        
         <label for="picture">Picture:</label>
         <input type="file" accept="image/*" id="picture" name="picture"  required>
@@ -28,5 +28,5 @@
       </form>
   </div>
 
-  <%- include("./partials/footer.ejs") %>
+  <%- include("../partials/footer.ejs") %>
 

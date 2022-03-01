@@ -1,3 +1,5 @@
+//these are the keys for our different middleware and apis
+
 module.exports = {
     google: {
         clientID: '1086619862894-j4h783v8a5ptugd0v4s1j4utqais0sbl.apps.googleusercontent.com',

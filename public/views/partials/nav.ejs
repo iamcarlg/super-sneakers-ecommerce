@@ -18,43 +18,38 @@
           <ul class="navbar-nav mr-auto ">
 
             <li class="nav-item active">
-              <a class="nav-link" href="/users/home">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <!--We need to fix bycategory in db so we then can ad categorys to our products, and they will direct to each catogery in navbar-->
             <li class="nav-item ">
-              <a class="nav-link" href="/shop/products-men">Men</a> 
+              <a class="nav-link" href="/shop/men">Men</a> 
             </li>
 
             <li class="nav-item ">
-              <a class="nav-link" href="/shop/products-women">Women</a>
+              <a class="nav-link" href="/shop/women">Women</a>
             </li>
 
             <li class="nav-item ">
-              <a class="nav-link" href="/users/about">About</a>
+              <a class="nav-link" href="/about">About</a> <!--change route, should not be in users-->
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/">Admin</a>
+              <a class="nav-link" href="/admin/products">Admin</a>
             </li>
 
-            <li>
-              <li><a class="nav-link" href="/shop/products/post">Add Product</a></li>
-            </li>
           </ul>
 
-          <a class="navbar-brand" href = "./shoppingCart.html">
-            
-            <i class="fas fa-shopping-cart fa-lg" tabindex="-1" aria-disabled="true" data-toggle="modal"
-            data-target="#cartModal" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation"></i>
-            
+          <a class="navbar-brand" href = "/users/profile">
+            <i class="fa-solid fa-user fa-lg"></i>
+         </a>
+
+          <a class="navbar-brand" href = "/users/profile"> <!--change link-->    
+            <i class="fa-solid fa-bag-shopping fa-lg"></i>            
           </a>
           <a href = "/auth/login" >
-            
-            <i class="fa fa-sign-in fa-lg" width = "300" height = "550" tabindex="-1" aria-disabled="true" data-toggle="modal"
-              data-target="#cartModal" aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation" style="color: #b10e0e; cursor : pointer;"></i>
+            <i class="fa-brands fa-google fa-lg"></i>
           </a>
+
         </div>
       </nav>
     </header>
