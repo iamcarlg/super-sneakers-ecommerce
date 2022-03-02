@@ -1,18 +1,15 @@
+
+
+/* This style is for the gender img, which shows our categorys - start*/
 .gender-cards{
 text-align: center;
 }
-
-/* 
-Behövs lägga text på bilderna */
 .holder-img{
     width: 30%;
-    padding: 5px;
+    padding: 1%;
     display:inline-block;
     /* This css underneith is for the text on the img */
     position: relative;
-    /* text-align: center;
-    color: #000000;
-    font-family: Arial, sans-serif; */
 }
 
 .cat-img {   
@@ -36,11 +33,41 @@ Behövs lägga text på bilderna */
       text-decoration: none;
   }
 
+/* This style is for the gender img, which shows our categorys -end*/
+
+/* Here the style for the page banner div and the 3 child img starts */
+.page-banner{
+  margin: 5% 0%;
+  padding: 5% 0% ;
+  background-color: #e9ecef44;
+  height: 100%;
+  text-align: center;
+}
+.page-banner p{
+  width: 55%;
+  display:inline-block;
+}
+  /* This css underneith is for the text on the img's */
+.child-holder-img{
+  width: 20%;
+  padding: 2%;
+  display:inline-block;
+}
+
+.child-holder-img img{  
+  padding: 1%;
+  display:inline-block;
+
+}
+
+/* Here the style for the page banner div and the 3 child img starts */
+
+
 
   /* Here the breadcrump style starts */
   .breadcrumb-nav .breadcrumb{
     color: #e9ecef7e;
-    background-color: #e9ecef54;
+    background-color: #ffffff;
     border-radius: 0%;
   }
 
@@ -51,3 +78,59 @@ Behövs lägga text på bilderna */
   .breadcrumb-item.active{
     margin: 0%;
   }
+
+  
+   /* Responsive columns whit breakpoints*/
+   
+@media screen and (max-width: 1500px) and (min-width: 900px) {
+
+    /*Let this breakpoint be here for now. Maybe we need to add code here later*/
+}
+
+@media screen and (max-width: 900px) and (min-width: 400px) {
+
+.holder-img{
+    width: 65%;
+}
+
+/* Bottom right text */
+.text-block-cat {
+  width: 60%;
+  
+}
+
+.text-block-cat p{
+  font-size: 1.5rem;
+}
+
+
+  /* This css underneith is for the text on the img's */
+  .child-holder-img{
+    width: 25%;
+    display:inline-table;
+  }
+
+
+
+}
+
+
+@media screen and (max-width: 400px) and (min-width: 200px){
+  
+  .holder-img{
+    width: 80%;
+    padding: 5% 1%;
+}
+ /* Bottom right text */
+.text-block-cat {
+  width: 60%;
+  
+}
+
+ /* This css underneith is for the text on the img's */
+ .child-holder-img{
+  width: 30%;
+  display:inline-table;
+}
+
+}

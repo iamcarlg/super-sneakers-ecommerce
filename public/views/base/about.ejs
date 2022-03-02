@@ -1,162 +1,75 @@
-
 <%- include("../partials/head.ejs") %>
 
-<body>
-  
-  <div class="container-flow" id="app">
+  <body>
+    <!-- Container fluid does that the navbar and everything inside fits to the page -->
+    <!-- Look at this later if time let us -->
+    <div class="container-fluid">
+      <%- include("../partials/nav.ejs") %>
 
-    <%- include("../partials/nav.ejs") %>
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About</li>
+          </ol>
+        </nav>
+        
 
-    <div class="about-content">
-      
+        <!-- Div for gray "banner" -->
+        <div class="about-banner">
+          <div class="about-holder-img">
+            <img class="cat-img" src="./uploads/about-page-img.jpg" alt="">
+          </div> 
+          <div class="about-banner-text">
+            <h2>ABOUT SUPER SNEAKERS</h2>
+            <p class="about-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id recusandae itaque expedita quia pariatur enim in eligendi quae harum dolorem omnis, eum beatae est, dolorum, laudantium numquam vitae praesentium asperiores?
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni aliquid iure debitis? Velit quas, necessitatibus eveniet aliquam non ratione quibusdam iusto rem, esse magni veniam, sint laborum unde nostrum assumenda.
+            </p>
+          </div>
+        </div>
+
+
+
+<!-- Here the container and html for the Accomplishment starts -->
+        <div class="accomplishment text-center">
+          <h2>ACCOMPLISHMENT</h2>
+          <h4>What we offer</h4>
+          <br>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4>POWER</h4>
+              <p>We hold the latest trends and our goal is that our customers feel empowered and proud when shopping from Super Sneakers.</p>
+            </div>
+            <div class="col-sm-4">
+              <h4>LOVE</h4>
+              <p>5 friends got the idea to start Super Sneakers and from that day hard work and love has been the main focus for Super Sneakers.</p>
+            </div>
+            <div class="col-sm-4">
+              <h4>JOB DONE</h4>
+              <p>We have the aim of ensuring a continuous, transparent and trustful dialogue with all capital market participants.</p>
+            </div>
+            </div>
+            <br><br>
+          <div class="row">
+            <div class="col-sm-4">
+              <h4>GREEN</h4>
+              <p>Our goal is to offer sneakers with eco-friendly materials to atleast half of the sneaker range by 2025.</p>
+            </div>
+            <div class="col-sm-4">
+              <h4>CERTIFIED</h4>
+              <p>We have several certificates, online shop certified, eco-friendly certificate and certificates for secure payments.</p>
+            </div>
+            <div class="col-sm-4">
+              <h4>HARD WORK</h4>
+              <p>Hard work has been invested in the company. Over the years, the company has expanded to offer a large range of sneakers and worldvide shipping.</p>
+            </div>
+          </div>
+        </div>
+
+
+
     </div>
 
 
-    <!--/This code is commented because for now we dont need it, but later on we need this because this code is an example of how to
-      connect js functionality when showinq our products from the DB on our website.
-      We can look over this code when we connects functionality and connections whit the backend etc(let this code be here for now)
-      The same goes for the other code that are commented in this page/-->
-    <!-- <div class="container">
-      <div class="row justify-content-center">
-        <div class="card" style="width: 18rem;" v-for="product in products" v-bind:key="product.id">
-          <img class="card-img" v-bind:src="product.picture" alt="Card picture">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">{{ product.description }}</p>
-            <button type="button" class="btn" data-toggle="modal" data-target="#showModal"
-              v-on:click="showProduct(product.id)">Read more</button>
-          </div>
-        </div>
-      </div> -->
 
-    <!-- <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">
-                {{productsModal.name}}
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <img class="card-img" v-bind:src="productsModal.picture" alt="Modal picture"
-                style="width: 15rem; height: 20rem;">
-              <p>Price: {{productsModal.price}} </p>
-              <p>Description: {{productsModal.description}} </p>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn" data-dismiss="modal">Back</button>
-              <button type="button" class="btn" v-on:click="addtoCart(productsModal)" data-dismiss="modal">Add to
-                shopping cart</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-
-    <!--/This code connects the methods and popup with cart. 
-      We can look over this code when we connects functionality and connections whit the backend etc(let this code be here for now)/-->
-
-    <!-- <div class="modal fade" id="cartModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title modal-brand">Your Shopping Cart</h5>
-            </div>
-            <div class="modal-body">
-              <div class="row ml-2 mr-2 mt-3 mb-3 justify-content-between align-items-center"
-                v-for="product in cartProducts">
-                <h5 class="modal-cart-title"> {{ product.name }}</h5>
-                <span class="modal-cart-span">{{ product.price }} SEK</span>
-                <i class="fa fa-trash" v-on:click="removeCart(product)"></i>
-              </div>
-              <div v-show="cartProducts.length === 0">
-                <p class="modal-cart-title text-center">Shopping Cart is currently empty!</p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <div class="w-100 modal-cart-price">Total to pay: <span>{{ total }} SEK</span></div>
-              <button type="button" class="btn btn-white" data-dismiss="modal">Back</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-  </div> <!-- container flow ends -->
-
-  <%- include("../partials/footer.ejs") %>
-
-
-
-
-
-
-
-
-
-  <!--/This is the script that we use when calling our methods from .js files etc. This will also connect whit the html code that is for now
-    commented. I let this code also be commented for now, we can go back to this when we are starting whit connecting our backend/functionallity/methods etc/-->
-    
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
-  <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-  <script>
-    const vm = new Vue({
-      el: "#app",
-      data: {
-        products: [],
-        productsModal: [],
-        cartProducts: []
-      },
-      methods: {
-        showCart() {
-          $("#cartModal").modal("show");
-        },
-        addtoCart(productsModal) {
-          this.cartProducts.push(productsModal);
-        },
-        removeCart(productsModal) {
-          this.cartProducts.splice(this.cartProducts.indexOf(productsModal), 1);
-        },
-
-        showProduct(id) {
-          var self = this;
-          $.getJSON("/api/product/" + id, function (jsondata) {
-            console.log(JSON.stringify(jsondata));
-            self.productsModal = jsondata;
-          });
-          $('#showModal').modal('show');
-        },
-      },
-      computed: {
-        total() {
-          var total = 0;
-          for (var i = 0; i < this.cartProducts.length; i++) {
-            total += this.cartProducts[i].price;
-          }
-          return total;
-        },
-      },
-      mounted() {
-        var self = this;
-        $.getJSON("/api/products/", function (jsondata) {
-          console.log(JSON.stringify(jsondata))
-          self.products = jsondata;
-        });
-      }
-    });
-  </script> -->
-
-</body>
-</html>
+    <%- include("../partials/footer.ejs") %>
+  </body>
