@@ -21,13 +21,15 @@ module.exports = function Cart(oldCart) {
             storedItem = this.items[id] = {
                 item: item,
                 qty: 0,
-                price: 0
+                price: 0,
+                size: 0
             };
         }
         //Increase quantity of item.
         storedItem.qty++;
         //Calculation to adjust the price.
         storedItem.price = storedItem.item.price * storedItem.qty;
+        storedItem.size = storedItem.item.size;
 
         //Total quanitity of price.
         this.totalQty++;

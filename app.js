@@ -99,14 +99,19 @@ app.use(cookieParser()) // Handles removal of cookies for individual session.
 
 app.use(session({
     secret: keys.session.expressKey,  //this key is used to encrypt the id so that it is encrypted by the time it reaches the browser
-    resave: true, //add comment
-    saveUninitialized: true, //add comment
-    maxAge: 24 * 60 * 60 * 1000, //max age of the cookie we send out (we have set 24h)
+    resave: false, //add comment
+    saveUninitialized: false, //add comment
+    cookie: {
+        maxAge: 180 * 60 * 1000
+    }, //max age of the cookie we send out (we have set 24h)
     // Mongo session store for our cart.
     store: MongoStore.create({
         mongoUrl: dbURI
     }),    
 }));
+
+
+
 
   
 //initialize passport

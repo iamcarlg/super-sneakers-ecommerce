@@ -27,7 +27,18 @@ router.get('/redirect', passport.authenticate('google'), (req, res) => {
 
 //auth logout
 router.get('/logout', (req, res) => {
-    req.logout();
+      // Clear the cookie of the connected user
+      res.clearCookie('connect.sid');
+
+ // check after
+ //req.logout()
+ 
+      // Destroy session of the user
+      req.session.destroy(function (err) {
+          console.log(err)
+      });
+  
+
     res.redirect('/auth/login'); //redirects to login page when logged out
     console.log('user logged out.');
 });

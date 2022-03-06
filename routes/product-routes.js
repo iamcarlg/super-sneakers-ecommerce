@@ -86,6 +86,7 @@ const upload = multer({
     title: req.body.title,
     gender: req.body.gender,
     brand: req.body.brand,
+    size: req.body.size,
     description: req.body.description,
     picture: req.file.filename,
     price: req.body.price
@@ -100,7 +101,7 @@ const upload = multer({
 
 /***********************************************************/
 
-router.get('/products/:id', (req, res) => {
+router.get('/products/:id', (req, res) => {  //change to product //Karwan
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
@@ -151,6 +152,7 @@ router.put('/update/:id', upload.single('picture'), async (req, res)=>{
     product.brand = req.body.brand;
     product.description = req.body.description;
     product.price = req.body.price;
+    product.price = req.body.size;
     product.picture = req.file.filename;
 
     try {

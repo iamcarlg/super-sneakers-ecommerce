@@ -4,7 +4,7 @@
 
 <%- include("../partials/nav.ejs") %>
 <!--This should be a modal-->
-<div class="create-blog content">
+<div class="create-blog content"> <!-Change class name--->
   <form action="/shop/update/<%=product.id %>?_method=PUT" method="POST" enctype='multipart/form-data'> <!--Edit-form page to update a product-->
       <label for="title">Title:</label>
       <input type="text"  class="form-control" placeholder="title" name="title" value="<%= product.title %>">
@@ -14,6 +14,9 @@
 
       <label for="brand">Brand:</label>
       <input type="text"  class="form-control" placeholder="brand" name="brand" value="<%= product.brand%>">
+
+      <label for="brand">Size:</label>
+      <input type="text"  class="form-control" placeholder="size" name="size" value="<%= product.size%>">
     
       <label for="description">Description:</label>
       <input type="text"  class="form-control" placeholder="description" name="description" value="<%= product.description%>">

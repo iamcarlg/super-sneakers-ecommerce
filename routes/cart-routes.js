@@ -10,7 +10,7 @@ const Cart = require('../models/cart-model');
 
 
 // Add item to cart.
-router.get('/add-cart/:id', (req, res) => { //more fitting name maybe?
+router.get('/add/:id', (req, res) => { //more fitting name maybe?
     //Find the product id
     const productId = req.params.id;
     // Create a cart object to store item based on  user session
@@ -29,7 +29,7 @@ router.get('/add-cart/:id', (req, res) => { //more fitting name maybe?
             //store in cart object in my session
             req.session.cart = cart;
             console.log(req.session.cart);
-            res.redirect('/admin/products')
+            res.redirect('back');
         })
     } catch (err) {
         console.log(err)
@@ -50,7 +50,7 @@ router.get('/reduce/:id', function (req, res, next) {
         //  save the contents of a cart 
         req.session.cart = cart;
         console.log(req.session.cart);
-        res.redirect('shopping-cart')
+        res.redirect('back');
     } catch (err) {
         console.log(err)
     }
@@ -68,7 +68,7 @@ router.get('/increase/:id', function (req, res, next) {
         // save the contents of a cart 
         req.session.cart = cart;
         console.log(req.session.cart);
-        res.redirect('/admin/products')
+        res.redirect('back');
     } catch (err) {
         console.log(err)
     }
@@ -86,7 +86,7 @@ router.get('/remove/:id', function (req, res, next) {
     cart.removeItem(productId);
        // save the contents of a cart 
     req.session.cart = cart;
-    res.redirect('shopping-cart')
+    res.redirect('back');
 })
 
 // Route for shopping cart. All items we have added from add-cart route should be showing up in this route

@@ -27,7 +27,9 @@
                   <th scope="col">Title</th>
                   <th scope="col">Brand</th>
                   <th scope="col">Quantity</th>
+                  <th scope="col">Size</th>
                   <th scope="col">Price</th>
+                  <th scope="col">Actions</th>
 
 
 
@@ -44,18 +46,23 @@
                       <td class="table-title">
 
                           <!----------------We call the item property that is linked to a session similar to how we did in admin-product but we access the item property. ------------------------->
-                          <strong> Title: <%= product.item.title %>
+                          <strong> <%= product.item.title %>
                       </td>
                       <td>
-                          <strong> Brand: <%= product.item.brand %> </strong>
-                      </td>
-
-                      <td>
-                          <strong> Quantity: <%= product.qty %> </strong>
+                          <strong> <%= product.item.brand %> </strong>
                       </td>
 
                       <td>
-                          <strong> Price: <%= product.price %> </strong>
+                          <strong>  <%= product.qty %> </strong>
+                      </td>
+
+                      <td>
+                        <strong> <%= product.size %> </strong>
+                    </td>
+
+
+                      <td>
+                          <strong> <%= product.price %> </strong>
                       </td>
 
                       <td>
@@ -69,23 +76,20 @@
                               </a>
 
                               <!--Handles removal of the whole  product-->
-                              <a href="/shop/remove/<%= product.item._id %>">
+                              <a href="/cart/remove/<%= product.item._id %>">
                                   <button class="btn btn-form">Remove</button>
                               </a>
                               <!--Handles removal of one product-->
-                              <a class="single" href="/shop/reduce/<%= product.item._id %>"> 
+                              <a class="single" href="/cart/reduce/<%= product.item._id %>"> 
                                 <button class="btn btn-form">reduce</button>
                               </a>
 
-                              <a href="/shop/increase/<%= product.item._id %>">
+                              <a href="/cart/increase/<%= product.item._id %>">
                                   <button class="btn btn-form">increase</button>
                               </a>
                           </div>
                       </td>
 
-                      <strong>Quantity: <%= totalQty %> </strong>
-                      <br>
-                      <strong class="badge"> Total Price: <%= totalPrice %> </strong>
               
                       <% }) %>
                       <% } else { %>
@@ -94,6 +98,10 @@
                   </tr>
               </tbody>
           </table>
+          <strong>Quantity: <%= totalQty %> </strong>
+          <br>
+          <strong class="badge"> Total Price: <%= totalPrice %> </strong>
+  
       </div>
 
 
