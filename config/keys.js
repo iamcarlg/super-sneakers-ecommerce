@@ -6,7 +6,7 @@ module.exports = {
         clientSecret: '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'
     },
     session: {
-        cookieKey: 'supershoescookiekey'
+        expressKey: 'supershoesexpresskey'
     },
     mongodb: {
         dbURI: 'mongodb+srv://supershoes:supershoes123@cluster0.xzi99.mongodb.net/supershoes?retryWrites=true&w=majority'

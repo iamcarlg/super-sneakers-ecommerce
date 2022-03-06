@@ -25,9 +25,16 @@ const authRoutes = require("./routes/auth-routes");
 const adminRoutes = require("./routes/admin-routes");
 const productRoutes = require("./routes/product-routes");
 const paypalRoutes = require('./routes/paypal-routes');
+const cartRoutes = require('./routes/cart-routes');
+
+//cookie-parser is a middleware which parses cookies attached to the client request object. 
+var cookieParser = require('cookie-parser')
 
 //import cookieSession. is used to control the current user session
-const cookieSession = require('cookie-session');
+const session = require('express-session');
+
+// Allows us to store individual session items to mongo session store.S
+const MongoStore = require('connect-mongo');
 
 //import path
 const path = require("path");
@@ -82,14 +89,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /***********************************************************/
 
 //initialize the cookieSession
-app.use(cookieSession({
+// app.use(expressSession({
+//     maxAge: 24 * 60 * 60 * 1000, //max age of the cookie we send out (we have set 24h)
+//     keys: [keys.session.cookieKey] //this key is used to encrypt the id so that it is encrypted by the time it reaches the browser
+// }));
+
+// initialize the express session to store information from the session
+app.use(cookieParser()) // Handles removal of cookies for individual session.
+
+app.use(session({
+    secret: keys.session.expressKey,  //this key is used to encrypt the id so that it is encrypted by the time it reaches the browser
+    resave: true, //add comment
+    saveUninitialized: true, //add comment
     maxAge: 24 * 60 * 60 * 1000, //max age of the cookie we send out (we have set 24h)
-    keys: [keys.session.cookieKey] //this key is used to encrypt the id so that it is encrypted by the time it reaches the browser
+    // Mongo session store for our cart.
+    store: MongoStore.create({
+        mongoUrl: dbURI
+    }),    
 }));
 
+  
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
 
 /***********************************************************/
 
@@ -99,8 +124,15 @@ app.set('view engine', 'ejs');
 //connect our views with our public folder
 app.set('views', [__dirname + '/public/views/base', __dirname + '/public/views/admin', __dirname + '/public/views/users',  __dirname + '/public/views/orders', __dirname + '/public/views/payments', __dirname + '/public/views/products']);
 
+
 //static folder that makes files in public folder show as views
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function (req, res, next) {
+    res.locals.session = req.session;
+    next();
+
+})
 
 /***********************************************************/
 
@@ -114,5 +146,6 @@ app.use('/auth', authRoutes);
 app.use('/shop', productRoutes);
 app.use('/admin', adminRoutes);
 app.use('/paypal', paypalRoutes);
+app.use('/cart', cartRoutes);
 
 /***********************************************************/

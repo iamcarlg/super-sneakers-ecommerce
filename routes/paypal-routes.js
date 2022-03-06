@@ -4,12 +4,18 @@ const router = require('express').Router();
 //imports the paypal rest SDK
 const paypal = require('paypal-rest-sdk');
 
+//call the database model for products
+const Product = require('../models/product-model');
+const Cart = require('../models/cart-model');
+
+
 /***********************************************************/
 
 
 //make sure this isnt hard-coded
 // The payment details that Paypal uses to initiate a transaction.
 router.post('/pay', (req, res) => {
+
     const create_payment_json = {
       "intent": "sale",
       "payer": {
@@ -24,14 +30,14 @@ router.post('/pay', (req, res) => {
               "items": [{
                   "name": "Redhock Bar Soap",
                   "sku": "001",
-                  "price": "25.00",
+                  "price": Product.price,
                   "currency": "SEK",
                   "quantity": 1
               }]
           },
           "amount": {
               "currency": "SEK",
-              "total": "25.00" //change this later?
+              "total": Product.price //change this later?
           },
           "description": "Washing Bar soap"
       }]
@@ -64,7 +70,7 @@ router.post('/pay', (req, res) => {
       "transactions": [{
           "amount": {
               "currency": "SEK",
-              "total": "25.00"
+              "total": Product.price
           }
       }]
     };

@@ -37,21 +37,33 @@
 
     </ul>
 
-<!-- Loggos -->
+<!-- Icons -->
     <div class="nav-brands ">
+
+        <!-- Cart -->
+        <a class="nav-brand" href="/cart/">
+          <i class="fa-solid fa-bag-shopping fa-lg" aria-hidden="true"></i>
+          <span class="badge"> <%= session.cart ? session.cart.totalQty : ''%> </span>
+        </a>  
+  
+     
+      
       <a class="nav-brand" href="/users/profile">
         <i class="fa-solid fa-user fa-lg"></i>
       </a>
 
-      <a class="nav-brand" href="/users/profile">
-        <!--change link-->
-        <i class="fa-solid fa-bag-shopping fa-lg"></i>
-      </a>
       <a class="nav-brand" href="/auth/login">
-        <i class="fa-brands fa-google fa-lg"></i>
+        <!--change link-->
+        <i class="fa-brands fa-google-plus-g fa-lg"></i>
       </a>
+ 
+
+       
     </div>
   </div>
    
   </div>
 </nav>
+
+
+

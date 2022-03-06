@@ -1,0 +1,33 @@
+
+
+.login-section {
+    display: flex;
+    
+}
+
+.login-section img {
+    height: auto;
+    width: 100%;
+}
+
+.login-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d8d8d844;
+    height: auto;
+    width: 50%;
+}
+
+.login-box {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    height: 30%;
+    width: 30%;
+    text-align: center;
+}
+
+.img-div {
+    width: 50%;
+    height: auto;
+}

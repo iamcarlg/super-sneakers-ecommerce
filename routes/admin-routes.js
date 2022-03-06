@@ -11,7 +11,7 @@ const Product = require('../models/product-model');
 router.get('/products', (req, res) => {
     Product.find() 
     .then((result) => {
-        res.render('admin-products', {title: 'product details' ,products: result}); 
+        res.render('admin-products', {title: 'Admin' ,products: result, users: result}); 
     })
     .catch((err) => {
         console.log(err);
@@ -25,7 +25,7 @@ router.get('/products', (req, res) => {
 router.get('/users', (req, res) => {
     User.find() 
     .then((result) => {
-        res.render('admin-users', {title: 'user details' ,users: result}); 
+        res.render('admin-users', {title: 'Admin' ,users: result}); 
     })
     .catch((err) => {
         console.log(err);
@@ -34,16 +34,5 @@ router.get('/users', (req, res) => {
 
 /***********************************************************/
 
-//admin crud functions for controlling users.
-router.get('/users', (req, res) => {
-    User.find() //can add sorting here. like descending order etc (refer to net ninja youtube video)
-    .then((result) => {
-      // res.json(result) //change to res.render when returning in ejs views (refer to net ninja youtube video)
-      res.render('admin-users', {title: 'users details' ,users: result});  //I don't know if the users: results are as it should. You may have to change it so it's calls the users in db
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
 
 module.exports = router;

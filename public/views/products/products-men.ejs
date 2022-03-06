@@ -1,9 +1,37 @@
-
 <%- include("../partials/head.ejs") %>
 
-<body>
-<%- include("../partials/nav.ejs") %>
+  <body>
+    <!-- Container fluid does that the navbar and everything inside fits to the page -->
+    <!-- Look at this later if time let us -->
+    <div class="container-fluid">
+      <%- include("../partials/nav.ejs") %>
 
-<%- include("../partials/footer.ejs") %>
-</body>
-</html>
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Men</li>
+          </ol>
+        </nav>
+
+        <!-- I have named the cards etc with "cat" in the beginning for category -->
+        <div class="cat-row row-cols-1 row-cols-md-3 g-4">
+            <div class="col cat-col">
+              <div class="cat-card h-100">
+                <img src="/uploads/menindex.jpg" class="cat-card-img-top" alt="Img men products">
+                <div class="cat-card-body">
+                  <h5 class="cat-card-title">Card title</h5>
+                  <p class="cat-card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              
+                </div>
+              </div>
+            </div>
+           
+        </div>
+
+    </div>
+
+    <%- include("./product-review.ejs") %>
+
+
+    <%- include("../partials/footer.ejs") %>
+  </body>

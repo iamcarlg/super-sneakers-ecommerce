@@ -1,9 +1,17 @@
 <%- include("../partials/head.ejs") %>
 
-  <body>
-    <%- include("../partials/nav.ejs") %>
+  <body> 
+    <div class="container-fluid">
 
-      <div class="container-flow">
+      
+    <%- include("../partials/nav.ejs") %>
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Admin Products</li>
+      </ol>
+    </nav>
+     
 
         <!--Search for specific product , calls 'search_products()'-->
         <form class="form-inline d-flex justify-content-around md-form form-sm mt-0 ">
@@ -13,32 +21,26 @@
 
         <a class="single" href="/shop/post/">
           <!--make sure these are correct -->
-          <button class="btn btn-form">Add Product</button>
+          <button class="btn btn-form-product">Add Product</button>
         </a>
 
         <!-- Responsive Crud table start (looping through all our products in our db and show them whit crud operations) -->
         <div class="table-responsive-sm">
           <table class="table">
-
-            <tr>
-              <!---Phil did this-->
-              <th scope="col">Picture</th>
-              <th scope="col">Title</th>
-              <th scope="col">Brand</th>
-              <th scope="col">Price</th>
-
-              <th scope="col">Actions</th>
-
-
-            </tr>
+            <thead>
+              <tr>
+                <th scope="col">Picture</th>
+                <th scope="col">Title</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+              </tr>
             </thead>
             <% if (products.length> 0) { %>
               <% products.forEach(product=> { %>
 
                 <tbody id="table-body">
                   <tr>
-
-                    <!---Phil did this-->
                     <td> <img src="/uploads/resized/<%= product.picture%>" /></td>
                     <td class="table-title">
                       <%= product.title %>
@@ -54,13 +56,14 @@
 
                         <a class="single" href="/shop/products/<%= product._id %>">
                           <!--make sure these are correct -->
-                          <button class="btn btn-form">Delete/Buy</button>
+                          <button class="btn btn-form-product">Delete/Buy</button>
                         </a>
                         <a class="single" href="/shop/update/<%= product._id %>">
-                          <button class="btn btn-form ">Update</button>
+                          <button class="btn btn-form-product ">Update</button>
                         </a>
-                        <a class="single" href="/shop/update/<%= product._id %>"> <!--Change href to product page-->
-                          <button class="btn btn-form ">To Product</button>
+                        <a class="single" href="/shop/update/<%= product._id %>">
+                          <!--Change href to product page-->
+                          <button class="btn btn-form-product">To Product</button>
                         </a>
                       </div>
                     </td>

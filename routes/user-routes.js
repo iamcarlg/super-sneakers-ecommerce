@@ -5,7 +5,7 @@ const { Mongoose } = require('mongoose'); //is this needed? i dont think so
 const User = require('../models/user-model');
 
 //call authentication code
-const {authUser, authRole} = require('../config/authentication');
+const {authUser, authRole} = require('../config/authorization');
 const ROLE = require('../models/user-roles')
 
 /***********************************************************/

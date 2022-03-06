@@ -1,180 +1,125 @@
-<!doctype html>
-<html lang="en">
+<%- include("../partials/head.ejs") %>
 
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css%22%3E">
-    <script src="https://kit.fontawesome.com/d82fdbf1c7.js" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/cart.css">
-    <link rel="stylesheet" type="text/css" href="your_website_domain/css_root/flaticon.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        crossorigin="anonymous">
-    <title>Shopping Cart</title>
-</head>
+  <body>
+    <!-- Container fluid does that the navbar and everything inside fits to the page -->
+    <!-- Look at this later if time let us -->
+    <div class="container-fluid" id="app">
+      <%- include("../partials/nav.ejs") %>
 
-<body>
-    <div class="container-flow" id="app">
-        <header class="header-global">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <nav class="navbar navbar-light">
-              <a class="navbar-logo">
-                <img src="images/logo.png" width="40" height="40" alt="Logo">
-              </a>
-            </nav>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-    
-                <li class="nav-item active">
-                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-    
-                <li class="nav-item active">
-                  <a class="nav-link" href="./all_products_men">Men Sneakers<span class="sr-only">(current)</span></a>
-                </li>
-    
-                <li class="nav-item active">
-                  <a class="nav-link" href="./all_products_women">Women Sneakers<span class="sr-only">(current)</span></a>
-                </li>
-    
-                <li class="nav-item active">
-                  <a class="nav-link" href="./all_products_men">Kids Sneakers<span class="sr-only">(current)</span></a>
-                </li>
-    
-                <li class="nav-item active">
-                  <a class="nav-link" href="./about">About <span class="sr-only">(current)</span></a>
-                </li>
-    
-                <li class="nav-item">
-                  <a class="nav-link" href="./admin">Admin</a>
-                </li>
-    
-              </ul>
-              <form class="d-flex">
-                <input id="searchbar" onkeyup="search_products()" type = "text" class="form-control me-2" placeholder="Search" aria-label="Search">
-                <!-- <button class="btn btn" >Search</button> -->
-    
-    
-              <a class="navbar-brand" href = "./shoppingCart">
-                
-                <i class="fas fa-shopping-cart fa-lg" tabindex="-1" aria-disabled="true" data-toggle="modal"
-                data-target="#cartModal" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"></i>
-                
-              </a>
-              <a href = "./login" >
-                
-                <i class="fa fa-sign-in fa-lg" width = "300" height = "550" tabindex="-1" aria-disabled="true" data-toggle="modal"
-                  data-target="#cartModal" aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation" style="color: #FF416C; cursor : pointer;"></i>
-              </a>
-            </div>
-          </nav>
-        </header>
-        <!--/NAVBAR ENDS/-->
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+          </ol>
+        </nav>
+        <a class="single" href="/admin/products">
+          <!--make sure these are correct -->
+          <button>Back to items</button>
+      </a>
 
-        <!--/Cards that are holding the products that have been added in the cart/-->
-        <div class="card text-center">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <img src="images/Product/Men/m_shoe1.png" width="200" height="200" alt="Shoe1">
-                <p class="card-text">Article: Sneakers 1.</p>
-                <p>Shoe size 38</p>
-                <p>Qty: 1 </p>
-                <p>Price: 600</p>
-                <a href="specific_product_woman.html" class="btn btn-primary">Remove</a>
-                <a href="specific_product_woman.html" class="btn btn-primary">Edit</a>
-                <a href="specific_product_woman.html" class="btn btn-primary">Go back</a>
+      <!-- Responsive Crud table start (looping through all our products in our db and show them with crud operations) -->
+      <div class="table-responsive-sm">
+          <table class="table">
 
-                <form action="/pay" method="post">
-                    <input type="submit" value="Buy">
-                  </form>
-                  
-            </div>
-        </div>
-        <div class="card text-center">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <img src="images/Product/Men/m_shoe1.png" width="200" height="200" alt="Shoe1">
-                <p class="card-text">Article: Sneakers 1.</p>
-                <p>Shoe size 38</p>
-                <p>Qty: 1 </p>
-                <p>Price: 600</p>
-                <a href="specific_product_woman.html" class="btn btn-primary">Remove</a>
-                <a href="specific_product_woman.html" class="btn btn-primary">Edit</a>
-                <a href="specific_product_woman.html" class="btn btn-primary">Go back</a>
-            </div>
-        </div>
-
-        <!--/Container that will hold the total price and payment method/-->
-        <div class="card">
-            <div class="payment">
-            <h4>Cart</h4>
-            <p>Total <span class="price"><b>$30</b></span></p>
-            <p>Payment method: <b>Stripe</b></p>
-            <a href="#" class="btn">Confirm Order</a>
-        </div>
-        </div>
-    </div>
-    <!--/container-flow ends/-->
-
-    <!--/FOOTER/-->
-    <footer class="page-footer font-small special-color-dark pt-4">
-        <div class="container">
-            <!-- Social buttons -->
-            <ul class="list-unstyled list-inline text-center">
-                <li class="contactdetails">
-                    <p>Email: Info@Sneakers.com</p>
-                    <p>Contact us: 08- 12 12 12 Every Day: 10:00 - 20:00 </p>
-                    <p>Adress: Biblioteksgatan 7, 111 44 Stockholm</p>
-                </li>
-                <li class="list-inline-item">
-                    <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com/">
-                        <i class="fab fa-facebook-f"> </i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="btn-floating btn-tw mx-1" href="https://twitter.com/home">
-                        <i class="fab fa-twitter"> </i>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="btn-floating btn-li mx-1" href="https://linkedin.com/">
-                        <i class="fab fa-linkedin-in"> </i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright:
-            <a href="http://127.0.0.1:5500/index.html"> Sneakers.com</a>
-        </div>
-    </footer>
+              <tr>
+                  <!---Phil did this-->
+                  <th scope="col">Picture</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
 
 
-    <!--/We will write the script methods here/-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        crossorigin="anonymous"></script>
-    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script>
-    </script>
-</body>
+              </tr>
+              </thead>
+              <% if (products) { %>
+              <% products.forEach(product=> { %>
 
-</html>
+              <tbody id="table-body">
+                  <tr>
+
+                      <!---Phil did this-->
+                      <td> <img src="/uploads/resized/<%= product.item.picture%> " /></td>
+                      <td class="table-title">
+
+                          <!----------------We call the item property that is linked to a session similar to how we did in admin-product but we access the item property. ------------------------->
+                          <strong> Title: <%= product.item.title %>
+                      </td>
+                      <td>
+                          <strong> Brand: <%= product.item.brand %> </strong>
+                      </td>
+
+                      <td>
+                          <strong> Quantity: <%= product.qty %> </strong>
+                      </td>
+
+                      <td>
+                          <strong> Price: <%= product.price %> </strong>
+                      </td>
+
+                      <td>
+                          <!----------------------------------------->
+                          <div class="px-2 mt-3">
+
+
+
+                              <a class="single" href="#">
+                                  <button class="btn btn-form">Checkout</button>
+                              </a>
+
+                              <!--Handles removal of the whole  product-->
+                              <a href="/shop/remove/<%= product.item._id %>">
+                                  <button class="btn btn-form">Remove</button>
+                              </a>
+                              <!--Handles removal of one product-->
+                              <a class="single" href="/shop/reduce/<%= product.item._id %>"> 
+                                <button class="btn btn-form">reduce</button>
+                              </a>
+
+                              <a href="/shop/increase/<%= product.item._id %>">
+                                  <button class="btn btn-form">increase</button>
+                              </a>
+                          </div>
+                      </td>
+
+                      <strong>Quantity: <%= totalQty %> </strong>
+                      <br>
+                      <strong class="badge"> Total Price: <%= totalPrice %> </strong>
+              
+                      <% }) %>
+                      <% } else { %>
+                      <p>There are no products to display...</p>
+                      <% } %>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+
+
+
+          <!--/FOOTER/-->
+          <%- include("../partials/footer.ejs") %>
+
+
+          <!--/We will write the script methods here/-->
+          <!-- Do we need this script links?? -->
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            crossorigin="anonymous"></script>
+          <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+          <script>
+
+
+
+
+          </script>
+
+
+        </body>

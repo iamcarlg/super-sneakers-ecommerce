@@ -6,7 +6,7 @@ const passport = require('passport');
 
 // auth login route
 router.get('/login', (req, res) => {
-    res.render('login', {user: req.user}) //allows us to send req.user to login.ejs so that we can retrieve information from the current session
+    res.render('login', {title: 'Login', user: req.user}) //allows us to send req.user to login.ejs so that we can retrieve information from the current session
 })
 
 /***********************************************************/
@@ -21,7 +21,7 @@ router.get('/google', passport.authenticate('google', { //should there be a () a
 //callback route for google to redirect to after successful login
 router.get('/redirect', passport.authenticate('google'), (req, res) => {
     res.redirect('/users/profile'); //keep in mind this redirect
-})
+});
 
 /***********************************************************/
 

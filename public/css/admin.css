@@ -1,11 +1,13 @@
+  
+  /* STYLE FOR ADMIN PRODUCTS */
   /* Style for the search bar */
   .form-inline{
     width: 100%;
-    
+
   }
   
   .form-control{
-    padding: 15px;
+    padding: 5%;
     background-color: #ffffff;
     border: 2px solid #000000;
     font-size: 15px;
@@ -35,10 +37,14 @@
   
 }
 
-.btn-form {
+.btn-form-product {
   background-color: #b10e0eec;
   color: #ffffff;
   font-weight: 500;
+}
+
+.single:hover{
+  text-decoration: none;
 }
 
 

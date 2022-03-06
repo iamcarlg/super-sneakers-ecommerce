@@ -1,12 +1,16 @@
 <%- include("../partials/head.ejs") %>
 
 <body>
-  <%- include("../partials/nav.ejs") %>
-   
-    <div class="container-flow">
 
-      <h2>User Crud page</h2>
    
+    <div class="container-flow"> 
+       <%- include("../partials/nav.ejs") %>
+      <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Admin Users</li>
+        </ol>
+      </nav>
 
           <!-- Responsive Crud table start (looping through all our products in our db and show them whit crud operations) -->
           <div class="table-responsive-sm">

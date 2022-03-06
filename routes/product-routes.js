@@ -24,7 +24,7 @@ const fs = require('fs')
 router.get('/products', (req, res) => {
     Product.find() 
     .then((result) => {
-        res.render('products-men', {title: 'product details' ,products: result}); 
+        res.render('products-men', {title: 'product details' ,products: result }); 
     })
     .catch((err) => {
         console.log(err);
@@ -175,14 +175,14 @@ router.put('/update/:id', upload.single('picture'), async (req, res)=>{
 
 //route for mens products
 router.get('/men', (req, res) => {
-    res.render('products-men');
+    res.render('products-men', {title: 'Men'});
 });
 
 /***********************************************************/
 
 //route for our women products
 router.get('/women', (req, res) => {
-    res.render('products-women');
+    res.render('products-women' ,{title: 'Women'});
 });
 
 /***********************************************************/
