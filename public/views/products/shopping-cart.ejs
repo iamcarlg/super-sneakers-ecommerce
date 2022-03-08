@@ -88,6 +88,17 @@
                                   <button class="btn btn-form">increase</button>
                               </a>
                           </div>
+                            <!--Handles checkout-->
+                          <form action="/paypal/pay" method="post">
+
+                            <button class="btn btn-card ">Buy</button>
+              
+                          </form>
+
+                          <strong>Quantity: <%= totalQty %> </strong>
+                          <br>
+                          <strong class="badge"> Total Price: <%= totalPrice %> </strong>
+                          
                       </td>
 
               
@@ -98,9 +109,7 @@
                   </tr>
               </tbody>
           </table>
-          <strong>Quantity: <%= totalQty %> </strong>
-          <br>
-          <strong class="badge"> Total Price: <%= totalPrice %> </strong>
+         
   
       </div>
 

@@ -10,6 +10,9 @@ module.exports = function Cart(oldCart) {
     //total price of items:
     this.totalPrice = oldCart.totalPrice || 0;
 
+    this.pricee = oldCart.pricee || 0;
+    
+
     // Function to add new item to cart
     this.add = function (item, id) {
 
@@ -32,6 +35,7 @@ module.exports = function Cart(oldCart) {
         storedItem.size = storedItem.item.size;
 
         //Total quanitity of price.
+        this.pricee = storedItem.item.price;
         this.totalQty++;
         this.totalPrice += storedItem.item.price;
 

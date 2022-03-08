@@ -5,10 +5,16 @@ const User = require('../models/user-model');
 const Product = require('../models/product-model');
 
 
+//calls the user roles from the database
+const ROLE = require('../models/user-roles')
+//call authorization requirements
+const {authUser, authRole} = require('../config/authorization');
+
+
 /***********************************************************/
 
 //route for admin CRUD functions on products (/admin/products)
-router.get('/products', (req, res) => {
+router.get('/products',authUser, authRole(ROLE.ADMIN),(req, res) => {
     Product.find() 
     .then((result) => {
         res.render('admin-products', {title: 'Admin' ,products: result, users: result}); 
