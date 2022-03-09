@@ -6,6 +6,7 @@ const orderSchema = new Schema({
     //We want the schema type objecdId because we have to refer it to the user from our user-model
 user: {type: Schema.Types.ObjectId, ref:'user-model'},
         cart: {type: Object, required:true},
+        adress: {type: String, required: true},
         name: {type: String, required: true},
        // optional payment id
 }, {timestamps: true });
