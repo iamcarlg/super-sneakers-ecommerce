@@ -3,7 +3,7 @@
   <body>
     <%- include("../partials/nav.ejs") %>
 
-    <div class="container-flow">
+    <div class="container-fluid">
       <!-- Products cards start -->
       <div class="row">
         <div class="column">
@@ -31,6 +31,7 @@
               <a class="btn btn-card" href="/cart/add/<%= product._id %>">
                 <button class="btn btn-form">Add to cart</button>
               </a>
+
               <form action="/paypal/pay" method="post">
 
                 <button class="btn btn-card ">Buy</button>

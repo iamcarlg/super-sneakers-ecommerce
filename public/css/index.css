@@ -2,36 +2,36 @@
 
 /* This style is for the gender img, which shows our categorys - start*/
 .gender-cards{
-text-align: center;
+  text-align: center;
 }
 .holder-img{
-    width: 30%;
-    padding: 1%;
-    display:inline-block;
-    /* This css underneith is for the text on the img */
-    position: relative;
+  width: 30%;
+  padding: 1%;
+  display:inline-block;
+/* This css underneith is for the text on the img */
+  position: relative;
 }
 
 .cat-img {   
-    margin: 0% 1%;
-    width: 100%;
-    height:auto;
-  }
+  margin: 0% 1%;
+  width: 100%;
+  height:auto;
+}
 
   
 /* Bottom right text */
 .text-block-cat {
-    position: absolute;
-    bottom: 40%;
-    right: 15%;
-    width: 70%;
-    background-color: rgba(0, 0, 0, 0.384);
-    color: #ffffff;
-  }
+  position: absolute;
+  bottom: 40%;
+  right: 15%;
+  width: 70%;
+  background-color: rgba(0, 0, 0, 0.384);
+  color: #ffffff;
+}
 
-  .gender-link:hover{
-      text-decoration: none;
-  }
+.gender-link:hover{
+  text-decoration: none;
+}
 
 /* This style is for the gender img, which shows our categorys -end*/
 
@@ -62,56 +62,49 @@ text-align: center;
 
 /* Here the style for the page banner div and the 3 child img starts */
 
+/* Here the breadcrump style starts */
+.breadcrumb-nav .breadcrumb{
+  color: #e9ecef7e;
+  background-color: #ffffff;
+  border-radius: 0%;
+}
 
+.breadcrumb-item{
+  font-size: 0.8rem;
+}
 
-  /* Here the breadcrump style starts */
-  .breadcrumb-nav .breadcrumb{
-    color: #e9ecef7e;
-    background-color: #ffffff;
-    border-radius: 0%;
-  }
-
-  .breadcrumb-item{
-    font-size: 0.8rem;
-  }
-
-  .breadcrumb-item.active{
-    margin: 0%;
-  }
+.breadcrumb-item.active{
+  margin: 0%;
+ }
 
   
-   /* Responsive columns whit breakpoints*/
+/* Responsive columns whit breakpoints*/
    
 @media screen and (max-width: 1500px) and (min-width: 900px) {
 
-    /*Let this breakpoint be here for now. Maybe we need to add code here later*/
+/*Let this breakpoint be here for now. Maybe we need to add code here later*/
 }
 
 @media screen and (max-width: 900px) and (min-width: 400px) {
 
-.holder-img{
+  .holder-img{
     width: 65%;
-}
+  }
 
 /* Bottom right text */
-.text-block-cat {
-  width: 60%;
+  .text-block-cat {
+    width: 60%;
+  }
+
+  .text-block-cat p{
+    font-size: 1.5rem;
+  }
   
-}
-
-.text-block-cat p{
-  font-size: 1.5rem;
-}
-
-
-  /* This css underneith is for the text on the img's */
+/* This css underneith is for the text on the img's */
   .child-holder-img{
     width: 25%;
     display:inline-table;
   }
-
-
-
 }
 
 

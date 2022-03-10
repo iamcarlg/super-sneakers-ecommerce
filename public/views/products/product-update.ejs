@@ -3,29 +3,27 @@
 
 
 <%- include("../partials/nav.ejs") %>
+<!-- NOTE IMPORTANT When updating the product, it reads in the wrong data. Price do not show and the size data reads in , in the price column on admin/products/ !! -->
 <!--This should be a modal-->
-<div class="create-blog content"> <!-Change class name--->
-  <form action="/shop/update/<%=product.id %>?_method=PUT" method="POST" enctype='multipart/form-data'> <!--Edit-form page to update a product-->
+<div class="create-blog content"> <!-- Change class name -->
+  <form action="/shop/update/<%=products._id %>?_method=PUT" method="POST" enctype='multipart/form-data'> <!--Edit-form page to update a product--><!--It needs to be products and not product becuase of the db, look it up!-->
       <label for="title">Title:</label>
-      <input type="text"  class="form-control" placeholder="title" name="title" value="<%= product.title %>">
+      <input type="text"  class="form-control" name="title" value="<%= products.title %>"><!--It needs to be products and not product becuase of the db, look it up!-->
 
       <label for="gender">Gender:</label>
-      <input type="text"  class="form-control" placeholder="gender" name="gender" value="<%= product.gender%>">
+      <input type="text"  class="form-control" name="gender" value="<%= products.gender%>">
 
       <label for="brand">Brand:</label>
-      <input type="text"  class="form-control" placeholder="brand" name="brand" value="<%= product.brand%>">
+      <input type="text"  class="form-control" name="brand" value="<%= products.brand%>">
 
       <label for="brand">Size:</label>
-      <input type="text"  class="form-control" placeholder="size" name="size" value="<%= product.size%>">
+      <input type="text"  class="form-control" name="size" value="<%= products.size%>">
     
       <label for="description">Description:</label>
-      <input type="text"  class="form-control" placeholder="description" name="description" value="<%= product.description%>">
-
-      <label for="picture">Picture:</label>
-      <input type="file"  class="form-control" placeholder="picture" name="picture" value="<%= product.picture%>">
+      <input type="text"  class="form-control" name="description" value="<%= products.description%>">
 
       <label for="price">Price:</label>
-      <input type="text"  class="form-control" placeholder="price" name="price" value="<%= product.price%>">
+      <input type="text"  class="form-control" name="price" value="<%= products.price%>">
 
       <button class="btn btn-card" type="submit">Submit</button>
     </form>

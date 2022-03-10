@@ -1,21 +1,23 @@
 //import the express router
 const router = require('express').Router();
 
-//what is this?
-const { append, render } = require('express/lib/response'); 
+
+
+//FS Interacts with sharp/multer to resize img
+const fs = require('fs');
 
 //call the database model for products
 const Product = require('../models/product-model');
 
-//comments please
-const multer  = require('multer')
-const path = require('path');
 const { Mongoose } = require('mongoose');
 
-//for rezise img in backend
-const sharp = require('sharp')
-//FS Interacts with sharp/multer to resize img
-const fs = require('fs')
+//for rezising img in backend
+const sharp = require('sharp');
+
+//The path module provides utilities for working with file and directory paths.
+const path = require('path');
+
+const {storage, upload} = require('../config/file-storage')
 
 /***********************************************************/
 
@@ -40,32 +42,6 @@ router.get('/post', (req, res) => {
 
 /***********************************************************/
 
-//we need to move this to a separate file
-//file storing
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null,process.cwd() + '/public/uploads/')
-    },
-    filename: function (req, file, cb) {
-      cb(null,  Date.now() + path.extname(file.originalname)) 
-    }
-  })
-
-// Regulation & validation
-const upload = multer({
-    dest: 'uploads',
-    storage: storage,
-    
-    fileFilter(req,file,cb) {
-        if(!file.originalname.match(/.(jpg|png)$/)){
-            return cb(new Error('Please upload picture in jpg/png format'))
-        }
-        cb(undefined,true)
-    }
- });
-
-/***********************************************************/
-
 
 //can you add some comments in this
  //post product with img (img will be resized) this resize wont format correctly for our shop page btw
@@ -75,7 +51,7 @@ const upload = multer({
     const { filename: image } = req.file;
 
     await sharp(req.file.path)
-     .resize(200, 200)
+     .resize(450, 600)
      .jpeg({ quality: 90 })
      .toFile(
          path.resolve(req.file.destination,'resized',image)
@@ -105,7 +81,7 @@ router.get('/products/:id', (req, res) => {  //change to product //Karwan
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
-            res.render('product-details', {title: 'product details', product: result });
+            res.render('product-details1', {title: 'product details', product: result });
         })
         .catch(err => {
             res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
@@ -119,7 +95,21 @@ router.get('/update/:id', (req, res) => {
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
-            res.render('product-update', {title: 'product details' , products: result});
+            res.render('product-update', {title: 'Update Product' , products: result}); //what render if modal?
+        })
+        .catch(err => {
+            res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
+        });
+});
+
+/***********************************************************/
+
+//comments please
+router.get('/delete/:id', (req, res) => {
+    const id = req.params.id;
+    Product.findById(id)
+        .then(result => {
+            res.render('product-delete', {title: 'Delete Product' , products: result}); //what render if modal?
         })
         .catch(err => {
             res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
@@ -129,7 +119,7 @@ router.get('/update/:id', (req, res) => {
 /***********************************************************/
 
 //route for deleting an existing product
-router.delete('/products/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
     const id = req.params.id;
 
     Product.findByIdAndDelete(id)
@@ -152,13 +142,13 @@ router.put('/update/:id', upload.single('picture'), async (req, res)=>{
     product.brand = req.body.brand;
     product.description = req.body.description;
     product.price = req.body.price;
-    product.price = req.body.size;
+    product.size = req.body.size;
     product.picture = req.file.filename;
 
     try {
         const { filename: image } = req.file;
         await sharp(req.file.path)
-            .resize(200, 200)
+            .resize(450, 600)
             .jpeg({ quality: 90 })
             .toFile(
                 path.resolve(req.file.destination, 'resized', image)
@@ -177,15 +167,28 @@ router.put('/update/:id', upload.single('picture'), async (req, res)=>{
 
 //route for mens products
 router.get('/men', (req, res) => {
-    res.render('products-men', {title: 'Men'});
+    Product.find() 
+    .then((result) => {
+        res.render('products-men', {title: 'Men', products: result, users: result}); 
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 });
 
 /***********************************************************/
 
 //route for our women products
 router.get('/women', (req, res) => {
-    res.render('products-women' ,{title: 'Women'});
+    Product.find() 
+    .then((result) => {
+        res.render('products-women', {title: 'Women', products: result, users: result}); 
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 });
+
 
 /***********************************************************/
 

@@ -1,9 +1,45 @@
-
 <%- include("../partials/head.ejs") %>
 
-<body>
-<%- include("../partials/nav.ejs") %>
+  <body>
+    <!-- Container fluid does that the navbar and everything inside fits to the page -->
+    <!-- Look at this later if time let us -->
+    <%- include("../partials/nav.ejs") %>
+      <div class="container-fluid">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Men</li>
+          </ol>
+        </nav>
 
-<%- include("../partials/footer.ejs") %>
-</body>
-</html>
+        <div class="card-deck ">
+          <% if (products.length> 0) { %>
+            <% products.forEach(product=> { %>
+              <div class="card rounded-0">
+                <img class="card-img-top" src="/uploads/resized/<%= product.picture%>" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= product.title %>
+                  </h5>
+                  <p class="card-text">
+                    <%= product.brand %>
+                  </p>
+                  <p class="card-text"><small class="text-muted">
+                      <%= product.price %> SEK. (Incl. VAT)
+                    </small></p>
+                  <a class="single" href="/shop/products/<%= product._id %>">
+                    <button type="button" class="btn btn-more-info rounded-0">More</button>
+                  </a>
+                </div>
+              </div>
+              <% }) %>
+                <% } else { %>
+                  <p>There are no products to display...</p>
+                  <% } %>
+        </div>
+
+        <%- include("./product-review.ejs") %>
+
+
+          <%- include("../partials/footer.ejs") %>
+  </body>

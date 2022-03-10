@@ -15,99 +15,107 @@
         <a class="single" href="/admin/products">
           <!--make sure these are correct -->
           <button>Back to items</button>
-      </a>
+        </a>
 
-      <!-- Responsive Crud table start (looping through all our products in our db and show them with crud operations) -->
-      <div class="table-responsive-sm">
+        <!-- Responsive Crud table start (looping through all our products in our db and show them with crud operations) -->
+        <div class="table-responsive-sm">
           <table class="table">
 
-              <tr>
-                  <!---Phil did this-->
-                  <th scope="col">Picture</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Brand</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Size</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Actions</th>
+            <tr>
+              <!---Phil did this-->
+              <th scope="col">Picture</th>
+              <th scope="col">Title</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Size</th>
+              <th scope="col">Price</th>
+              <th scope="col">Actions</th>
 
 
 
-              </tr>
-              </thead>
-              <% if (products) { %>
+            </tr>
+            </thead>
+            <% if (products) { %>
               <% products.forEach(product=> { %>
 
-              <tbody id="table-body">
+                <tbody id="table-body">
                   <tr>
 
-                      <!---Phil did this-->
-                      <td> <img src="/uploads/resized/<%= product.item.picture%> " /></td>
-                      <td class="table-title">
+                    <!---Phil did this-->
+                    <td> <img src="/uploads/resized/<%= product.item.picture%> " /></td>
+                    <td class="table-title">
 
-                          <!----------------We call the item property that is linked to a session similar to how we did in admin-product but we access the item property. ------------------------->
-                          <strong> <%= product.item.title %>
-                      </td>
-                      <td>
-                          <strong> <%= product.item.brand %> </strong>
-                      </td>
+                      <!----------------We call the item property that is linked to a session similar to how we did in admin-product but we access the item property. ------------------------->
+                      <strong>
+                        <%= product.item.title %>
+                    </td>
+                    <td>
+                      <strong>
+                        <%= product.item.brand %>
+                      </strong>
+                    </td>
 
-                      <td>
-                          <strong>  <%= product.qty %> </strong>
-                      </td>
+                    <td>
+                      <strong>
+                        <%= product.qty %>
+                      </strong>
+                    </td>
 
-                      <td>
-                        <strong> <%= product.size %> </strong>
+                    <td>
+                      <strong>
+                        <%= product.size %>
+                      </strong>
                     </td>
 
 
-                      <td>
-                          <strong> <%= product.price %> </strong>
-                      </td>
+                    <td>
+                      <strong>
+                        <%= product.price %>
+                      </strong>
+                    </td>
 
-                      <td>
-                          <!----------------------------------------->
-                          <div class="px-2 mt-3">
+                    <td>
+                      <!----------------------------------------->
+                      <div class="px-2 mt-3">
 
 
 
-                              <a class="single" href="#">
-                                  <button class="btn btn-form">Checkout</button>
-                              </a>
+                        <a class="single" href="#">
+                          <button class="btn btn-form">Checkout</button>
+                        </a>
 
-                              <!--Handles removal of the whole  product-->
-                              <a href="/cart/remove/<%= product.item._id %>">
-                                  <button class="btn btn-form">Remove</button>
-                              </a>
-                              <!--Handles removal of one product-->
-                              <a class="single" href="/cart/reduce/<%= product.item._id %>"> 
-                                <button class="btn btn-form">reduce</button>
-                              </a>
+                        <!--Handles removal of the whole  product-->
+                        <a href="/cart/remove/<%= product.item._id %>">
+                          <button class="btn btn-form">Remove</button>
+                        </a>
+                        <!--Handles removal of one product-->
+                        <a class="single" href="/cart/reduce/<%= product.item._id %>">
+                          <button class="btn btn-form">reduce</button>
+                        </a>
 
-                              <a href="/cart/increase/<%= product.item._id %>">
-                                  <button class="btn btn-form">increase</button>
-                              </a>
-                          </div>
-                      </td>
+                        <a href="/cart/increase/<%= product.item._id %>">
+                          <button class="btn btn-form">increase</button>
+                        </a>
+                      </div>
+                    </td>
+                    <strong>Quantity: <%= totalQty %> </strong>
+                    <strong class="badge"> Total Price: <%= totalPrice %> </strong>
 
-              
-                      <% }) %>
+                    <% }) %>
                       <% } else { %>
-                      <p>There are no products to display...</p>
-                      <% } %>
+                        <p>There are no products to display...</p>
+                        <% } %>
                   </tr>
-              </tbody>
+                </tbody>
           </table>
-          <strong>Quantity: <%= totalQty %> </strong>
-          <br>
-          <strong class="badge"> Total Price: <%= totalPrice %> </strong>
-  
-      </div>
+
+
+        </div>
 
 
 
-          <!--/FOOTER/-->
-          <%- include("../partials/footer.ejs") %>
+        <!--/FOOTER/-->
+        <%- include("../partials/footer.ejs") %>
 
 
           <!--/We will write the script methods here/-->
@@ -130,4 +138,4 @@
           </script>
 
 
-        </body>
+  </body>

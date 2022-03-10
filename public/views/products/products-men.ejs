@@ -3,10 +3,8 @@
   <body>
     <!-- Container fluid does that the navbar and everything inside fits to the page -->
     <!-- Look at this later if time let us -->
-    <div class="container-fluid">
-      <%- include("../partials/nav.ejs") %>
-
-<<<<<<< HEAD
+    <%- include("../partials/nav.ejs") %>
+      <div class="container-fluid">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -14,32 +12,34 @@
           </ol>
         </nav>
 
-        <!-- I have named the cards etc with "cat" in the beginning for category -->
-        <div class="cat-row row-cols-1 row-cols-md-3 g-4">
-            <div class="col cat-col">
-              <div class="cat-card h-100">
-                <img src="/uploads/menindex.jpg" class="cat-card-img-top" alt="Img men products">
-                <div class="cat-card-body">
-                  <h5 class="cat-card-title">Card title</h5>
-                  <p class="cat-card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              
+        <div class="card-deck ">
+          <% if (products.length> 0) { %>
+            <% products.forEach(product=> { %>
+              <div class="card rounded-0">
+                <img class="card-img-top" src="/uploads/resized/<%= product.picture%>" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= product.title %>
+                  </h5>
+                  <p class="card-text">
+                    <%= product.brand %>
+                  </p>
+                  <p class="card-text"><small class="text-muted">
+                      <%= product.price %> SEK. (Incl. VAT)
+                    </small></p>
+                  <a class="single" href="/shop/products/<%= product._id %>">
+                    <button type="button" class="btn btn-more-info rounded-0">More</button>
+                  </a>
                 </div>
               </div>
-            </div>
-           
+              <% }) %>
+                <% } else { %>
+                  <p>There are no products to display...</p>
+                  <% } %>
         </div>
 
-    </div>
-
-    <%- include("./product-review.ejs") %>
+        <%- include("./product-review.ejs") %>
 
 
-    <%- include("../partials/footer.ejs") %>
+          <%- include("../partials/footer.ejs") %>
   </body>
-=======
-<%- include("../partials/reviews.ejs") %>
-
-<%- include("../partials/footer.ejs") %>
-</body>
-</html>
->>>>>>> f5070da50e674aca08716143570916b455f00d22
