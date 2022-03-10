@@ -7,6 +7,7 @@ const paypal = require('paypal-rest-sdk');
 //call the database model for products
 const Product = require('../models/product-model');
 const Cart = require('../models/cart-model');
+const Order = require('../models/order');
 
 
 /***********************************************************/
@@ -16,6 +17,14 @@ const Cart = require('../models/cart-model');
 // The payment details that Paypal uses to initiate a transaction.
 router.post('/pay', (req, res) => {
 
+
+  if (!req.session.cart) {
+    return res.redirect('/cart')
+  }
+  
+  const cart = new Cart(req.session.cart);
+
+  try {
     const create_payment_json = {
       "intent": "sale",
       "payer": {
@@ -26,23 +35,26 @@ router.post('/pay', (req, res) => {
           "cancel_url": "http://localhost:3000/paypal/cancel"
       },
       "transactions": [{
-          "item_list": {
-              "items": [{
-                  "name": "Redhock Bar Soap",
-                  "sku": "001",
-                  "price": Product.price,
-                  "currency": "SEK",
-                  "quantity": 1
-              }]
-          },
-          "amount": {
-              "currency": "SEK",
-              "total": Product.price //change this later?
-          },
+        "item_list": {
+            "items": [{
+                "name": "",
+                "sku": "item",
+                "price": 0,
+                "currency": "USD",
+                "quantity": cart.totalQty
+            }]
+        },
+        "amount": {
+            "currency": "USD",
+            "total": cart.totalPrice   
+        },
           "description": "Washing Bar soap"
       }]
-  };
+  }
   
+
+
+
   paypal.payment.create(create_payment_json, function (error, payment) {
     if (error) {
         throw error;
@@ -54,6 +66,14 @@ router.post('/pay', (req, res) => {
         }
     }
   });
+
+
+
+} catch(error) {
+    console.log(error)
+
+  }
+
   
   });
 
@@ -64,17 +84,23 @@ router.post('/pay', (req, res) => {
   router.get('/success', (req, res) => {
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
+
+    if (!req.session.cart) {
+      return res.redirect('/cart')
+    }
+    
+    const cart = new Cart(req.session.cart);
   
     const execute_payment_json = {
       "payer_id": payerId,
       "transactions": [{
           "amount": {
-              "currency": "SEK",
-              "total": Product.price
+              "currency": "USD",
+              "total": cart.totalPrice
           }
       }]
     };
-
+ 
     // If the user cancels the operation, the page sends 'Cancelled'
     router.get('/cancel', (req, res) => res.send('Cancelled'));
   
@@ -86,8 +112,22 @@ router.post('/pay', (req, res) => {
           throw error;
       } else {
           console.log(JSON.stringify(payment));
+       
+          // save order item
+          const order = new Order({
+            user: req.user,
+            cart: cart,
+            name:req.body.username
+
+
+            
+          });
+          
+          // Empties the shopping cart after sucessful payment
+          req.session.cart = null;
           res.render('payment-success');
       }
+      
   });
   });
 

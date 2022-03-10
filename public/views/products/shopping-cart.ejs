@@ -93,13 +93,22 @@
                           <button class="btn btn-form">reduce</button>
                         </a>
 
-                        <a href="/cart/increase/<%= product.item._id %>">
-                          <button class="btn btn-form">increase</button>
-                        </a>
-                      </div>
-                    </td>
-                    <strong>Quantity: <%= totalQty %> </strong>
-                    <strong class="badge"> Total Price: <%= totalPrice %> </strong>
+                              <a href="/cart/increase/<%= product.item._id %>">
+                                  <button class="btn btn-form">increase</button>
+                              </a>
+                          </div>
+                            <!--Handles checkout-->
+                          <form action="/paypal/pay" method="post">
+
+                            <button class="btn btn-card ">Buy</button>
+              
+                          </form>
+
+                          <strong>Quantity: <%= totalQty %> </strong>
+                          <br>
+                          <strong class="badge"> Total Price: <%= totalPrice %> </strong>
+                          
+                      </td>
 
                     <% }) %>
                       <% } else { %>
@@ -108,9 +117,7 @@
                   </tr>
                 </tbody>
           </table>
-
-
-        </div>
+      </div>
 
 
 
