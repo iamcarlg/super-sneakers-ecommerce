@@ -12,7 +12,7 @@ const {authUser, authRole} = require('../config/authorization');
 /***********************************************************/
 
 //route for admin CRUD functions on products (/admin/products)
-router.get('/products',authUser, authRole(ROLE.ADMIN),(req, res) => {
+router.get('/products',(req, res) => {
     Product.find() 
     .then((result) => {
         res.render('admin-products', {title: 'Admin', products: result, users: result}); 

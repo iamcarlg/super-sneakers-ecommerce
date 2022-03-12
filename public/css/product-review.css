@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
 .container-review{
   position: relative;
@@ -50,28 +50,28 @@ input#rate-5:checked ~ label{
   color: #fe7;
   text-shadow: 0 0 20px #952;
 }
-#rate-1:checked ~ form header:before{
+#rate-1:checked ~ .form header:before{
   content: "I just hate it ";
 }
-#rate-2:checked ~ form header:before{
+#rate-2:checked ~ .form header:before{
   content: "I don't like it ";
 }
-#rate-3:checked ~ form header:before{
+#rate-3:checked ~ .form header:before{
   content: "It is awesome ";
 }
-#rate-4:checked ~ form header:before{
+#rate-4:checked ~ .form header:before{
   content: "I just like it ";
 }
-#rate-5:checked ~ form header:before{
+#rate-5:checked ~ .form header:before{
   content: "I just love it ";
 }
-.container-review form{
+.container-review .form{
   display: none;
 }
-input:checked ~ form{
+input:checked ~ .form{
   display: block;
 }
-form header{
+.form header{
   width: 100%;
   font-size: 25px;
   color: #fe7;
@@ -80,12 +80,12 @@ form header{
   text-align: center;
   transition: all 0.2s ease;
 }
-form .textarea{
+.form .textarea{
   height: 100px;
   width: 100%;
   overflow: hidden;
 }
-form .textarea textarea{
+.form .textarea textarea{
   height: 100%;
   width: 100%;
   outline: none;
@@ -99,12 +99,12 @@ form .textarea textarea{
 .textarea textarea:focus{
   border-color: #444;
 }
-form .btn{
+.form .btn{
   height: 45px;
   width: 100%;
   margin: 15px 0;
 }
-form .btn button{
+.form .btn button{
   height: 100%;
   width: 100%;
   border: 1px solid #444;
@@ -117,6 +117,141 @@ form .btn button{
   cursor: pointer;
   transition: all 0.3s ease;
 }
-form .btn button:hover{
+.form .btn button:hover{
   background: #1b1b1b;
 }
+
+.content-review{
+  width : 90%;
+  height : 5vh;
+
+  background-color:gray;
+  border:1px solid black;
+  border-radius : 5px;
+
+  color:#1b1b1b;
+
+} */
+
+/* <%- include("../partials/head.ejs") %>
+
+<body>
+		
+  <%- include("../partials/nav.ejs") %>
+
+<div class="ScriptTop">
+    <div class="rt-container">
+        <div class="col-rt-4" id="float-right">
+            <!-- AD -->
+        </div>
+    </div>
+</div>
+
+<header class="ScriptHeader">
+    <div class="rt-container"> 
+    	<div class="col-rt-12">
+        	<div class="rt-heading">
+            	<h1>Comment section</h1>
+                <p>Tell us your experience with our services</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section>
+        <div class="rt-container">
+              <div class="col-rt-12">
+                  <div class="Scriptcontent">
+                  
+    <!-- partial:index.partial.html -->
+    <section id="app">
+
+            <div class="container">
+            
+              <div class="row">
+
+                <form action="/review/reviewpost" method = "post">
+
+                  <div class="col-6">
+                      <textarea name = "comment" type="text" class="input" placeholder="Write a comment" v-model="newItem" @keyup.enter="addItem()"></textarea>
+                      <button value = "<%= review.comment %>" v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
+                  </div><!-- End col -->
+
+                </form>
+                
+              </div><!--End Row -->
+
+              <div class="row">
+                <div class="col-6">
+                  <div class="comment">
+
+                    <% if (review.length> 0) { %>
+                      <% review.forEach(rev=> { %>
+                      <p v-for="items in item" v-text="items" class = "content-review" ><%= rev.comment %></p>
+                      <style>
+                        .content-review{
+                          width : 90%;
+                          height : 5vh;
+
+                          background-color:while;
+                          border:1px solid black;
+                          border-radius : 5px;
+
+                          color:#1b1b1b;
+                        }
+                      </style>
+                      <% }) %>
+                      
+                  <% } else { %>
+                    There are no products to display...
+                    <% } %>
+
+                  </div><!--End Comment-->
+
+                </div><!--End col -->
+              </div><!-- End row -->
+
+            </div><!--End Container -->
+      </section><!-- end App -->
+    <!-- partial -->
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+          <script  src="js/script.js"></script>
+                    
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Analytics -->
+	</body>
+
+  <%- include("../partials/footer.ejs") %>
+
+  <!-- <script>
+    $(document).ready(function(){ 
+  
+  $(".primaryContained").on('click', function(){
+  $(".comment").addClass("commentClicked");
+});//end click
+$("textarea").on('keyup.enter', function(){
+  $(".comment").addClass("commentClicked");
+});//end keyup
+});//End Function
+
+new Vue({
+  el: "#app",
+  data:{
+     title: 'Add a comment',
+    newItem: '',
+    item: [],
+  },
+  methods:{
+    addItem  (){
+    this.item.push(this.newItem);
+      this.newItem = "";
+    }
+  }
+
+});
+  </script> -->
+</html> */

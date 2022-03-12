@@ -1,77 +1,191 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel = "stylesheet" href = "../../css/product-review.css"/>
+<%- include("../partials/head.ejs") %>
 
-  </head>
 
-  <body>
-    <center>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+<script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 
-      <div class="container-review">
-        <div class="post">
-          <div class="text">Thanks for rating us!</div>
-          <div class="edit">EDIT</div>
+<!-- Main Body -->
+
+<%- include("../partials/nav.ejs") %>
+
+<center>
+
+  <section>
+    <div class="container">
+      <% if (review.length> 0) { %>
+        <div class="row">
+            <div class="col-sm-5 col-md-6 col-12 pb-4">
+                <h1>Comments</h1>
+                <% review.forEach(rev=> { %>  
+                <div class="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                  <h4><%= rev.name %></h4> <span><%= rev.date %></span> <br>
+                  <p v-for="items in item" v-text="items" class = "content-review" ><%= rev.msg %></p>
+                </div>
+                <% }) %>
+                          
+                <% } else { %>
+                  There are no products to display...
+                  <% } %>
+  
+              </div>
+
+            <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                <form id="algin-form" action = "/reviews/post" method = "post">
+                    <div class="form-group">
+                        <h4>Leave a comment</h4> <label for="message">Message</label> <textarea name="msg" id="" msg cols="30" rows="5" class="form-control" style="background-color: white;" required></textarea>
+                    </div>
+                    <div class="form-group"> <label for="name">Name</label> <input type="text" name="name" id="fullname" class="form-control" required  style="background-color: white;"> </div>
+                    <div class="form-group"> <label for="email">Email</label> <input type="email" name="email" id="email" class="form-control" required  style="background-color: white;"> </div>
+  
+                    <div class="form-group"> <button type="submit" id="post" class="btn">Post Comment</button> </div>
+                </form>
+                
+              </div>
+
         </div>
-        <div class="star-widget">
-          <input type="radio" name="rate" id="rate-5">
-          <label for="rate-5" class="fas fa-star"></label>
-          <input type="radio" name="rate" id="rate-4">
-          <label for="rate-4" class="fas fa-star"></label>
-          <input type="radio" name="rate" id="rate-3">
-          <label for="rate-3" class="fas fa-star"></label>
-          <input type="radio" name="rate" id="rate-2">
-          <label for="rate-2" class="fas fa-star"></label>
-          <input type="radio" name="rate" id="rate-1">
-          <label for="rate-1" class="fas fa-star"></label>
-          <form action="#">
-            <header></header>
-            <div class = "textarea">
-              <textarea cols="30" placeholder="Describe your experience.."></textarea>
-            </div>
-            <div class="btn">
-              <button onclick="validateReview();">Post</button>
-            </div>
-          </form>
+    </div>
+  </section>
 
-          
-        </div>
-      </div>
+</center>
 
-    </center>
+<style>
+  .navbar-nav {
+    width: 100%
+}
 
-    <div class = "review_content"></div>
-    
-    <script>
+@media(min-width:568px) {
+    .end {
+        margin-left: auto
+    }
+}
 
-      // This function validates the review post
-      function validateReview(){   
-        
-        const btn = document.querySelector(".btn");
-        const post = document.querySelector(".post");
-        const widget = document.querySelector(".star-widget");
-        const editBtn = document.querySelector(".edit");
+@media(max-width:768px) {
+    #post {
+        width: 100%
+    }
+}
 
-        
-        btn.onclick = ()=>{
+#clicked {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    text-align: center;
+    width: 100%;
+    background-color: #ecb21f;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 13px
+}
 
-          // When the user clicks on the post button => Widget dispears and the post appears
-          widget.style.display = "none";
-          post.style.display = "block";
+#profile {
+    background-color: unset
+}
 
-          // When the user clicks on the edit link => post dispears and the widget appears
-          editBtn.onclick = ()=>{
-            widget.style.display = "block";
-            post.style.display = "none";
-          }
-          return false;
+#post {
+    margin: 10px;
+    padding: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    background-color: #ecb21f;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 13px;
+    width: 50%
+}
 
-          }
+body {
+    background-color: white
+}
 
-      }
+#nav-items li a,
+#profile {
+    text-decoration: none;
+    color: rgb(224, 219, 219);
+    background-color: black
+}
 
-    </script>
-  </body>
+.comments {
+    margin-top: 5%;
+    margin-left: 20px
+}
+
+.darker {
+    border: 1px solid #ecb21f;
+    background-color: black;
+    float: right;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px
+}
+
+.comment {
+    border: 1px solid rgba(46, 16, 18, 0.973);
+    background-color: rgba(46, 16, 18, 0.973);
+    float: left;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px
+}
+
+.comment h4,
+.comment span,
+.darker h4,
+.darker span {
+    display: inline
+}
+
+.comment p,
+.comment span,
+.darker p,
+.darker span {
+    color: rgb(184, 183, 183)
+}
+
+h1,
+h4 {
+    color: white;
+    font-weight: bold
+}
+
+label {
+    color: rgb(212, 208, 208)
+}
+
+#align-form {
+    margin-top: 20px
+}
+
+.form-group p a {
+    color: white
+}
+
+#checkbx {
+    background-color: black
+}
+
+#darker img {
+    margin-right: 15px;
+    position: static
+}
+
+.form-group input,
+.form-group textarea {
+    background-color: white;
+    border: 1px solid rgba(46, 16, 18, 0.973);
+    border-radius: 12px
+}
+
+form {
+    border: 1px solid rgba(46, 16, 18, 0.973);
+    background-color: rgba(46, 16, 18, 0.973);
+    border-radius: 5px;
+    padding: 20px
+}
+
+</style> -->

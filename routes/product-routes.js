@@ -9,6 +9,9 @@ const fs = require('fs');
 //call the database model for products
 const Product = require('../models/product-model');
 
+//call the database model for products
+const Review = require('../models/review-model');
+
 const { Mongoose } = require('mongoose');
 
 //for rezising img in backend
@@ -26,7 +29,7 @@ const {storage, upload} = require('../config/file-storage')
 router.get('/products', (req, res) => {
     Product.find() 
     .then((result) => {
-        res.render('products-men', {title: 'product details' ,products: result }); 
+        res.render('products-men', {title: 'product details' ,products: result, review:result }); 
     })
     .catch((err) => {
         console.log(err);
@@ -46,6 +49,7 @@ router.get('/post', (req, res) => {
 //can you add some comments in this
  //post product with img (img will be resized) this resize wont format correctly for our shop page btw
  router.post('/products', upload.single('picture'), async (req, res) => {
+
     console.log(req.file);
 
     const { filename: image } = req.file;
@@ -67,13 +71,95 @@ router.get('/post', (req, res) => {
     picture: req.file.filename,
     price: req.body.price
     });
+
     try {
         product = await product.save();
         res.redirect('/admin/products') //check if its correct
     } catch (error){
         console.log(error);
     }
+
+    const name = req.body.name;
+    const email = req.body.email;
+    const msg = req.body.msg;
+
+    let review = new Review({
+        name: name,
+        email : email,
+        msg : msg
+    });
+
+    try {
+        
+        review = await review.save();
+
+        Review.find(function(err, reviews){
+            if(err){
+                console.log(err);
+            }else{     
+                reviews.forEach(function(review){
+                    console.log('name :' + review.name);
+                    console.log('email :' + review.email);
+                    console.log('msgg : ' + review.msg);
+                })
+            }
+        })
+        
+        res.redirect('/shop/products/<%= product._id %>');
+
+    } catch (error){
+        console.log(error);
+    }
+    
+
+    
 });
+
+router.post('/reviews', async (req, res) =>{
+
+    const id = req.params.id;
+
+    const name = req.body.name;
+    const email = req.body.email;
+    const msg = req.body.msg;
+
+    let review = new Review({
+        name: name,
+        email : email,
+        msg : msg
+    });
+
+    try {
+        
+        review = await review.save();
+
+        Review.find(function(err, reviews){
+            if(err){
+                console.log(err);
+            }else{     
+                reviews.forEach(function(review){
+                    console.log('name :' + review.name);
+                    console.log('email :' + review.email);
+                    console.log('msgg : ' + review.msg);
+                })
+            }
+        })
+        
+        Review.findById(id)
+        .then(result => {
+            res.render('product-review', {title: 'Review details', review : result });
+        })
+        .catch(err => {
+            res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
+        });
+
+        res.redirect('back');
+
+    } catch (error){
+        console.log(error);
+    }
+
+})
 
 /***********************************************************/
 
@@ -81,7 +167,7 @@ router.get('/products/:id', (req, res) => {  //change to product //Karwan
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
-            res.render('product-details1', {title: 'product details', product: result });
+            res.render('product-details1', {title: 'product details', product: result, review : result });
         })
         .catch(err => {
             res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist

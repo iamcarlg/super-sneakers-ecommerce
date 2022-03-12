@@ -1,5 +1,4 @@
 <%- include("../partials/head.ejs") %>
-
     <body>
         <%- include("../partials/nav.ejs") %>
 
@@ -55,15 +54,25 @@
                                         </a>
                                     </div>
                                 </div>
-                                <button class="btn btn-card"><a class="delete" data-doc="<%= product._id %>">Delete</a></button>
+                                <center>
+                                    <button class="btn btn-card"><a class="delete" data-doc="<%= product._id %>">Delete</a></button>
+                                </center>
+
                             </div>
                         </div>
                     </div>
 
+                    <br><br>
+                        
                 </div>
 
             </div>
-            <%- include("../partials/footer.ejs") %>¨
+
+            <center>
+                <button class="btn btn-card"><a  href = "/review">Leave a comment</a></button>
+            </center>
+
+            <%- include("../partials/footer.ejs") %>
 
                   <!--Delete btn script-->
       <script>
