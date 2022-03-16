@@ -19,13 +19,13 @@
             placeholder="Search" aria-label="Search" />
         </form>
 
-        <a class="single" data-toggle="modal" data-target="#addModal">
+        <a class="single" data-toggle="modal" data-target="#addProductModal">
           <!--make sure these are correct -->
-          <button class="btn btn-form-product" type="submit">Add Product</button>
+          <button class="btn btn-form-product rounded-0" type="submit">Add Product</button>
           <!--add icon-->
         </a>
 
-        
+
         <!-- Responsive Crud table start (looping through all our products in our db and show them whit crud operations) -->
         <div class="table-responsive-sm">
           <table class="table">
@@ -44,25 +44,33 @@
 
                 <tbody id="table-body">
                   <tr>
-                    <td> <img src="/uploads/resized/<%= product.picture%>" style="width: 10%; height: auto;"></td> <!--move style to css later //Karwan-->
+                    <td> <img src="/uploads/resized/<%= product.picture%>" style="width: 10%; height: auto;"></td>
+                    <!--move style to css later //Karwan-->
                     <td class="table-title">
-                      <%= product.title %>
+                      <p>
+                        <%= product.title %>
+                      </p>
                     </td>
                     <td>
-                      <%= product.brand %>
-                    </td>
-
-                    <td>
-                      <%= product.size %>
+                      <p>
+                        <%= product.brand %>
+                      </p>
                     </td>
                     <td>
-                      <%= product.price %>
+                      <p>
+                        <%= product.size %>
+                      </p>
+                    </td>
+                    <td>
+                      <p>
+                        <%= product.price %>
+                      </p>
                     </td>
                     <td>
                       <div class="px-2 mt-3">
 
                         <!--product details button-->
-                        <a class="single" href="/shop/products/<%= product._id %>">
+                        <a class="single" href="/shop/product/<%= product._id %>">
                           <!--make sure these are correct -->
                           <button class="btn btn-form-product"><i class="fa-solid fa-info"></i></button>
                         </a>
@@ -73,6 +81,16 @@
                               class="fa-solid fa-pen-to-square"></i></button>
                         </a>
 
+                        <a class="single">
+                          <button class="btn btn-form-product" data-toggle="modal" data-target="#updateProductModal"><i
+                              class="fa-solid fa-pen-to-square"></i></button>
+                        </a>
+
+                        <!--Delete btn -->
+                        <a class="single">
+                          <button class="btn btn-form-product"><a class="delete" data-doc="<%= product._id %>"><i
+                                class="fa-solid fa-trash"></i></a></button>
+                        </a>
                         <!---Check if we can fix this button later on.---delete button--
                         <a class="single" href="/shop/delete/<%= product._id %>">
                           <button class="btn btn-form-product"><i class="fa-solid fa-trash"></i></button>
@@ -91,9 +109,9 @@
         </div>
 
         <!--add product modal-->
-        <div class="modal fade" id="addModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal fade " id="addProductModal">
+          <div class="modal-dialog rounded-0">
+            <div class="modal-content rounded-0">
               <div class="modal-header">
                 <h5 class="modal-title">Add Product</h5>
 
@@ -102,7 +120,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="/shop/products" method="POST" enctype='multipart/form-data'>
+                <form action="/shop/product" method="POST" enctype='multipart/form-data'>
                   <!--Edit-form page to update a product-->
                   <!--It needs to be products and not product becuase of the db, look it up!-->
                   <label for="title">Title:</label>
@@ -110,7 +128,87 @@
                   <!--It needs to be products and not product becuase of the db, look it up!-->
 
                   <label for="gender">Gender:</label>
-                  <input type="text" class="form-control" name="gender" value="<%= products.gender%>">
+                  <select class="form-control" name="gender" value="<%= products.gender%>">
+                    <option selected disabled>Please Select</option>
+                    <option>Woman</option>
+                    <option>Man</option>
+                  </select>
+                  <!-- <input type="text" class="form-control" name="gender" value="<%= products.gender%>"> -->
+
+                  <label for="brand">Brand:</label>
+                  <select class="form-control" name="brand" value="<%=products.brand%>">
+                    <option selected disabled>Please Select</option>
+                    <option>Nike</option>
+                    <option>Adidas</option>
+                    <option>Reebok</option>
+                    <option>Puma</option>
+                    <option>New Balance</option>
+                    <option>Kappa</option>
+                    <option>Champion</option>
+                  </select>
+
+                  <label for="brand">Size:</label>
+                  <select class="form-control" name="size" value="<%=products.size%>">
+                    <option selected disabled>Please Select</option>
+                    <option>35</option>
+                    <option>36</option>
+                    <option>37</option>
+                    <option>38</option>
+                    <option>39</option>
+                    <option>40</option>
+                    <option>41</option>
+                    <option>42</option>
+                    <option>43</option>
+                    <option>44</option>
+                    <option>45</option>
+                    <option>46</option>
+                    <option>47</option>
+                    <option>48</option>
+                  </select>
+
+                  <label for="description">Description:</label>
+                  <input type="text" class="form-control" name="description" value="<%= products.description%>">
+
+                  <label for="picture">Picture:</label>
+                  <input type="file" class="form-control" name="picture" value="<%= products.picture%>">
+                  
+
+                  <label for="price">Price:</label>
+                  <input type="text" class="form-control" name="price" value="<%= products.price%>">
+
+                  <button class="btn btn-card rounded-0" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--edit product modal-->
+        <div class="modal fade" id="UpdateProductModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Product</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/shop/product" method="POST" enctype='multipart/form-data'>
+                  <!--Edit-form page to update a product-->
+                  <!--It needs to be products and not product becuase of the db, look it up!-->
+                  <label for="title">Title:</label>
+                  <input type="text" class="form-control" name="title" value="<%= products.title %>">
+                  <!--It needs to be products and not product becuase of the db, look it up!-->
+
+                  <label for="gender">Gender:</label>
+                  <select class="form-control" name="gender" value="<%= products.gender%>" placeholder="Gender">
+                    <option selected disabled>Please Select</option>
+                    <option>Woman</option>
+                    <option>Man</option>
+                  </select>
+                  <!-- <input type="text" class="form-control" name="gender" value="<%= products.gender%>"> -->
 
                   <label for="brand">Brand:</label>
                   <input type="text" class="form-control" name="brand" value="<%= products.brand%>">
@@ -152,6 +250,17 @@
           });
         });
 
+        //Delete product
+        const trashcan = document.querySelector('a.delete');
+        trashcan.addEventListener('click', (e) => {
+          const endpoint = `/shop/delete/${trashcan.dataset.doc}`;
+          fetch(endpoint, {
+            method: 'DELETE',
+          })
+            .then(response => response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch(err => console.log(err));
+        });
       </script>
 
   </body>

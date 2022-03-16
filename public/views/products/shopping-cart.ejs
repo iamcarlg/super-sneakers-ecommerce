@@ -8,141 +8,120 @@
 
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Shopping bag</li>
           </ol>
         </nav>
-        <a class="single" href="/admin/products">
-          <!--make sure these are correct -->
-          <button>Back to items</button>
-        </a>
-
-        <!-- Responsive Crud table start (looping through all our products in our db and show them with crud operations) -->
-        <div class="table-responsive-sm">
-          <table class="table">
-
-            <tr>
-              <!---Phil did this-->
-              <th scope="col">Picture</th>
-              <th scope="col">Title</th>
-              <th scope="col">Brand</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Size</th>
-              <th scope="col">Price</th>
-              <th scope="col">Actions</th>
 
 
 
-            </tr>
-            </thead>
-            <% if (products) { %>
-              <% products.forEach(product=> { %>
 
-                <tbody id="table-body">
-                  <tr>
+        <div class="cart-container">
+          <div class="row no-gutters">
+            <!-- col-md-8 is bootrstap that makes the size of the col that holds cart items -->
+            <div class="col-md-8 cart-right-box">
+              <div class="cart-product-details">
+                <!-- tidigare kod i cart-d-flex   d-flex flex-row -->
+                <div class="cart-d-flex cart-continue"><i class="fa fa-long-arrow-left"></i> <a class="single" href="/">
+                    Continue
+                    Shopping</a></div>
+                <h4 class="cart-h4">Your shopping bag</h4>
 
-                    <!---Phil did this-->
-                    <td> <img src="/uploads/resized/<%= product.item.picture%> " /></td>
-                    <td class="table-title">
+                <% if (products) { %>
+                  <% products.forEach(product=> { %>
 
-                      <!----------------We call the item property that is linked to a session similar to how we did in admin-product but we access the item property. ------------------------->
-                      <strong>
-                        <%= product.item.title %>
-                    </td>
-                    <td>
-                      <strong>
-                        <%= product.item.brand %>
-                      </strong>
-                    </td>
-
-                    <td>
-                      <strong>
-                        <%= product.qty %>
-                      </strong>
-                    </td>
-
-                    <td>
-                      <strong>
-                        <%= product.size %>
-                      </strong>
-                    </td>
+                    <!-- <div class="d-flex cart-remove-items "><span>Remove items <a
+                          href="/cart/remove/<%= product.item._id %>"> <i
+                            class="fa fa-trash-o ml-3 text-black-50"></i></a></span>
+                    </div> -->
 
 
-                    <td>
-                      <strong>
-                        <%= product.price %>
-                      </strong>
-                    </td>
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
 
-                    <td>
-                      <!----------------------------------------->
-                      <div class="px-2 mt-3">
+                      <div class="d-flex flex-row">
+                        <img src="/uploads/resized/<%= product.item.picture%>" width="40">
+                        <div class="ml-2 cart-products-info">
+                          <span class="font-weight-bold d-block">
+                            <%= product.item.title %>
+                          </span>
+                          <span class="cat-spec">
+                            <%= product.item.brand %>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row cart-qp">
+                        <span class="d-block">Items: <%= product.qty %>
+                        </span>
+                        <span class="d-block ml-5 font-weight-bold"> Total Price: <%= product.price %> SEK</span>
+                      </div>
 
-
-
-                        <a class="single" href="#">
-                          <button class="btn btn-form">Checkout</button>
-                        </a>
-
-                        <!--Handles removal of the whole  product-->
-                        <a href="/cart/remove/<%= product.item._id %>">
-                          <button class="btn btn-form">Remove</button>
-                        </a>
+                      <div class="px-2 mt-3 cart-increase-reduce">
                         <!--Handles removal of one product-->
                         <a class="single" href="/cart/reduce/<%= product.item._id %>">
-                          <button class="btn btn-form">reduce</button>
+                          <i class="fa-solid fa-minus"></i>
                         </a>
+                        <a href="/cart/increase/<%= product.item._id %>">
+                          <i class="fa-solid fa-plus"></i>
+                        </a>
+                      </div>
 
-                              <a href="/cart/increase/<%= product.item._id %>">
-                                  <button class="btn btn-form">increase</button>
-                              </a>
-                          </div>
-                            <!--Handles checkout-->
-                          <form action="/paypal/pay" method="post">
-
-                            <button class="btn btn-card ">Buy</button>
-              
-                          </form>
-
-                          <strong>Quantity: <%= totalQty %> </strong>
-                          <br>
-                          <strong class="badge"> Total Price: <%= totalPrice %> </strong>
-                          
-                      </td>
+                      <!--Handles removal of all of the one product-->
+                      <div class="d-flex cart-remove-items "><span>Remove items <a
+                            href="/cart/remove/<%= product.item._id %>"> <i
+                              class="fa fa-trash-o ml-3 text-black-50"></i></a></span>
+                      </div>
+                    </div>
 
                     <% }) %>
                       <% } else { %>
                         <p>There are no products to display...</p>
                         <% } %>
-                  </tr>
-                </tbody>
-          </table>
-      </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 holder-payment-info">
+
+              <div class="payment-info">
+                <h4>Details</h4>
+                <div class="cart-box">
+
+                  <ul>
+                    <li class="cart-totalrow"><span class="label">Items: </span><span class="value">
+                        <%= totalQty %>
+                      </span>
+                    </li>
+
+                    <li class="cart-totalrow"><span class="label">Total Price: </span><span class="value">
+                        <%= totalPrice%> SEK
+                      </span>
+                    </li>
+
+                    <li class="cart-totalrow">
+                      <form action="/paypal/checkout" method="post">
+
+                        <a class="single">
+                          <button class="btn cart-btn-checkout">Checkout</button>
+                        </a>
+
+                      </form>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
 
 
 
-        <!--/FOOTER/-->
-        <%- include("../partials/footer.ejs") %>
+
+          </div>
+
+        </div>
 
 
-          <!--/We will write the script methods here/-->
-          <!-- Do we need this script links?? -->
-          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            crossorigin="anonymous"></script>
-          <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </div>
 
-          <script>
-
-
-
-
-          </script>
+    <%- include("../partials/footer.ejs") %>
 
 
   </body>

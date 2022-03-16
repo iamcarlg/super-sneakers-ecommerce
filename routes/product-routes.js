@@ -1,13 +1,15 @@
 //import the express router
 const router = require('express').Router();
 
-
-
 //FS Interacts with sharp/multer to resize img
 const fs = require('fs');
 
 //call the database model for products
 const Product = require('../models/product-model');
+//call the database model for reviews
+const Review = require('../models/review-model');
+//call the database model for reviews
+const User = require('../models/user-model');
 
 const { Mongoose } = require('mongoose');
 
@@ -17,85 +19,117 @@ const sharp = require('sharp');
 //The path module provides utilities for working with file and directory paths.
 const path = require('path');
 
-const {storage, upload} = require('../config/file-storage')
+//calls the user roles from the database
+const ROLE = require('../models/user-roles')
+//call authorization requirements
+const { authUser, authRole } = require('../config/authorization');
 
-/***********************************************************/
+//call file-storage multer functions
+const { storage, upload } = require('../config/file-storage')
 
-//we need to make it so that the women shoes go to the women and mens shoes go to mens
-//route for admin CRUD functions on products (/admin/products)
-router.get('/products', (req, res) => {
-    Product.find() 
-    .then((result) => {
-        res.render('products-men', {title: 'product details' ,products: result }); 
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-});
 
 /***********************************************************/
 
 //product posting page
 router.get('/post', (req, res) => {
-    res.render('product-post', {title: 'Add Product'});
+    res.render('product-post', { title: 'Add Product' });
 });
 
 /***********************************************************/
 
 
 //can you add some comments in this
- //post product with img (img will be resized) this resize wont format correctly for our shop page btw
- router.post('/products', upload.single('picture'), async (req, res) => {
+//post product with img (img will be resized) this resize wont format correctly for our shop page btw
+router.post('/product', upload.single('picture'), async (req, res) => { //should probably be called /post not /product //Karwan
     console.log(req.file);
 
     const { filename: image } = req.file;
 
     await sharp(req.file.path)
-     .resize(450, 600)
-     .jpeg({ quality: 90 })
-     .toFile(
-         path.resolve(req.file.destination,'resized',image)
-     )
-     fs.unlinkSync(req.file.path)
+        .resize(450, 600)
+        .jpeg({ quality: 90 })
+        .toFile(
+            path.resolve(req.file.destination, 'resized', image)
+        )
+    fs.unlinkSync(req.file.path)
 
     let product = new Product({
-    title: req.body.title,
-    gender: req.body.gender,
-    brand: req.body.brand,
-    size: req.body.size,
-    description: req.body.description,
-    picture: req.file.filename,
-    price: req.body.price
+        title: req.body.title,
+        gender: req.body.gender,
+        brand: req.body.brand,
+        size: req.body.size,
+        description: req.body.description,
+        picture: req.file.filename,
+        price: req.body.price
     });
     try {
         product = await product.save();
         res.redirect('/admin/products') //check if its correct
-    } catch (error){
+    } catch (error) {
         console.log(error);
     }
 });
 
 /***********************************************************/
 
-router.get('/products/:id', (req, res) => {  //change to product //Karwan
+//get product by id
+router.get('/product/:id', (req, res) => {
     const id = req.params.id;
-    Product.findById(id)
+    const currentUser = req.user;
+    Product.findById(id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    })
         .then(result => {
-            res.render('product-details1', {title: 'product details', product: result });
+            res.render('product-details', { title: 'product details', product: result, currentUser });
+            //res.json(result); //change from render to this if you want to test in postman
         })
         .catch(err => {
             res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
+            console.log(err);
         });
 });
 
 /***********************************************************/
 
-//comments please
+// //post review on post
+router.post('/product/:id/review/post', (req, res) => { //see if if/else can be replaced with authUser instead
+    const currentUserId = req.user;
+    const id = req.params.id;
+    const review = new Review(req.body);
+    review.author = currentUserId;
+
+    console.log(review);
+    review //create a new review
+        .save()
+        .then(() => Product.findById(id),
+            // OM något strular lägg till denna (den ska 'typ' inte behövas?) .populate('reviews'),
+            console.log(review)
+        ) //find the product that is being reviewed
+
+        .then((result) => {
+            result.reviews.unshift(review); //append review details to this product, unshift puts the newest entry at the top
+            return result.save();
+        })
+
+        .then(() => res.redirect('back')) //redirect to the product
+        .catch((err) => {
+            console.log(err);
+            res.redirect('/auth/login')
+        });
+});
+
+
+/***********************************************************/
+
+//get product by id so that you can update with put
 router.get('/update/:id', (req, res) => {
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
-            res.render('product-update', {title: 'Update Product' , products: result}); //what render if modal?
+            res.render('product-update', { title: 'Update Product', products: result });
         })
         .catch(err => {
             res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
@@ -109,7 +143,7 @@ router.get('/delete/:id', (req, res) => {
     const id = req.params.id;
     Product.findById(id)
         .then(result => {
-            res.render('product-delete', {title: 'Delete Product' , products: result}); //what render if modal?
+            res.render('product-delete', { title: 'Delete Product', products: result }); //what render if modal?
         })
         .catch(err => {
             res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
@@ -134,7 +168,7 @@ router.delete('/delete/:id', (req, res) => {
 /***********************************************************/
 
 //route for updating our products (change the resize to how we want and then try to implement thumbnails on the admin page)
-router.put('/update/:id', upload.single('picture'), async (req, res)=>{
+router.put('/update/:id', upload.single('picture'), async (req, res) => {
     req.product = await Product.findByIdAndUpdate(req.params.id);
     let product = req.product;
     product.title = req.body.title;
@@ -157,7 +191,7 @@ router.put('/update/:id', upload.single('picture'), async (req, res)=>{
 
         product = await product.save();
         //redirect to show route
-        res.redirect('/admin/products')
+        res.redirect('/admin/products') //change to back if you get modal to work //karwan
     } catch (error) {
         console.log(error);
     }
@@ -167,26 +201,27 @@ router.put('/update/:id', upload.single('picture'), async (req, res)=>{
 
 //route for mens products
 router.get('/men', (req, res) => {
-    Product.find() 
-    .then((result) => {
-        res.render('products-men', {title: 'Men', products: result, users: result}); 
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+
+    Product.find({ 'gender': 'Man' })
+        .then((result) => {
+            res.render('products-men', { title: 'Men', products: result });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 /***********************************************************/
 
 //route for our women products
 router.get('/women', (req, res) => {
-    Product.find() 
-    .then((result) => {
-        res.render('products-women', {title: 'Women', products: result, users: result}); 
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+    Product.find({ 'gender': 'Woman' })
+        .then((result) => {
+            res.render('products-women', { title: 'Women', products: result, users: result });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 

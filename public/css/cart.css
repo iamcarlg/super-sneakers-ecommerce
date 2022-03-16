@@ -1,0 +1,63 @@
+/* Styling for shopping-cart.ejs */
+
+.cart-product-details {
+    margin: 5% 5%;
+}
+
+.cart-d-flex{
+    align-items: center;
+    border-bottom:#000000 1px solid;
+    padding: 1% 0%;
+    margin: 1% 0%;
+}
+
+.cart-remove-items{
+    padding: 1% 0%;
+    justify-content: end;
+}
+
+.cart-continue a{
+    color: #000000;
+}
+
+/* Shadow for holder of items in cart */
+.items {
+    -webkit-box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08)
+}
+
+.cat-spec {
+    font-size: 0.8rem;
+}
+
+.payment-info li{
+    list-style: none;
+}
+
+.holder-payment-info{
+    margin: 2% 0% 0% 0%;
+    padding: 2% 0%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-info{
+    padding: 2% 0%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    height: auto;
+    width: 80%;
+    height: 80%;
+    text-align: center;
+}
+
+.cart-btn-checkout{
+    width: 50%;
+    height: 50%;
+    margin: 5% 0% 10% 0%;
+}
+.cart-totalrow{
+    padding: 5% 0%;
+}

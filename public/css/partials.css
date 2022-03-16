@@ -1,0 +1,201 @@
+/* Styling for head.ejs, footer.ejs, nav.ejs  */ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  
+body {
+  font-family: Arial, sans-serif;
+}
+
+
+nav {
+  display: flex;
+  text-transform: uppercase;
+  background-color: #ffffff;
+}
+
+nav p, nav a {
+  color: #777;
+  font-weight: 300;
+}
+
+.nav-item {
+  list-style-type: none;
+  margin: 0% 1%;
+  font-size: 1.5rem;
+}
+
+.navbar-logo {
+  width:40%;
+}
+
+/* Style for the navbar logos/links on the right side */
+.nav-brands {
+  display: flex;
+}
+
+.nav-brand {
+  color: #777;
+  justify-content: right;
+  margin: 0% 9%;
+}
+
+.nav-brand:hover {
+  color: #b10e0e;
+  text-decoration: none;
+  }
+
+  .breadcrumb-nav{
+    display: flex;
+    justify-content: center;
+    }
+    
+    .breadcrumb-nav .breadcrumb{
+      padding: 0% 0%;
+    }
+    
+/* Footer css start */
+/*footer{} Styles the footer whit readiant color style */
+footer { 
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #b10e0e;
+  background-image:
+  linear-gradient(
+    to top right, 
+    #d4d1cd, #b10e0e
+  );
+  margin-top: 10%;
+
+}
+
+
+.footer-middle {
+  padding-top: 2%;
+  color: #ffffff;
+}
+
+.paypal-text img{
+  width: 30%;
+}
+
+.footer-copyright {
+  margin:2%;
+  padding: 1% 0% 1% 0%;
+  font-size: 0.8rem;
+  border-top: 1px solid #ffffff;
+}
+
+/* footer social icons */
+ul.social-network {
+  list-style: none;
+  display: inline;
+  padding: 0%;
+}
+
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  border-radius: 10%;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 0.8rem;
+}
+
+.social-circle li i {
+  margin: 0%;
+  line-height: 30px;
+  text-align: center;
+}
+
+.social-circle i {
+  color: #000000;
+}
+
+.social-network a {
+  background-color: #F9F9F9;
+}
+
+
+/* About page style start */
+
+.about-banner {
+  margin: 5% 0%;
+  padding: 5% 0% ;
+  background-color: #e9ecef44;
+  /* text-align: center; */
+  float: left;
+}
+.about-holder-img {
+  width: 40%;
+  float: left;
+}
+
+.about-banner-text {
+  width: 40%;
+  float: left;
+  margin: 0% 10%;
+  font-size: 1.5rem;
+}
+
+.about-p{
+  padding: 10% 0%;
+}
+
+/* Contact info */
+.contact-info-fa{
+  font-size: 2rem;
+  margin: 0% 0% 5%  0%;
+}
+
+.contact-info{
+  /* text-align: end; */
+  justify-content: space-around;
+}
+
+
+/* Responsive columns whit breakpoints*/
+   
+@media screen and (max-width: 1500px) and (min-width: 900px) {
+/*Let this breakpoint be here for now. Maybe we need to add code here later*/
+}
+
+@media screen and (max-width: 900px) and (min-width: 500px) {
+
+
+}
+
+
+@media screen and (max-width: 500px) and (min-width: 300px) {
+  
+  .navbar-logo{
+    width: 20%;
+  }
+
+  .footer-middle {
+    font-size: 0.8rem;
+  }
+  
+.paypal-text img{
+  width: 20%;
+}
+
+}
+
+
+
+@media screen and (max-width: 300px) and (min-width: 100px) {
+  
+  .navbar-logo{
+    display: none;
+  }
+
+}

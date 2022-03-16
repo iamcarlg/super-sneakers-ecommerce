@@ -1,45 +1,56 @@
 <%- include("../partials/head.ejs") %>
 
   <body>
-    <!-- Container fluid does that the navbar and everything inside fits to the page -->
-    <!-- Look at this later if time let us -->
-    <%- include("../partials/nav.ejs") %>
-      <div class="container-fluid">
+
+    <div class="container-fluid">
+      <%- include("../partials/nav.ejs") %>
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Men</li>
           </ol>
         </nav>
+    </div>
+        <div class="container">
+          <div class="row">
 
-        <div class="card-deck ">
-          <% if (products.length> 0) { %>
-            <% products.forEach(product=> { %>
-              <div class="card rounded-0">
-                <img class="card-img-top" src="/uploads/resized/<%= product.picture%>" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">
+              <% if (products.length> 0) { %>
+                <% products.forEach(product=> { %>
+
+                  <div class="col-sm-4">
+                  <div class="card-block cat-card-block">
+
+                  <div>
+                    <img class="card-img-top" src="/uploads/resized/<%= product.picture%>" alt="Card image cap">
+                  </div>
+                    <h4 class="cat-title-products">
                     <%= product.title %>
-                  </h5>
-                  <p class="card-text">
-                    <%= product.brand %>
-                  </p>
-                  <p class="card-text"><small class="text-muted">
-                      <%= product.price %> SEK. (Incl. VAT)
-                    </small></p>
-                  <a class="single" href="/shop/products/<%= product._id %>">
-                    <button type="button" class="btn btn-more-info rounded-0">More</button>
-                  </a>
-                </div>
-              </div>
-              <% }) %>
-                <% } else { %>
-                  <p>There are no products to display...</p>
-                  <% } %>
-        </div>
+                   </h4>
+                   <div class="cat-brand-price">
 
-        <%- include("./product-review.ejs") %>
+                    <p class="cat-products-p">
+                      <%= product.brand %> 
+                    </p>
+                    <p class="cat-products-p">
+                         <%= product.price %> SEK. (Incl. VAT)
+                      </p>
+                  </div>
 
+                      <a class="single-product-btn" href="/shop/product/<%= product._id %>">
+                        <button type="button" class="btn btn-more-info rounded-0">More</button>
+                      </a>
+                 
+                </div><!--card-block cat-cardblock end-->
+                </div><!--col-sm-4 end-->
+                  <% }) %>
+                    <% } else { %>
+                      <p>There are no products to display...</p>
+                      <% } %>
+           
+          </div>  <!--Row end-->
+        
+        </div> <!--Container end-->
+       
 
-          <%- include("../partials/footer.ejs") %>
+        <%- include("../partials/footer.ejs") %>
   </body>

@@ -1,122 +1,124 @@
+/* Styling for product-details.ejs */
+
 .product-detail-h2{
-padding: 5% 0%;
-}
-.product-detail-p{
-}
-
-.product-holder{
-  background-color: #d8d8d844;
-  display: flex;
-  justify-content: center;
-  padding: 2% 5%;
-  margin: 0% 10%;
-}
-
-.product-holder img {
-  height: auto;
-  width: 100%;
-  padding: 0% 2%;
-  
-}
-
-.product-detail-div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  width: 50%;
-}
-
-
-.product-detail-box {
-  background-color: #ffffff;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-}
-
-.product-detail-h2 {
   padding: 5% 0%;
-}
-
-.product-detail-banner p {
-  padding: 0% 15%;
-}
-
-.product-detail-description {
-  text-align: left;
-  margin: 0% 0% 5% 0%;
-}
-
-.btn-add-cart {
-  margin: 2% 0%;
-  width: 60%;
-  background-color: #b10e0e;
-  color: #ffffff;
-}
-
-.fa-bag-shopping {
-  padding: 0% 2%;
-}
-/* drop down style starts */
-.show {
-  display: block;
-}
-
-.btn-size {
-  width: 60%;
-
-}
-
-.dropdown-menu {
-  width: 60%;
-}
-
-.brand-price {
-  display: flex;
-  justify-content: space-around;
-}
-
-.brand-price p {
-  font-size: 1.3rem;
-}
-
-.btns-shop {
-  padding: 15% 3% 3% 3%;
-}
-
-/* Code for sizing the img whit css
-.card-img {
-  border-radius: 5px 5px 0 0;
-  padding: 2px 16px;
-  width: 250px;
-  height: 300px;
-  border-radius: 5%;
-  order-color: #FF416C;
-} */
-    
-      
-    
-/* Responsive columns whit breakpoints*/
-    
-@media screen and (max-width: 1500px) and (min-width: 900px) {
- 
-}
-
-@media screen and (max-width: 900px) and (min-width: 750px){
-    
-}
-    
-@media screen and (max-width: 750px)and (min-width: 400px) {
-  .btns-shop {
-    padding: 1% ;
   }
-  .btn-size{
-    width: 80%;
-  }
-  .btn-add-cart{
-    width: 80%;
-  }
-
   
-}
+  
+  .product-holder{
+    background-color: #d8d8d844;
+    display: flex;
+    justify-content: center;
+    padding: 2% 5%;
+    margin: 0% 10%;
+  }
+  
+  .product-holder img {
+    height: auto;
+    width: 100%;
+    padding: 0% 2%;
+    
+  }
+  
+  .product-detail-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 50%;
+  }
+  
+  
+  .product-detail-box {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .product-detail-h2 {
+    padding: 5% 0%;
+  }
+  
+  .product-detail-banner p {
+    padding: 0% 15%;
+  }
+  
+  .product-detail-description {
+    text-align: left;
+    margin: 0% 0% 5% 0%;
+  }
+  
+  .btn-add-cart {
+    margin: 2% 0%;
+    width: 60%;
+    background-color: #b10e0e;
+    color: #ffffff;
+  }
+  
+  .fa-bag-shopping {
+    padding: 0% 2%;
+  }
+  
+  /* drop down style starts */
+  .show {
+    display: block;
+  }
+  
+  .btn-size {
+    width: 60%;
+  
+  }
+  
+  .dropdown-menu {
+    width: 60%;
+  }
+  
+  .brand-price {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .brand-price p {
+    font-size: 1.3rem;
+  }
+  
+  .btns-shop {
+    padding: 15% 3% 3% 3%;
+  }
+  
+  /* Code for sizing the img whit css
+  .card-img {
+    border-radius: 5px 5px 0 0;
+    padding: 2px 16px;
+    width: 250px;
+    height: 300px;
+    border-radius: 5%;
+    order-color: #FF416C;
+  } */
+      
+        
+      
+  /* Responsive columns whit breakpoints*/
+      
+  @media screen and (max-width: 1500px) and (min-width: 900px) {
+   
+  }
+  
+  @media screen and (max-width: 900px) and (min-width: 750px){
+      
+  }
+      
+  @media screen and (max-width: 750px)and (min-width: 400px) {
+    .btns-shop {
+      padding: 1% ;
+    }
+    .btn-size{
+      width: 80%;
+    }
+    .btn-add-cart{
+      width: 80%;
+    }
+  
+    
+  }

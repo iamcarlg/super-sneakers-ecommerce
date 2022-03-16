@@ -1,0 +1,125 @@
+/* Styling for category products-men.ejs, products-women.ejs*/
+
+
+.cat-card-block{
+  background-color: #ffffff;
+  /* background-color: #f1f1f1; */
+  width: 80%;
+  margin: 5% 0%;
+}
+
+/* Fit img to card */
+.card-img-top{
+  border: 1px solid #f1f1f1;
+}
+
+.cat-title-products {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 5% 0%;
+}
+
+.cat-brand-price{
+  display: flex;
+  justify-content: space-between;
+  padding: 5% 0%;
+}
+
+.cat-brand-price p {
+  font-size: 1rem;
+  font-weight: 200;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+
+/* style for btn */
+/* .btn-more-info {
+  background-color: #f1f1f1;
+  color: #000000;
+} */
+
+/* For centering the btn */
+.single-product-btn{
+  text-align:center;
+  display:block;
+  padding: 5% 0%;
+}
+
+.brand-price-products {
+  display: flex;
+  justify-content: space-around;
+}
+
+.brand-price-products p {
+  font-size: 1.3rem;
+}
+
+.btn-more-info {
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  color: #000000;
+  line-height: 1.75rem;
+  padding: .75rem 1.65rem;
+  text-align: center;
+  width: 100%;
+  /* This css makes the "backgorund" transoformation on the btn */
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+  /* This css makes the "backgorund" transoformation on the btn */
+.btn-more-info:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  outline: 1px solid red;
+  bottom: 4px;
+  left: 4px;
+  /* We use calc() because its the most usefull to mix units, as we have done with % and px */
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+/* This code is for how the border of the btn is "flying" */
+.btn-more-info:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+/* Responsive columns whit breakpoints. JULIA, does this do anything??? /Karwan */ 
+@media screen and (max-width: 1500px) and (min-width: 900px) {
+}
+    
+@media screen and (max-width: 900px)and (min-width: 575px)  {
+.card-title{
+    font-size: 1rem;
+  }
+
+.cat-brand-price p {
+    font-size: 0.6rem;
+    font-weight: 500;
+}
+
+.btn-more-info {
+  padding: .75rem 3rem;
+  font-size: 1.25rem;
+}
+
+}
+    
+@media screen and (max-width: 575px) and (min-width: 200px) {
+
+
+  .cat-card-block{
+    background-color: #ffffff;
+    /* background-color: #f1f1f1; */
+    border: none;
+    width: 70%;
+    margin: 5% 0%;
+  }
+  
+}

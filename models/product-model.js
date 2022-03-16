@@ -15,7 +15,6 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-
     size: {
         type:String,
         required: true
@@ -31,7 +30,17 @@ const productSchema = new Schema({
     price: {
         type: Number,
         required: true
-    }
+    },
+    author: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User', 
+        //required: true
+    },
+    //foreign key to retrieve an array of reviews on the product
+    reviews: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Review'
+    }]
 }, {timestamps: true });
 
 const Product = mongoose.model('Product', productSchema);

@@ -1,68 +1,122 @@
 <%- include("../partials/head.ejs") %>
 
-  <body>
-    <%- include("../partials/nav.ejs") %>
+    <body>
+        <%- include("../partials/nav.ejs") %>
 
-    <div class="container-fluid">
-      <!-- Products cards start -->
-      <div class="row">
-        <div class="column">
-          <div class="card ">
-            <div class="card-body ">
-              <h3 class="title">
-                <%= product.title %>
-              </h3>
-              <img src="/uploads/resized/<%= product.picture%>" />
-              <div class="d-flex justify-content-between align-items-center mt-3 px-2">
-                <h4>
-                  <%= product.brand %>
-                </h4> <span class="star"><a href="#"><i class="fa fa-star"></i></a></span>
-              </div>
-              <p class="price"> Price:
-                <%= product.price %>
-              </p>
-              <p class="description">
-                <%= product.description %>
-              </p>
-              <p class="description">
-                <%= product.size %>
-              </p>
+            <div class="container-fluid">
+                <!-- Products cards start -->
+                <div class="product-holder">
 
-              <a class="btn btn-card" href="/cart/add/<%= product._id %>">
-                <button class="btn btn-form">Add to cart</button>
-              </a>
-              
-              <form action="/paypal/pay" method="post">
+                    <div class="product-holder-img">
+                        <img src="/uploads/resized/<%= product.picture%>" />
+                    </div>
 
-                <button class="btn btn-card ">Buy</button>
-  
-              </form>
-     
-                <button class="btn btn-card"><a class="delete" data-doc="<%= product._id %>">Delete</a></button>
-              </div>
+                    <div class="product-detail-div">
+                        <div class="product-detail-box">
+                            <div class="product-detail-banner">
+                                <h2 class="product-detail-h2">
+                                    <%= product.title %>
+                                </h2>
+                                <div class="brand-price">
+                                    <p class="product-detail-p"> Brand: <%= product.brand %>
+                                    </p>
+                                    <p class="product-detail-p">
+                                        <%= product.price %> SEK. (Incl. VAT)
+                                    </p>
+                                </div>
+
+                                <div class="description">
+                                    <p class="product-detail-description">
+                                        <%= product.description %>
+                                    </p>
+                                </div>
+                                <div class="btns-shop"></div>
+                                <!-- come back and remove border radius on these buttons later //Karwan and julia-->
+
+                                <div class="dropdown">
+                                    <button class="btn btn-size dropdown-toggle border-dark rounded-0" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Select size
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">
+                                            <%= product.size %>
+                                        </a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                                <div class="btn-bag">
+                                    <a href="/cart/add/<%= product._id %>">
+                                        <button type="button" class="btn btn-add-cart rounded-0"><i
+                                                class="fa-solid fa-bag-shopping fa-lg" aria-hidden="true"></i>Add to bag
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Review Product</h2>
+                <form action="/shop/product/<%=product._id %>/review/post" method="POST">
+                    <input type="text" name="comment" placehoder="Comment Text Area" required> 
+                    <input type="number" name="rating" min="1" max="5" step="1" required>
+                    <input type="submit">
+                </form>
+
+                <!-- looping through all our comments to show them in the table -->
+                <div class="table-responsive-sm">
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Rating</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Posted by:</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="table-body">
+                            <% product.reviews.forEach(review=> { %>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <%= review.comment %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <%= review.rating %>/5
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <%= review.date %>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <%= review.author.email%> 
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <% }) %>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
 
             </div>
-          </div>
-        </div>
-      </div>
+            <%- include("../partials/footer.ejs") %>
 
+             
 
-
-    <%- include("../partials/footer.ejs") %>
-
-      <!--Delete btn script-->
-      <script>
-        const trashcan = document.querySelector('a.delete');
-        trashcan.addEventListener('click', (e) => {
-          const endpoint = `/shop/products/${trashcan.dataset.doc}`;
-          fetch(endpoint, {
-            method: 'DELETE',
-          })
-            .then(response => response.json())
-            .then((data) => window.location.href = data.redirect)
-            .catch(err => console.log(err));
-        });
-
-      </script>
-
-  </body>
+    </body>

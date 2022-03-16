@@ -5,7 +5,7 @@ const app = express();
 //package to override the post method to create put method
 const methodOverride = require('method-override');
 
-//add comment
+//specifies our localhost port
 const port = process.env.port || 3000; //sets the localhost port to 3000
 
 //import bodyParser to call data with req.body
@@ -66,8 +66,7 @@ paypal.configure({
 
 //connect mongoose to MongoDB
 mongoose.connect(dbURI)
-// .then((result) => app.listen(port)) // see if you can add a console.log to show successful connection
-.then((result) => console.log(port)) // see if you can add a console.log to show successful connection
+.then((result) => console.log("Server listening on port: " + port))
 .catch((err) => console.log(err));
 
 /***********************************************************/
@@ -77,7 +76,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //404 page (page not found redirect)
 app.get((req, res) => {
-    res.status(404).render('404', { title: '404' });
+    res.status(404).render('404', { title: '404 | Page not found' });
 });
 
 /***********************************************************/
@@ -110,16 +109,9 @@ app.use(session({
     }),    
 }));
 
-
-
-
-  
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
 
 /***********************************************************/
 
@@ -141,9 +133,6 @@ app.use(function (req, res, next) {
 
 /***********************************************************/
 
-// The App is listening on PORT 3000 locally and on process.env.PORT When deployed on the web
-app.listen(process.env.PORT || port);
-
 //connect express app to routes
 app.use('/', baseRoutes);
 app.use('/users', userRoutes);
@@ -154,3 +143,8 @@ app.use('/paypal', paypalRoutes);
 app.use('/cart', cartRoutes);
 
 /***********************************************************/
+
+// The App is listening on PORT 3000 locally and on process.env.PORT When deployed on the web
+app.listen(port, function(err){
+    if (err) console.log(err + "Error in server setup");
+})

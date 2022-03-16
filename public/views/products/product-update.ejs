@@ -1,34 +1,41 @@
-
 <%- include("../partials/head.ejs") %>
 
 
-<%- include("../partials/nav.ejs") %>
-<!-- NOTE IMPORTANT When updating the product, it reads in the wrong data. Price do not show and the size data reads in , in the price column on admin/products/ !! -->
-<!--This should be a modal-->
-<div class="create-blog content"> <!-- Change class name -->
-  <form action="/shop/update/<%=products._id %>?_method=PUT" method="POST" enctype='multipart/form-data'> <!--Edit-form page to update a product--><!--It needs to be products and not product becuase of the db, look it up!-->
-      <label for="title">Title:</label>
-      <input type="text"  class="form-control" name="title" value="<%= products.title %>"><!--It needs to be products and not product becuase of the db, look it up!-->
+  <%- include("../partials/nav.ejs") %>
+    <!-- NOTE IMPORTANT When updating the product, it reads in the wrong data. Price do not show and the size data reads in , in the price column on admin/products/ !! -->
+    <!--This should be a modal-->
+    <div class="create-blog content">
+      <!-- Change class name -->
+      <form action="/shop/update/<%=products._id %>?_method=PUT" method="POST" enctype='multipart/form-data'>
+        <!--Edit-form page to update a product-->
+        <!--It needs to be products and not product becuase of the db, look it up!-->
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" name="title" value="<%= products.title %>">
+        <!--It needs to be products and not product becuase of the db, look it up!-->
 
-      <label for="gender">Gender:</label>
-      <input type="text"  class="form-control" name="gender" value="<%= products.gender%>">
+        <label for="gender">Gender:</label>
+        <select class="form-control" name="gender" value="<%= products.gender%>" placeholder="Gender">
+          <option selected disabled>Please Select</option>
+          <option>Woman</option>
+          <option>Man</option>
+        </select>
+        <label for="brand">Brand:</label>
+        <input type="text" class="form-control" name="brand" value="<%= products.brand%>">
 
-      <label for="brand">Brand:</label>
-      <input type="text"  class="form-control" name="brand" value="<%= products.brand%>">
+        <label for="brand">Size:</label>
+        <input type="text" class="form-control" name="size" value="<%= products.size%>">
 
-      <label for="brand">Size:</label>
-      <input type="text"  class="form-control" name="size" value="<%= products.size%>">
-    
-      <label for="description">Description:</label>
-      <input type="text"  class="form-control" name="description" value="<%= products.description%>">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" name="description" value="<%= products.description%>">
 
-      <label for="price">Price:</label>
-      <input type="text"  class="form-control" name="price" value="<%= products.price%>">
+        <label for="price">Price:</label>
+        <input type="text" class="form-control" name="price" value="<%= products.price%>">
 
-      <button class="btn btn-card" type="submit">Submit</button>
-    </form>
-</div>
+        <label for="brand">Picture:</label>
+        <input type="file" class="form-control" name="picture" value="<%= products.picture%>">
 
-<%- include("../partials/footer.ejs") %>
+        <button class="btn btn-card" type="submit">Submit</button>
+      </form>
+    </div>
 
-
+    <%- include("../partials/footer.ejs") %>

@@ -1,0 +1,49 @@
+<%- include("../partials/head.ejs") %>
+
+  <body>
+    <!-- Container fluid does that the navbar and everything inside fits to the page -->
+    <!-- Look at this later if time let us -->
+    <div class="row">
+      <div class="col-md 8 col-md-offset-2">
+      <h1>User Profile</h1>
+      <hr>
+      <h2>My  Orders</h2>
+      <% if (orders) { %>
+        <% orders.forEach(order=> { %>
+      <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="list-group">
+              <% order.items.forEach(order=> { %>
+
+              <li class="list-group-item">
+                
+                <span class="badge"> Price: <strong> <%= order.price%> </strong></span>
+                <strong> Title: <%= order.item.title %> ||   Quantity: <strong> <%= order.qty%> </strong>
+                <td> <img src="/uploads/resized/<%= order.item.picture%> " /></td>
+                
+              </li>
+              <% }) %>
+
+            </ul>
+
+
+        </div>
+
+      </div>
+
+
+      <% }) %>
+             
+      <% } else { %>
+      <p>There are no order history to display...</p>
+      <% } %>
+    </div>
+  </div>
+
+    
+
+
+      
+
+
+  </body>

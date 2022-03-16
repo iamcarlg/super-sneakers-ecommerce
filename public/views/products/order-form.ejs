@@ -1,0 +1,30 @@
+<%- include("../partials/head.ejs") %>
+
+  <%- include("../partials/nav.ejs") %>
+
+    <!--This should be a modal!-->
+    <h2> Shipping information</h2>
+    <div class="create-blog content">
+      <form action="/paypal/pay" method="post">
+        <!--kolla på routen-->
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" id="name" name="name" required>
+
+        <label for="Country">Country:</label>
+        <input class="form-control" type="text" id="country" min="5" max="60" name="country" required>
+
+        <label for="City">City:</label>
+        <input class="form-control" type="text" id="city" name="city" required>
+
+        <label for="Address">Address:</label>
+        <input class="form-control" type="text" id="address" name="address" required>
+
+        <label for="zipcode">Zip-code:</label>
+        <input class="form-control" type="number" id="zipcode" min="4" max="10 " name="zipcode" required>
+
+
+        <button class="btn btn-card ">Buy</button>
+      </form>
+    </div>
+
+    <%- include("../partials/footer.ejs") %>

@@ -1,4 +1,5 @@
-/* STYLE FOR ADMIN PRODUCTS */
+/* Styling for admin.ejs */
+
 /* Style for the search bar */
 .form-inline{
   width: 100%;
@@ -11,31 +12,41 @@
   height: 40px;
 }
 
-/* Style for table */
-.table-responsive-sm{
-  margin: 5%;
-}
- 
-.table th{
-  background-color: #b10e0eec;
-  color: white;
-  margin-top: 10%;
-  border-top: ridge 1px  #b10e0eec;
-}
-
-.table td{ 
-  background-color: #e5eaf021;
-  border: 1px solid #dee2e6;
-}
-
 .btn-form-product {
-  background-color: #b10e0eec;
-  color: #ffffff;
-  font-weight: 500;
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  color: #000000;
+  line-height: 1.75rem;
+  padding: .75rem 1.65rem;
+  text-align: center;
+  /* This css makes the "backgorund" transoformation on the btn */
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
+
+  /* This css makes the "backgorund" transoformation on the btn */
+  .btn-form-product:after {
+    content: '';
+    position: absolute;
+    border: 1px solid #000000;
+    outline: 1px solid #b10e0e;
+    bottom: 4px;
+    left: 4px;
+    /* We use calc() because its the most usefull to mix units, as we have done with % and px */
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+  }
 
 .single:hover{
   text-decoration: none;
+}
+/* look at this later */
+.modal-dialog {
+  position: absolute;
+  border: 1px solid #000000;
+  outline: 1px solid #b10e0e;
 }
  
 /* Responsive columns whit breakpoints*/
