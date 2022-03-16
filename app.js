@@ -26,7 +26,6 @@ const adminRoutes = require("./routes/admin-routes");
 const productRoutes = require("./routes/product-routes");
 const paypalRoutes = require('./routes/paypal-routes');
 const cartRoutes = require('./routes/cart-routes');
-const reviewsRoutes = require('./routes/reviews-routes');
 
 //cookie-parser is a middleware which parses cookies attached to the client request object. 
 var cookieParser = require('cookie-parser')
@@ -142,7 +141,6 @@ app.use('/shop', productRoutes);
 app.use('/admin', adminRoutes);
 app.use('/paypal', paypalRoutes);
 app.use('/cart', cartRoutes);
-app.use('/reviews', reviewsRoutes);
 
 /***********************************************************/
 

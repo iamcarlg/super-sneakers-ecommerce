@@ -33,13 +33,13 @@ passport.use(new GoogleStrategy({
                 done(null, existingUser);
             }else {
                 // if not, create the user and save it to the database
-                //console.log(profile);
+                console.log(profile);
                 new User({
                     //define what data from google should be stored in the user tables in the database.
-                    email: profile._json.email,
                     username: profile.displayName, 
                     googleId: profile.id,
-                    thumbnail: profile._json.picture //remember this for how to fetch data from logged in account
+                    thumbnail: profile._json.picture,
+                    email: profile._json.email, //remember this for how to fetch data from logged in account
 
                 }).save().then((newUser) => {
                     console.log('new user created: ' + newUser);// this is shown when a new account logs in for the first time

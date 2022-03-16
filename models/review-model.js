@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Product = require('../models/product-model');
+const Product = require('../models/product-model'); //do we need this
+const User = require('../models/user-model'); //do we need this
 
 //schema for the review table in the mongoDB
 const reviewSchema = new Schema({

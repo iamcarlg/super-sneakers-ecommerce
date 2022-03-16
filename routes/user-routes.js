@@ -36,7 +36,7 @@ router.delete('/delete/:id', (req, res) => {
 /***********************************************************/
 
 //this page renders the profile page that is only accessible after login
-router.get('/profile', authUser, (req, res) => { //, authRole(ROLE.ADMIN)
+router.get('/profile', (req, res) => { //, authRole(ROLE.ADMIN)
     res.render('profile', {user: req.user});
 });
 

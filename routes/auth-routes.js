@@ -13,7 +13,7 @@ router.get('/login', (req, res) => {
 
 //authorize with google if we had more oauth login websites, the other ones would be /github or /facebook
 router.get('/google', passport.authenticate('google', { //should there be a () around 'google'?
-    scope: ['profile'] //look here for info on what to return to a logged in user (refer to netninja passport tutorial nr 8)
+    scope: ['profile', 'email'] //look here for info on what to return to a logged in user (refer to netninja passport tutorial nr 8)
 }));
 
 /***********************************************************/

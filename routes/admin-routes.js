@@ -3,6 +3,7 @@ const router = require('express').Router();
 //Retrieves the User and Product models from the models
 const User = require('../models/user-model');
 const Product = require('../models/product-model');
+const Review = require('../models/review-model')
 
 
 //calls the user roles from the database
