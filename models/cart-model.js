@@ -10,8 +10,8 @@ module.exports = function Cart(oldCart) {
     //total price of items:
     this.totalPrice = oldCart.totalPrice || 0;
 
-    this.pricee = oldCart.pricee || 0;
-    
+    this.pricee = oldCart.pricee || 0; //why two Es?? //Karwan
+
 
     // Function to add new item to cart
     this.add = function (item, id) {
@@ -40,22 +40,6 @@ module.exports = function Cart(oldCart) {
         this.totalPrice += storedItem.item.price;
 
     }
-
-
-    // Function for decreasing item in casket/cart
-    // this.reduceByOne = function (id) {
-    //     this.items[id].qty--;
-    //     this.items[id].price -= this.items[id].item.price;
-    //     this.totalQty--;
-    //     this.totalPrice -= this.items[id].item.price;
-
-    //     if (this.items[id].qty <= 0) {
-    //         delete this.items[id];
-
-    //     }
-
-    // }
-
 
     //Från stack samma kod men med if else sats
     this.reduceByOne = function (id) {

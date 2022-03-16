@@ -106,52 +106,6 @@ router.post('/product', upload.single('picture'), async (req, res) => { //should
     
 });
 
-router.post('/reviews', async (req, res) =>{
-
-    const id = req.params.id;
-
-    const name = req.body.name;
-    const email = req.body.email;
-    const msg = req.body.msg;
-
-    let review = new Review({
-        name: name,
-        email : email,
-        msg : msg
-    });
-
-    try {
-        
-        review = await review.save();
-
-        Review.find(function(err, reviews){
-            if(err){
-                console.log(err);
-            }else{     
-                reviews.forEach(function(review){
-                    console.log('name :' + review.name);
-                    console.log('email :' + review.email);
-                    console.log('msgg : ' + review.msg);
-                })
-            }
-        })
-        
-        Review.findById(id)
-        .then(result => {
-            res.render('product-review', {title: 'Review details', review : result });
-        })
-        .catch(err => {
-            res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
-        });
-
-        res.redirect('back');
-
-    } catch (error){
-        console.log(error);
-    }
-
-})
-
 /***********************************************************/
 
 //get product by id
@@ -299,7 +253,7 @@ router.get('/men', (req, res) => {
 router.get('/women', (req, res) => {
     Product.find({ 'gender': 'Woman' })
         .then((result) => {
-            res.render('products-women', { title: 'Women', products: result, users: result });
+            res.render('products-women', { title: 'Women', products: result});
         })
         .catch((err) => {
             console.log(err);
