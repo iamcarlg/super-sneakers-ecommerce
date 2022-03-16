@@ -62,13 +62,95 @@ router.post('/product', upload.single('picture'), async (req, res) => { //should
         picture: req.file.filename,
         price: req.body.price
     });
+
     try {
         product = await product.save();
         res.redirect('/admin/products') //check if its correct
     } catch (error) {
         console.log(error);
     }
+
+    const name = req.body.name;
+    const email = req.body.email;
+    const msg = req.body.msg;
+
+    let review = new Review({
+        name: name,
+        email : email,
+        msg : msg
+    });
+
+    try {
+        
+        review = await review.save();
+
+        Review.find(function(err, reviews){
+            if(err){
+                console.log(err);
+            }else{     
+                reviews.forEach(function(review){
+                    console.log('name :' + review.name);
+                    console.log('email :' + review.email);
+                    console.log('msgg : ' + review.msg);
+                })
+            }
+        })
+        
+        res.redirect('/shop/products/<%= product._id %>');
+
+    } catch (error){
+        console.log(error);
+    }
+    
+
+    
 });
+
+router.post('/reviews', async (req, res) =>{
+
+    const id = req.params.id;
+
+    const name = req.body.name;
+    const email = req.body.email;
+    const msg = req.body.msg;
+
+    let review = new Review({
+        name: name,
+        email : email,
+        msg : msg
+    });
+
+    try {
+        
+        review = await review.save();
+
+        Review.find(function(err, reviews){
+            if(err){
+                console.log(err);
+            }else{     
+                reviews.forEach(function(review){
+                    console.log('name :' + review.name);
+                    console.log('email :' + review.email);
+                    console.log('msgg : ' + review.msg);
+                })
+            }
+        })
+        
+        Review.findById(id)
+        .then(result => {
+            res.render('product-review', {title: 'Review details', review : result });
+        })
+        .catch(err => {
+            res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
+        });
+
+        res.redirect('back');
+
+    } catch (error){
+        console.log(error);
+    }
+
+})
 
 /***********************************************************/
 

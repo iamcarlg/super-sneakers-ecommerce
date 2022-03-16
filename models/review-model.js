@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Product = require('../models/product-model');
 
 //schema for the review table in the mongoDB
 const reviewSchema = new Schema({
@@ -25,5 +26,6 @@ const reviewSchema = new Schema({
 });
 
 const Review = mongoose.model('Review', reviewSchema);
+
 
 module.exports = Review;
