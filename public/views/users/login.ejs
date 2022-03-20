@@ -1,25 +1,56 @@
-
 <%- include("../partials/head.ejs") %>
 
-  <body class="body">
+  <% if(message_error.length> 0 ) {%>
+    <div class="alert alert-success">
+      <%= message_error %>
+    </div>
+
+
+    <% } %>
+
+
+      <body class="login-body">
         <div class="container-fluid">
           <div class="login-section">
-          <div class="img-div">
-            <img src="../uploads/about-page-img.jpg" alt="">
-          </div>
 
-          
-          <div class="login-div">
-            <div class="login-box">
-              <div class="page-banner-login">
-                <h2>LOGIN</h2>
-              <a href="/auth/google">
-                <img src="../uploads/google.png" alt=""> <!--need to check copyright-->
-              </a>    
+
+            <div class="login-content">
+              <div>
+                <h2>Welcome to Super Sneakers</h2>
               </div>
-            </div>
-          </div>
+              <div class="login-slogan text-muted">
+                <h4>"Where heroes do their shopping"</h4>
+              </div>
 
+              <div class="login-logo">
+                <img src="../uploads/logo.png" alt="">
+              </div>
+
+              <div>
+                <a href="/auth/google">
+                  <button type="button" class="btn login-page-btn btn-lg rounded-0"><i
+                      class="fa-brands fa-google fa-lg"></i>Login with Google</button>
+                </a>
+              </div>
+
+              <div class="login-copyright text-muted">
+                <p>Super Sneakers Ⓒ </p>
+              </div>
+
+            </div>
+
+
+
+          </div>
         </div>
-        </div>
-  </body>
+
+        <script>
+          // set timer for our flash message
+          $(function () {
+            setTimeout(function () {
+              $('.alert').slideUp(500);
+            }, 3000);
+          });
+
+        </script>
+      </body>

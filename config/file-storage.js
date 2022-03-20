@@ -20,9 +20,9 @@ const upload = multer({
     storage: storage,
     
     fileFilter(req,file,cb) {
-        if(!file.originalname.match(/.(jpg|png)$/)){
-            return cb(new Error('Please upload picture in jpg/png format'))
-        }
+        if(!file.originalname.match(/.(jpg|png|webp|SVG)$/)){
+            return cb(new Error('Please upload picture in jpg/png/webp SVG, go back to the add page'))
+        } 
         cb(undefined,true)
     }
  });

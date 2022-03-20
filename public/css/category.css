@@ -1,5 +1,20 @@
 /* Styling for category products-men.ejs, products-women.ejs*/
 
+.cat-products p{
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 0%;
+}
+
+.cat-search-holder {
+  display: flex;
+  justify-content: right;
+  margin: 2%;
+}
+
+.cat-search-holder > * {
+  margin: 1%;
+}
 
 .cat-card-block{
   background-color: #ffffff;
@@ -17,13 +32,23 @@
   font-size: 1.5rem;
   font-weight: 400;
   text-transform: uppercase;
-  padding: 5% 0%;
+  padding: 2% 0% 1% 0%;
+  margin: 0%;
+}
+
+.cat-products-p {
+  margin: 0%;
+}
+
+.cat-gender-holder {
+  display: flex;
+  justify-content: right;
 }
 
 .cat-brand-price{
   display: flex;
   justify-content: space-between;
-  padding: 5% 0%;
+  padding: 1% 0%;
 }
 
 .cat-brand-price p {
@@ -33,12 +58,12 @@
   color: #000000;
 }
 
-
-/* style for btn */
-/* .btn-more-info {
-  background-color: #f1f1f1;
+.cat-gender-holder p {
+  font-size: 1rem;
+  font-weight: 200;
+  text-transform: uppercase;
   color: #000000;
-} */
+}
 
 /* For centering the btn */
 .single-product-btn{
@@ -76,7 +101,7 @@
   content: '';
   position: absolute;
   border: 1px solid #000000;
-  outline: 1px solid red;
+  outline: 1px solid #b10e0e;
   bottom: 4px;
   left: 4px;
   /* We use calc() because its the most usefull to mix units, as we have done with % and px */
@@ -94,15 +119,33 @@
 @media screen and (max-width: 1500px) and (min-width: 900px) {
 }
     
-@media screen and (max-width: 900px)and (min-width: 575px)  {
+@media screen and (max-width: 900px)and (min-width: 540px)  {
+
+.col-sm-4{
+align-items: center;
+}
+
+.cat-brand-price p{
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 2%;
+    font-size: 0.8rem;
+    width:100%;
+}
+
+.cat-title-products{
+font-size: 1rem;
+word-wrap: break-word;
+}
+
 .card-title{
     font-size: 1rem;
   }
 
-.cat-brand-price p {
+/* .cat-products-p{
     font-size: 0.6rem;
     font-weight: 500;
-}
+} */
 
 .btn-more-info {
   padding: .75rem 3rem;
@@ -111,7 +154,7 @@
 
 }
     
-@media screen and (max-width: 575px) and (min-width: 200px) {
+@media screen and (max-width: 540px) and (min-width: 200px) {
 
 
   .cat-card-block{

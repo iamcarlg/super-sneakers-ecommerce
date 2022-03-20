@@ -9,8 +9,41 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.nav_logo {
+  left: 30px;
+  padding: 0% 10% 0% 0%;
+  position: absolute;
+ }
+ 
+ .nav_logo a { 
+  color: inherit; 
+  text-decoration: none;
+} 
+  
+.navbar-logo{
+  width: 40%;
+}
 
-nav {
+.navbar-nav{
+ display: flex;
+ justify-content: center;
+}
+ 
+.nav-item {
+  list-style-type: none;
+  margin: 0% 1%;
+  font-size: 1.5rem;
+  float: left;
+  margin-right: 0px;
+  padding: 0 20px;
+  
+}
+ 
+.nav-item a:hover {
+  color: #666;
+}
+
+.navbar {
   display: flex;
   text-transform: uppercase;
   background-color: #ffffff;
@@ -21,16 +54,6 @@ nav p, nav a {
   font-weight: 300;
 }
 
-.nav-item {
-  list-style-type: none;
-  margin: 0% 1%;
-  font-size: 1.5rem;
-}
-
-.navbar-logo {
-  width:40%;
-}
-
 /* Style for the navbar logos/links on the right side */
 .nav-brands {
   display: flex;
@@ -39,38 +62,44 @@ nav p, nav a {
 .nav-brand {
   color: #777;
   justify-content: right;
-  margin: 0% 9%;
+}
+
+.nav-brands > * {
+  margin: 0% 15%;
 }
 
 .nav-brand:hover {
   color: #b10e0e;
   text-decoration: none;
-  }
+}
 
-  .breadcrumb-nav{
-    display: flex;
-    justify-content: center;
-    }
+.breadcrumb-nav{
+  display: flex;
+  justify-content: center;
+}
     
-    .breadcrumb-nav .breadcrumb{
+.breadcrumb-nav .breadcrumb{
       padding: 0% 0%;
-    }
-    
+}
+
+.breadcrumb-nav:hover{
+text-decoration: none; 
+}
+
+.breadcrumb-item a:hover{
+color:#b10e0e;
+text-decoration: none;
+}
+
 /* Footer css start */
 /*footer{} Styles the footer whit readiant color style */
 footer { 
   font-size: 1rem;
   font-weight: 500;
-  background-color: #b10e0e;
-  background-image:
-  linear-gradient(
-    to top right, 
-    #d4d1cd, #b10e0e
-  );
+  box-shadow: 0 50vh 0 50vh #c71818c0;
+  background-color: #c71818c0;
   margin-top: 10%;
-
 }
-
 
 .footer-middle {
   padding-top: 2%;
@@ -124,61 +153,76 @@ ul.social-network li {
   background-color: #F9F9F9;
 }
 
-
-/* About page style start */
-
-.about-banner {
-  margin: 5% 0%;
-  padding: 5% 0% ;
-  background-color: #e9ecef44;
-  /* text-align: center; */
-  float: left;
-}
-.about-holder-img {
-  width: 40%;
-  float: left;
-}
-
-.about-banner-text {
-  width: 40%;
-  float: left;
-  margin: 0% 10%;
-  font-size: 1.5rem;
-}
-
-.about-p{
-  padding: 10% 0%;
-}
-
-/* Contact info */
-.contact-info-fa{
-  font-size: 2rem;
-  margin: 0% 0% 5%  0%;
-}
-
-.contact-info{
-  /* text-align: end; */
-  justify-content: space-around;
-}
-
-
 /* Responsive columns whit breakpoints*/
    
 @media screen and (max-width: 1500px) and (min-width: 900px) {
 /*Let this breakpoint be here for now. Maybe we need to add code here later*/
+.nav_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ .navbar-logo {
+   width: 30%;
+ }
+
+ .navbar-nav .nav-item{
+  text-align: center;
+ }
+  
 }
 
 @media screen and (max-width: 900px) and (min-width: 500px) {
 
+.nav_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+   
+.navbar-logo {
+   width: 30%;
+}
+  
+.navbar-nav .nav-item{
+  text-align: center;
+}
 
+.bag-counter{
+  display: none;
+}
+.navbar-brand{
+  display: flex;
+  justify-content: center;
+}
+
+.nav-brands > * {
+  margin: 0% 0%;
+  padding: 0% 0% 0% 5%;
+}
 }
 
 
 @media screen and (max-width: 500px) and (min-width: 300px) {
+  .nav-brands > * {
+  margin: 0% 0%;
+  padding: 0% 5% 0% 5% ;
+}
+
+.nav_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   
+   .navbar-logo {
+     width: 30%;
+   }
   
-  .navbar-logo{
-    width: 20%;
-  }
+   .navbar-nav .nav-item{
+    text-align: center;
+   }
 
   .footer-middle {
     font-size: 0.8rem;
@@ -187,6 +231,12 @@ ul.social-network li {
 .paypal-text img{
   width: 20%;
 }
+.bag-counter{
+  display: none;
+}
+
+
+
 
 }
 

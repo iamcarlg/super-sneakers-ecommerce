@@ -1,15 +1,19 @@
 /* Styling for admin.ejs */
 
-/* Style for the search bar */
-.form-inline{
-  width: 100%;
+/* holds all the information in the html */
+.admin-container {
+  padding: 2% 5%;
+  margin: 0% 10%;
 }
-  
-.form-control{
-  padding: 5%;
-  background-color: #ffffff;
-  font-size: 15px;
-  height: 40px;
+
+.add-product-holder {
+  display: flex;
+  justify-content: right;
+  margin: 2%;
+}
+
+.add-product-holder > * {
+  margin: 1%;
 }
 
 .btn-form-product {
@@ -24,7 +28,9 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  
 }
+
 
   /* This css makes the "backgorund" transoformation on the btn */
   .btn-form-product:after {
@@ -37,18 +43,128 @@
     /* We use calc() because its the most usefull to mix units, as we have done with % and px */
     width: calc(100% - 1px);
     height: calc(100% - 1px);
+    
+    
   }
 
-.single:hover{
-  text-decoration: none;
+.btn-form-product:hover:after {
+  bottom: 2px;
+  left: 2px;
 }
-/* look at this later */
+
+.add-form-btn-holder {
+  display: flex;
+  justify-content: center;
+}
+
+.add-form-btn {
+  width: 30%;
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  color: #000000;
+  line-height: 1.75rem;
+  text-align: center;
+  /* This css makes the "backgorund" transoformation on the btn */
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 5%;
+}
+
+/* This css makes the "backgorund" transoformation on the btn */
+.add-form-btn:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  outline: 1px solid #b10e0e;
+  bottom: 4px;
+  left: 4px;
+  /* We use calc() because its the most usefull to mix units, as we have done with % and px */
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.add-form-btn:hover:after {
+  text-decoration: none;
+  bottom: 2px;
+  left: 2px;
+}
+
+.single {
+  text-decoration: none !important;
+}
+
+.delete {
+  text-decoration: none !important;
+}
+
+.admin-delete-style{
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  color: #000000;
+  line-height: 1.75rem;
+  padding: .75rem 1.65rem;
+  text-align: center;
+
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.admin-delete-style:after{
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  outline: 1px solid #b10e0e;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.admin-delete-style:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+
+
+/* for modals */
 .modal-dialog {
   position: absolute;
   border: 1px solid #000000;
   outline: 1px solid #b10e0e;
 }
- 
+
+.admin-thead {
+  background-color: #f1f1f1;
+  border: 4px solid #000000;
+  outline: 2px solid #b10e0e;
+}
+
+.td-right{
+text-align: end;
+}
+
+.th-right{
+  text-align: end;
+}
+
+.admin-table-img {
+  width: 100%;
+  height: auto;
+}
+
+.td-img {
+  width: 15%;
+}
+
+
+
+
+
 /* Responsive columns whit breakpoints*/
 @media screen and (max-width: 1500px) and (min-width: 900px) {
 

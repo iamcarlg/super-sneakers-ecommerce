@@ -1,62 +1,107 @@
 <%- include("../partials/head.ejs") %>
 
-  <body>
-    <!-- Container fluid does that the navbar and everything inside fits to the page -->
-    <!-- Look at this later if time let us -->
-    <div class="container-fluid">
-      <%- include("../partials/nav.ejs") %>
 
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-          </ol>
-        </nav>
 
-        <!--/CATEGORY CARDS (code whitout js connections, later one we need to ad js functionallity etc)/-->
-        <div class="gender-cards">
-          <a class="gender-link" href="/shop/women">
-            <div class="holder-img">
-              <img class="cat-img" src="../uploads/womenindex.jpg" alt="">
-              <!-- <div class="centered">Centered women</div> -->
-              <div class="text-block-cat">
-                <h4>Women</h4>
-                <p>Browse our latest collection</p>
-              </div>
-            </div>
-          </a>
-          <a class="gender-link" href="/shop/men">
-            <div class="holder-img">
-              <img class="cat-img" src="../uploads/menindex.jpg" alt="">
-              <!-- <div class="centered">Centered man</div> -->
-              <div class="text-block-cat">
-                <h4>Men</h4>
-                <p>Browse our latest collection</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <!-- End Cards category -->
-        <!-- Div for gray "banner"  -->
-
-        <div class="page-banner">
-          <div class="page-banner-text">
-            <h3>OUR NEWEST PROJECT</h3>
-            <p> Our new project is to have a children collection that are eco friendly. However, we wanted to keep a strong and durable material that can withstand running and playing outdoors.
-              Our goal is to also introduce matching sneakers for the whole family. Is it not more fun to have the same shoes as the parents or siblings? Keep an eye open on the website to get more information about the <b>launch date</b>.
-            </p>
-          </div>
-          <div class="child-holder-img">
-            <img class="cat-img" src="../uploads/child1index.jpg" alt="">
-          </div>
-          <div class="child-holder-img">
-            <img class="cat-img" src="../uploads/child2index.jpg" alt="">
-          </div>
-          <div class="child-holder-img">
-            <img class="cat-img" src="../uploads/child3index.jpg" alt="">
-          </div>
-
-        </div>
-
+  <% if(message_login.length> 0 ) {%>
+    <div class="alert alert-success">
+      <%= message_login %>
     </div>
-    <%- include("../partials/footer.ejs") %>
-  </body>
+
+    <% } %>
+
+
+
+      <% if(messageloggedout.length> 0 ) {%>
+        <div class="alert alert-success">
+          <%= messageloggedout %>
+        </div>
+
+        <% } %>
+
+          <body>
+            <!-- Container fluid does that the navbar and everything inside fits to the page -->
+            <!-- Look at this later if time let us -->
+            <div class="container-fluid">
+              <%- include("../partials/nav.ejs") %>
+
+                <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  </ol>
+                </nav>
+                <div class="container">
+                  <div class="search-holder">
+                    <div class="search-div">
+                      <!--Search for specific product , calls 'search_products()'-->
+                      <form method="POST" class="form-inline searchbar" action="/shop/search">
+                        <input id="searchbar" name="searchTerm" type="text" required class="form-control me-2"
+                          placeholder="Search for a brand..." aria-label="Search" />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <!--/CATEGORY CARDS (code whitout js connections, later one we need to ad js functionallity etc)/-->
+                <div class="gender-cards">
+                  <a class="gender-link" href="/shop/women">
+                    <div class="holder-img">
+                      <img class="cat-img" src="../uploads/womenindex.jpg" alt="">
+                      <!-- <div class="centered">Centered women</div> -->
+                      <div class="text-block-cat">
+                        <h4>Women</h4>
+                        <p>Browse our latest collection</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="gender-link" href="/shop/men">
+                    <div class="holder-img">
+                      <img class="cat-img" src="../uploads/menindex.jpg" alt="">
+                      <!-- <div class="centered">Centered man</div> -->
+                      <div class="text-block-cat">
+                        <h4>Men</h4>
+                        <p>Browse our latest collection</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <!-- End Cards category -->
+                <!-- Div for gray "banner"  -->
+
+                <div class="page-banner">
+                  <div class="page-banner-text">
+                    <h3>OUR NEWEST PROJECT</h3>
+                    <p> Our new project is to have a children collection that are eco friendly. However, we wanted to
+                      keep a
+                      strong and durable material that can withstand running and playing outdoors.
+                      Our goal is to also introduce matching sneakers for the whole family. Is it not more fun to have
+                      the
+                      same shoes as the parents or siblings? Keep an eye open on the website to get more information
+                      about
+                      the <b>launch date</b>.
+                    </p>
+                  </div>
+                  <div class="child-holder-img">
+                    <img class="cat-img" src="../uploads/child1index.jpg" alt="">
+                  </div>
+                  <div class="child-holder-img">
+                    <img class="cat-img" src="../uploads/child2index.jpg" alt="">
+                  </div>
+                  <div class="child-holder-img">
+                    <img class="cat-img" src="../uploads/child3index.jpg" alt="">
+                  </div>
+
+                </div>
+
+            </div>
+
+            <script>
+              //Set timer for logout flash message
+              $(function () {
+                setTimeout(function () {
+                  $('.alert').slideUp(500);
+                }, 3000);
+              });
+            </script>
+
+            <%- include("../partials/footer.ejs") %>
+          </body>

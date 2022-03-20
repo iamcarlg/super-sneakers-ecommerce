@@ -1,0 +1,50 @@
+/* Styling for profile.ejs */
+
+.profile-orders-details {
+    margin: 5% 5%;
+}
+
+.profile-orders-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.orders-h4{
+    text-align: center;
+}
+/* Shadow for holder of items in cart */
+.orders-items { 
+    -webkit-box-shadow: 5px 5px 4px -1px rgb(255, 7, 7);
+    box-shadow: 5px 5px 4px -1px rgba(255, 1, 1, 0.08)
+}
+
+.profile-totalrow-img{
+padding: 2% 0%;
+}
+
+.customer-profile-img{
+    border: 4px solid #000000;
+    outline: 4px solid #b10e0e;
+}
+
+.profile-info{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.profile-box li{
+    list-style: none;
+}
+
+.profile-box{
+    margin: 10% 0% 0% 0%;
+    padding: 2% 0%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(26, 25, 25, 0.199);
+    height: auto;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+

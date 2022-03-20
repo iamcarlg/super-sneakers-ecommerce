@@ -18,6 +18,29 @@
   height:auto;
 }
 
+
+
+.search-div {
+  display: flex;
+  justify-content: center;
+
+}
+
+.search-holder > * {
+  margin: 1%;
+}
+
+#searchbar {
+  background-color: #f1f1f1;
+  border-radius: 0%;
+  transform: rotate(-2deg);
+  color: #000000;
+  border: 1px solid #000000;
+  outline: 1px solid #b10e0e;
+}
+
+
+
   
 /* Bottom right text */
 .text-block-cat {
@@ -36,7 +59,7 @@
 /* This style is for the gender img, which shows our categorys -end*/
 
 /* Here the style for the page banner div and the 3 child img starts */
-.page-banner{
+div.page-banner{
   margin: 5% 0%;
   padding: 5% 0% ;
   background-color: #e9ecef44;

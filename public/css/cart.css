@@ -1,4 +1,11 @@
 /* Styling for shopping-cart.ejs */
+/* Styling for order-form.ejs */
+
+.cat-gender-holder p {
+font-size: 0.8rem;
+padding: 5% 0%;
+
+}
 
 .cart-product-details {
     margin: 5% 5%;
@@ -16,8 +23,12 @@
     justify-content: end;
 }
 
-.cart-continue a{
+.cart-right-box a{
     color: #000000;
+}
+.cart-right-box a:hover{
+    color: #000000;
+    text-decoration: none;
 }
 
 /* Shadow for holder of items in cart */
@@ -41,12 +52,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 }
 
 .payment-info{
     padding: 2% 0%;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
     height: auto;
     width: 80%;
     height: 80%;
@@ -61,3 +72,37 @@
 .cart-totalrow{
     padding: 5% 0%;
 }
+
+.cart-checkout-btn {
+    width: 30%;
+    background-color: #f1f1f1;
+    box-sizing: border-box;
+    color: #000000;
+    line-height: 1.75rem;
+    text-align: center;
+    /* This css makes the "backgorund" transoformation on the btn */
+    transform: rotate(-2deg);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 5%;
+  }
+  
+  /* This css makes the "backgorund" transoformation on the btn */
+  .cart-checkout-btn:after {
+    content: '';
+    position: absolute;
+    border: 1px solid #000000;
+    outline: 1px solid #b10e0e;
+    bottom: 4px;
+    left: 4px;
+    /* We use calc() because its the most usefull to mix units, as we have done with % and px */
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+  }
+  
+  .cart-checkout-btn:hover:after {
+    text-decoration: none;
+    bottom: 2px;
+    left: 2px;
+  }

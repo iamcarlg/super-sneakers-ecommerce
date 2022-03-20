@@ -3,10 +3,12 @@ const router = require('express').Router();
 
 //call the database model for products
 const Product = require('../models/product-model');
+//call the database model for cart
+const Cart = require('../config/cart-config');
 
 const { Mongoose } = require('mongoose');
 
-const Cart = require('../models/cart-model');
+
 
 
 // Add item to cart.
@@ -33,11 +35,8 @@ router.get('/add/:id', (req, res) => { //more fitting name maybe?
         })
     } catch (err) {
         console.log(err)
-
-
     }
-
-})
+});
 
 //Route for decreasing an item from shopping-cart 
 router.get('/reduce/:id', function (req, res, next) {
@@ -54,8 +53,7 @@ router.get('/reduce/:id', function (req, res, next) {
     } catch (err) {
         console.log(err)
     }
-
-})
+});
 
 // Route for incrementing an item in shopping cart
 router.get('/increase/:id', function (req, res, next) {
@@ -72,32 +70,31 @@ router.get('/increase/:id', function (req, res, next) {
     } catch (err) {
         console.log(err)
     }
-
-})
-
-
+});
 
 // Route for removing item from cart (Not implemented in view)
 router.get('/remove/:id', function (req, res, next) {
     const productId = req.params.id;
 
     const cart = new Cart(req.session.cart ? req.session.cart : {});
-      // Call our remove function from shopping-cart-model.
+    // Call our remove function from shopping-cart-model.
     cart.removeItem(productId);
-       // save the contents of a cart 
+    // save the contents of a cart 
     req.session.cart = cart;
-    res.redirect('back');
-})
+    res.redirect('/cart/');
+});
 
 // Route for shopping cart. All items we have added from add-cart route should be showing up in this route
 router.get('/', function (req, res, next) {
     try {
-         // Check if we have a cart in our session. 
+        // Check if we have a cart in our session. 
         if (!req.session.cart) {
 
             return res.render('shopping-cart', {
                 // set products to null
-                products: null
+                title: 'Shopping Bag',
+                products: null,
+                user: req.user
             });
         }
         //if we have we create a new one for our session
@@ -108,15 +105,13 @@ router.get('/', function (req, res, next) {
             products: cart.generateArray(),
             totalPrice: cart.totalPrice,
             totalQty: cart.totalQty,
-            title: 'ShoppingCart'
-
-
+            title: 'Shopping Bag',
+            user: req.user
         })
-
     } catch (err) {
         console.log(err)
     }
-})
+});
 
 module.exports = router;
 

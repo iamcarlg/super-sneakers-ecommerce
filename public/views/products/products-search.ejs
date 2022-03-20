@@ -1,0 +1,73 @@
+<%- include("../partials/head.ejs") %>
+
+  <div class="container-fluid">
+    <%- include("../partials/nav.ejs") %>
+      <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Search results</li>
+        </ol>
+      </nav>
+  </div>
+  <div class="container">
+    <div class="cat-search-holder">
+      <div class="cat-search-div">
+        <!--Search for specific product , calls 'search_products()'-->
+        <form method="POST" class="form-inline searchbar" action="/shop/search">
+          <input id="searchbar" name="searchTerm" type="text" required
+            class="form-control me-2" placeholder="Search for a brand..." aria-label="Search" />
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <% if (products.length> 0) { %>
+        <% products.forEach(product=> { %>
+
+          <div class="col-sm-4">
+            <div class="card-block cat-card-block">
+
+              <div>
+                <img class="card-img-top" src="/uploads/resized/<%= product.picture%>" alt="Card image cap">
+              </div>
+              <h4 class="cat-title-products">
+                <%= product.title %>
+              </h4>
+              <div class="cat-brand-price">
+
+                <p class="cat-products-p">
+                  <%= product.brand %>
+                </p>
+                <p class="cat-products-p">
+                  <%= product.price %> SEK. (Incl. VAT)
+                </p>
+              </div>
+              <div class="cat-gender-holder">
+                <p class="cat-products-p">
+              <%= product.gender %>
+                </p>
+              </div>
+
+              <a class="single-product-btn" href="/shop/product/<%= product._id %>">
+                <button type="button" class="btn btn-more-info rounded-0">More</button>
+              </a>
+
+            </div>
+            <!--card-block cat-cardblock end-->
+          </div>
+          <!--col-sm-4 end-->
+          <% }) %>
+            <% } else { %>
+              <p>There are no products to display...</p>
+              <% } %>
+
+    </div>
+    <!--Row end-->
+
+  </div>
+  <!--Container end-->
+
+
+  <%- include("../partials/footer.ejs") %>
+    </body>

@@ -1,1 +1,83 @@
 /* Styling for about.ejs */
+
+/* About page style start */
+
+.about-banner {
+    margin: 5% 0%;
+    padding: 5% 0% ;
+    background-color: #e9ecef44;
+    /* text-align: center; */
+    float: left;
+  }
+  .about-holder-img {
+    width: 40%;
+    float: left;
+  }
+  
+  .about-banner-text {
+    width: 40%;
+    float: left;
+    margin: 0% 10%;
+    font-size: 1.5rem;
+  }
+  
+  .about-p{
+    padding: 10% 0%;
+  }
+  
+  /* Contact info */
+  .contact-info-fa{
+    font-size: 2rem;
+    margin: 0% 0% 5%  0%;
+  }
+  
+  .contact-info{
+    /* text-align: end; */
+    justify-content: space-around;
+  }
+
+  
+/* Responsive columns whit breakpoints*/
+   
+@media screen and (max-width: 1500px) and (min-width: 900px) {
+
+
+}
+  
+@media screen and (max-width: 900px) and (min-width: 400px) {
+
+  .about-banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .about-holder-img{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .about-banner-text{
+    margin: 0%;
+    padding: 2% 1% ;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .about-p{
+    font-size: 1.1rem;
+    padding: 1% 0%;
+  } 
+
+}
+  
+  
+  @media screen and (max-width: 400px) and (min-width: 200px){
+ 
+  
+  }

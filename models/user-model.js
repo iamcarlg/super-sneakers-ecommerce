@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const ROLE = require('./user-roles'); //import user roles
 
 
-//add comments
+//schema for our user collection in mongodb
 const userSchema = new Schema({
     username: {
         type: String,
@@ -30,12 +30,11 @@ const userSchema = new Schema({
     reviews: [{
         type: Schema.Types.ObjectId,
         ref: 'Review',
-        //required: true
     }]
 }, {
-    timestamps: true //do we want timestamps??
+    timestamps: true 
 });
 
-const User = mongoose.model('User', userSchema); //change to 'User' instead of 'user' //Karwan
+const User = mongoose.model('User', userSchema); 
 
 module.exports = User;

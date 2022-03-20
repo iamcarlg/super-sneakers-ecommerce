@@ -1,36 +1,26 @@
 const router = require('express').Router();
-
-//call the database model for products
-const Review = require('../models/review-model');
-
-
 /***********************************************************/
 
 //homepage
 router.get('/', (req, res) => {
-    res.render('index', {title: 'Home', user: req.user});
+    try {
+        res.render('index', { title: 'Home',  message_login: req.flash('message_login'), messageloggedout: req.flash('messageloggedout'),user: req.user });
+    } catch (err) {
+        
+        console.log("Could not find index page", err);
+    }
 });
 
 /***********************************************************/
 
 //route for page about our website
 router.get('/about', (req, res) => {
-    res.render('about', {title: 'About', user: req.user});
-});
-
-//route for page about our website
-router.get('/review', (req, res) => {
-    
-    Review.find() 
-    .then((result) => {
-        res.render('product-review', {title: 'review details' ,review: result}); 
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(404).render('404', { title: '404' }); //renders the 404 page if product with id does not exist
-
-    });
-
+    try {
+        res.render('about', { title: 'About', user: req.user });
+    } catch (err) {
+        res.redirect('/'); //is this the best redirect path?
+        console.log("Could not find about page", err);
+    }
 });
 
 /***********************************************************/

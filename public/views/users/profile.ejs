@@ -3,27 +3,87 @@
     <body>
         <div class="container-fluid">
             <%- include("../partials/nav.ejs") %>
-                <nav>
-                    <ul>
-                        <% if (user) { %>
-                            <li><a href="/auth/logout">Logout</a></li>
-                            <% } else { %>
-                                <li><a href="/auth/login">Login</a></li>
-                                <% } %>
-                                    <li><a href="/">Homepage</a></li>
-                                    <li><a href="/users/profile">Profile</a></li>
-                    </ul>
+                <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ol>
                 </nav>
-                <header>
-                    <h1>Welcome to your profile, <%= user.username %>
-                    </h1>
-                </header>
-                <main>
-                    <p>This is your google ID: <%= user.googleId %>
-                    </p>
-                    <img src="<%=user.thumbnail %>">
-                    <p>This is your profile thumbnail</p>
-                </main>
+
+                <div class="profile-container">
+                    <div class="row no-gutters">
+
+                        <div class="col-md-4 holder-profile-info">
+                            <div class="profile-info">
+                                <div class="profile-box">
+                                    <ul>
+                                        <li class="profile-totalrow-img">
+                                            <p class="label"> <img class="customer-profile-img" src="<%=user.thumbnail %>"> </p>
+                                        </li>
+                                        <li class="profile-totalrow">
+                                            <h1 class="label">
+                                                <%= user.username %>
+                                            </h1>
+                                        </li>
+                                        <li class="profile-totalrow">
+                                            <p class="label">Email: <%= user.email %>
+                                            </p>
+                                        </li>
+                                        <li class="profile-totalrow">
+                                            <p class="label">Role: <%= user.role %>
+                                            </p>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- col-md-8 is bootrstap that makes the size of the col that holds cart items -->
+                        <div class="col-md-8 cart-right-box">
+                            <div class="profile-orders-details">
+                                <h4 class="profile-h4 orders-h4">Your Orders</h4>
+                                <% if (orders) { %>
+                                    <% orders.slice().reverse().forEach(order=> { %>
+                                        <div
+                                            class="d-flex justify-content-around align-items-center mt-3 p-2 orders-items rounded">
+                                            <% order.items.forEach(order=> { %>
+
+                                                <div class="d-flex flex-row">
+
+                                                    <div class="ml-2 profile-orders-info">
+                                                        <span class="font-weight-bold mr-5">
+                                                            Total Price: <%= order.price%> SEK
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row cart-qp">
+                                                        <span class="font-weight-bold d-block">
+                                                            Total Items: <%= order.qty%>
+                                                        </span>
+                                                </div>
+                         
+
+                                                        
+                                                 
+                                       
+                                                
+                                                <% }) %>
+                                        </div>
+                                        <% }) %>
+
+                                            <% } else { %>
+                                                <p>There are no orders to display...</p>
+                                                <% } %>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
+
+
         <%- include("../partials/footer.ejs") %>
     </body>

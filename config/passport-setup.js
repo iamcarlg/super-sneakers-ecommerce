@@ -5,19 +5,18 @@ const keys = require('./keys');
 const User = require('../models/user-model');
 
 
-//add comment
+//something to do with stashing the user in a cookie which needs to first be serialized and then deserialized for some reason
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-//add comment
 passport.deserializeUser((id, done) => {
     User.findById(id).then((user) => {
         done(null,user)
     });
 });
 
-//add comment
+//our google strategy for loggin in with google
 passport.use(new GoogleStrategy({
         //options for the google strategy
         callbackURL: '/auth/redirect',
@@ -43,11 +42,9 @@ passport.use(new GoogleStrategy({
 
                 }).save().then((newUser) => {
                     console.log('new user created: ' + newUser);// this is shown when a new account logs in for the first time
-                    done(null, newUser); //maybe display newUser || existingUser on logout?
+                    done(null, newUser); 
                 });
             }
         });
-
-
     })
 )

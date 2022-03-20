@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Product = require('../models/product-model'); //do we need this
-const User = require('../models/user-model'); //do we need this
 
-//schema for the review table in the mongoDB
+//schema for the our review collection in the mongoDB
 const reviewSchema = new Schema({
     comment: {
         type: String,
+        maxlength: 120,
         required: true
+        
     },
     rating: {
         type: Number,

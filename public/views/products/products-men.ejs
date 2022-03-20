@@ -1,17 +1,25 @@
 <%- include("../partials/head.ejs") %>
-
-  <body>
-
     <div class="container-fluid">
       <%- include("../partials/nav.ejs") %>
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Men</li>
           </ol>
         </nav>
     </div>
         <div class="container">
+
+          <div class="cat-search-holder">
+            <div class="cat-search-div">
+              <!--Search for specific product , calls 'search_products()'-->
+              <form method="POST" class="form-inline searchbar" action="/shop/search">
+                <input id="searchbar" name="searchTerm" type="text" required
+                  class="form-control me-2" placeholder="Search for a brand..." aria-label="Search" />
+              </form>
+            </div>
+          </div>
+
           <div class="row">
 
               <% if (products.length> 0) { %>

@@ -32,7 +32,8 @@ var cookieParser = require('cookie-parser')
 
 //import cookieSession. is used to control the current user session
 const session = require('express-session');
-
+//Allows us to flash our messages
+const flash = require('connect-flash');
 // Allows us to store individual session items to mongo session store.S
 const MongoStore = require('connect-mongo');
 
@@ -48,6 +49,9 @@ const passportSetup = require('./config/passport-setup');
 //Import paypal rest SDK
 const paypal = require('paypal-rest-sdk');
 
+
+// Call flash.
+app.use(flash());
 /***********************************************************/
 
 // call the override function to change post to put
@@ -73,11 +77,6 @@ mongoose.connect(dbURI)
 
 //takes url encoded data and passes it into an object that can be used on a request object
 app.use(express.urlencoded({ extended: true }));
-
-//404 page (page not found redirect)
-app.get((req, res) => {
-    res.status(404).render('404', { title: '404 | Page not found' });
-});
 
 /***********************************************************/
 //add comment

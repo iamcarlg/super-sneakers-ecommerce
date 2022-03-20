@@ -13,26 +13,14 @@ const {authUser, authRole} = require('../config/authorization');
 /***********************************************************/
 
 //route for admin CRUD functions on products (/admin/products)
-router.get('/products', (req, res) => {
+
+router.get('/products', authUser, authRole(ROLE.ADMIN), (req, res) => {
     Product.find() 
     .then((result) => {
-        res.render('admin-products', {title: 'Admin', products: result, users: result}); 
+        res.render('admin-products', {title: 'Admin',message_notFound:req.flash('message_notFound'),messageAddError: req.flash('messageAddError') ,messageUpdateError: req.flash('messageUpdateError'), messageDeleteError: req.flash('messageDeleteError'), messageAdd: req.flash('messageAdd'),messageUpdate: req.flash('messageUpdate'), messageDelete: req.flash('messageDelete'), products: result, user: req.user}); 
     })
     .catch((err) => {
-        console.log(err);
-    });
-});
-
-/***********************************************************/
-
-//make sure this works
-//route for admin CRUD functions on products (/admin/products)
-router.get('/users', (req, res) => {
-    User.find() 
-    .then((result) => {
-        res.render('admin-users', {title: 'Admin' ,users: result}); 
-    })
-    .catch((err) => {
+        req.flash('messageAddError', 'You dont have access to this page!')
         console.log(err);
     });
 });

@@ -6,7 +6,12 @@ const passport = require('passport');
 
 // auth login route
 router.get('/login', (req, res) => {
-    res.render('login', { title: 'Login', user: req.user }) //allows us to send req.user to login.ejs so that we can retrieve information from the current session
+    try {
+        res.render('login', { title: 'Login', message_error: req.flash('message_error'), user: req.user }) //allows us to send req.user to login.ejs so that we can retrieve information from the current session
+    } catch (err) {
+        res.redirect('/'); //is this the best redirect path?
+        console.log("Could not find login page", err);
+    }
 })
 
 /***********************************************************/
@@ -20,27 +25,33 @@ router.get('/google', passport.authenticate('google', { //should there be a () a
 
 //callback route for google to redirect to after successful login
 router.get('/redirect', passport.authenticate('google'), (req, res) => {
-    res.redirect('/users/profile'); //keep in mind this redirect
+    req.flash('message_login', 'You are now logged in');
+
+
+    res.redirect('/'); //keep in mind this redirect tidigare redirect -> /users/profile
 });
 
 /***********************************************************/
 
 //auth logout
 router.get('/logout', (req, res) => {
-    // Clear the cookie of the connected user
-    res.clearCookie('connect.sid');
+    try {
+        // Clear the cookie of the connected user
+        res.clearCookie('connect.sid');
 
-    // check after
-    //req.logout()
+        // check after
+        req.logout()
 
-    // Destroy session of the user
-    req.session.destroy(function (err) {
-        console.log(err)
-    });
+ 
 
+        req.flash('messageloggedout', 'You are now logged out')
+        res.redirect('/'); //redirects to login page when logged out
+        console.log('user logged out.');
 
-    res.redirect('/auth/login'); //redirects to login page when logged out
-    console.log('user logged out.');
+    } catch (err) {
+        res.redirect('/'); //is this the best redirect path?
+        console.log("logout failed", err);
+    }
 });
 
 module.exports = router;
