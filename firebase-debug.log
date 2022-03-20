@@ -1,6 +1,0 @@
-[debug] [2022-03-20T19:53:06.058Z] ----------------------------------------------------------------------
-[debug] [2022-03-20T19:53:06.060Z] Command:       /usr/bin/node /usr/bin/firebase init
-[debug] [2022-03-20T19:53:06.060Z] CLI Version:   10.4.0
-[debug] [2022-03-20T19:53:06.060Z] Platform:      linux
-[debug] [2022-03-20T19:53:06.061Z] Node Version:  v14.18.2
-[debug] [2022-03-20T19:53:06.062Z] Time:          Sun Mar 20 2022 20:53:06 GMT+0100 (Central European Standard Time)
