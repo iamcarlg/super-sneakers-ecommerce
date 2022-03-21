@@ -4,11 +4,12 @@
   "description": "e-commerce website for selling shoes",
   "main": "app.js",
   "engines": {
-    "node" : "16.13.0"
+    "node": "16.13.0",
+    "npm": "8.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "server": "nodemon app.js"
   },
   "author": "",
@@ -25,6 +26,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
+    "firebase": "^9.6.9",
     "heroku": "^7.59.4",
     "install": "^0.13.0",
     "method-override": "^3.0.0",
