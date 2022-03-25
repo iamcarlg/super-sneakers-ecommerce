@@ -6,7 +6,7 @@ const app = express();
 const methodOverride = require('method-override');
 
 //specifies our localhost port
-const PORT = process.env.PORT || 8000; //sets the localhost port to 3000
+const PORT = process.env.PORT || 3000; //sets the localhost port to 3000
 
 //import bodyParser to call data with req.body
 var bodyParser = require('body-parser');

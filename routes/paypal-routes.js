@@ -18,7 +18,7 @@ const keys = require('../config/keys');
 
 const visited = [];
 const user_mail = [];
-const base_url = "https://supersneakers.herokuapp.com" || "http://localhost:3000"
+const base_url = "https://supersneakers.herokuapp.com" || "http://localhost:8000"
 /***********************************************************/
 
 //Directs us to shipping information form
