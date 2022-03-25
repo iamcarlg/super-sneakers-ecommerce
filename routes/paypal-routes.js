@@ -18,6 +18,7 @@ const keys = require('../config/keys');
 
 const visited = [];
 const user_mail = [];
+const base_url = "https://supersneakers.herokuapp.com" || "http://localhost:3000"
 /***********************************************************/
 
 //Directs us to shipping information form
@@ -55,8 +56,8 @@ router.post('/checkout', (req, res) => {
         "payment_method": "paypal"
       },
       "redirect_urls": {
-        "return_url": "http://localhost:3000/paypal/success",
-        "cancel_url": "http://localhost:3000/paypal/cancel"
+        "return_url": base_url + "/paypal/success",
+        "cancel_url": base_url + "/paypal/cancel"
       },
       "transactions": [{
         "item_list": {
