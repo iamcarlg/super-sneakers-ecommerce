@@ -6,7 +6,7 @@ const app = express();
 const methodOverride = require('method-override');
 
 //specifies our localhost port
-const port = process.env.port || 3000; //sets the localhost port to 3000
+const PORT = process.env.PORT || 8000; //sets the localhost port to 3000
 
 //import bodyParser to call data with req.body
 var bodyParser = require('body-parser');
@@ -70,7 +70,7 @@ paypal.configure({
 
 //connect mongoose to MongoDB
 mongoose.connect(dbURI)
-.then((result) => console.log("Server listening on port: " + port))
+.then((result) => console.log("(Database)Server listening on port: " + PORT))
 .catch((err) => console.log(err));
 
 /***********************************************************/
@@ -144,6 +144,6 @@ app.use('/cart', cartRoutes);
 /***********************************************************/
 
 // The App is listening on PORT 3000 locally and on process.env.PORT When deployed on the web
-app.listen(port, function(err){
-    if (err) console.log(err + "Error in server setup");
+app.listen(PORT, function(err){
+    console.log(`Your server is listening on port ${PORT}`)
 })
