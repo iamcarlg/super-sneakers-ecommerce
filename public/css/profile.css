@@ -48,3 +48,46 @@ align-items: center;
     text-align: center;
 }
 
+@media screen and (max-width: 1500px) and (min-width: 900px) {}
+
+@media screen and (max-width: 900px) and (min-width: 750px){
+
+    .profile-box{
+        background-color: #ffffff;
+        box-shadow: none;
+        width: 90%;
+        height: 100%;
+    }
+
+    .profile-box ul{
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: space-between;
+        width : fit-content;
+
+    }
+    
+}
+@media screen and (max-width: 750px)and (min-width: 200px) {
+
+    .profile-box{
+        background-color: #ffffff;
+        box-shadow: none;
+        width: 90%;
+        height: 100%;
+    }
+
+    .profile-box ul{
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: space-between;
+        width : fit-content;
+
+    }
+
+}
+

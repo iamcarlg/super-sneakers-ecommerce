@@ -24,16 +24,22 @@
                 <!-- tidigare kod i cart-d-flex   d-flex flex-row -->
                 <div class="cart-d-flex cart-continue"><i class="fa fa-long-arrow-left"></i> <a class="single" href="/">
                     Continue
-                    Shopping</a></div>
+                    Shopping</a>
+                  
+                </div>
                 <h4 class="cart-h4">Your shopping bag</h4>
 
                 <% if (products) { %>
                   <% products.forEach(product=> { %>
 
-                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded shopping-item">
 
                       <div class="d-flex flex-row">
-                        <img src="/uploads/resized/<%= product.item.picture%>" width="40">
+                        <div>
+                          <img src="/uploads/resized/<%= product.item.picture%>" width="40" class = "shopping-item-img">
+
+                        </div>
+                        
                         <div class="ml-2 cart-products-info">
                           <span class="font-weight-bold d-block">
                             <%= product.item.title %>
@@ -49,7 +55,7 @@
                         <span class="d-block ml-5 font-weight-bold"> Total Price: <%= product.price %> SEK</span>
                       </div>
 
-                      <div class="px-2 mt-3 cart-increase-reduce">
+                      <div class="px-2 mt-3 cart-increase-reduce cart-qp" >
                         <!--Handles removal of one product-->
                         <a class="single" href="/cart/reduce/<%= product.item._id %>">
                           <i class="fa-solid fa-minus"></i>
@@ -60,7 +66,7 @@
                       </div>
 
                       <!--Handles removal of all of the one product-->
-                      <div class="d-flex cart-remove-items "><span>Remove items <a
+                      <div class="d-flex cart-remove-items cart-qp"><span>Remove items <a
                             href="/cart/remove/<%= product.item._id %>"> <i
                               class="fa fa-trash-o ml-3 text-black-50"></i></a></span>
                       </div>
@@ -102,7 +108,7 @@
                         </a>
                         </li>
 
-                        <li class="cart-totalrow">
+                        <li class="cart-totalrow trusted-badge">
                     
                             <!-- BEGIN: TrustLock Badge --><img name="trustseal" alt="Trust Badges" style="border: 0;" src="https://trustlock.co/wp-content/uploads/2019/01/guaranteed-safe-checkout-1.png" width="238" height="44"><!-- End: TrustLock Badge -->
 

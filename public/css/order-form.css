@@ -1,62 +1,74 @@
 /* CSS styling for order-form.ejs */
 
 .order-form-container {
-    background: #f1f1f1;
-  }
-  
-  .order-form-div {
-      background: white;
-      width: 30%;
-      border: 2px solid #000000;
-      outline: 2px solid #b10e0e;
-      padding: 2%;
-      margin: 2%;
-  }
-  
-  .product-update-flex-parent {
-      display: flex;
-      justify-content: center;
-  }
-  
-  .update-title-div h3 {
-      text-align: center;
-  }
-  
-  .update-btn-holder {
-      display: flex;
-      justify-content: center;
-  }
-  
-  .update-submit-btn {
-      width: 30%;
-      background-color: #f1f1f1;
-      box-sizing: border-box;
-      color: #000000;
-      line-height: 1.75rem;
-      text-align: center;
-      /* This css makes the "backgorund" transoformation on the btn */
-      transform: rotate(-2deg);
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      margin: 5%;
-  }
-  
+  background: #f1f1f1;
+}
+
+.order-form-div {
+    background: white;
+    width: 30%;
+    border: 2px solid #000000;
+    outline: 2px solid #b10e0e;
+    padding: 2%;
+    margin: 2%;
+}
+
+.product-update-flex-parent {
+    display: flex;
+    justify-content: center;
+}
+
+.update-title-div h3 {
+    text-align: center;
+}
+
+.update-btn-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.update-submit-btn {
+    width: 30%;
+    background-color: #f1f1f1;
+    box-sizing: border-box;
+    color: #000000;
+    line-height: 1.75rem;
+    text-align: center;
     /* This css makes the "backgorund" transoformation on the btn */
-    .update-submit-btn:after {
-      content: '';
-      position: absolute;
-      border: 1px solid #000000;
-      outline: 1px solid #b10e0e;
-      bottom: 4px;
-      left: 4px;
-      /* We use calc() because its the most usefull to mix units, as we have done with % and px */
-      width: calc(100% - 1px);
-      height: calc(100% - 1px);
-    }
-    
-    .update-submit-btn:hover:after {
-      text-decoration: none;
-      bottom: 2px;
-      left: 2px;
-    }
+    transform: rotate(-2deg);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 5%;
+}
+
+  /* This css makes the "backgorund" transoformation on the btn */
+  .update-submit-btn:after {
+    content: '';
+    position: absolute;
+    border: 1px solid #000000;
+    outline: 1px solid #b10e0e;
+    bottom: 4px;
+    left: 4px;
+    /* We use calc() because its the most usefull to mix units, as we have done with % and px */
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+  }
+  
+  .update-submit-btn:hover:after {
+    text-decoration: none;
+    bottom: 2px;
+    left: 2px;
+  }
+
+@media screen and (max-width: 750px)and (min-width: 200px) {
+
+    .order-form-div {
+      width: 90%;
+
+      margin-left : auto;
+      margin-right : auto;
+      
+  }
+
+}

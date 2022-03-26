@@ -1,15 +1,16 @@
 /* Styling for product-details.ejs */
 
+.product-container{
+  top : 0;
+  left : 0;
+  box-sizing: border-box;
+}
 .product-detail-h2{
   padding: 5% 0%;
   }
   
-.product-container {
-  margin: 2% 10%;
-}
-  
 .product-holder{
-  background-color: #d8d8d844;
+  width : 100%;
   display: flex;
   justify-content: center;
   padding: 2% 5%;
@@ -43,8 +44,14 @@
 .product-detail-banner {
   padding: 0% 5%;
 }
-  
-.product-detail-description {
+
+.product-description{
+  width: fit-content;
+  margin-top : 20px;
+  max-width: 100%;
+}
+
+.product-description > .product-detail-description {
   text-align: left;
   margin: 0% 0% 5% 0%;
 }
@@ -53,6 +60,7 @@
   display: flex;
   flex-direction: column;
 }
+
 
 .btn-add-cart {
   width: 60%;
@@ -227,59 +235,77 @@
 
   .product-detail-div{
     width: 100%;
-    font-size: 1.5rem;
+
   }
-.reviews-heading{
-    margin: 20% 0% 0%  0%;
-}
-  
-.size-and-bag{
-    margin: 0% 0%;
-}
+
+  .product-detail-description{
+    padding : 8px;
+  }
+
+  .reviews-heading{
+      margin: 20% 0% 0%  0%;
+  }
+    
+  .size-and-bag{
+      margin: 0% 0%;
+  }
 
 }
       
 @media screen and (max-width: 750px)and (min-width: 200px) {
-  .btns-shop {
-    padding: 1% ;
-  }
-  .btn-size{
-    width: 80%;
-  }
-  .btn-add-cart{
-    width: 80%;
-  } 
+    .btns-shop {
+      padding: 1% ;
+    }
+    .btn-size{
+      width: 80%;
+    }
+    .btn-add-cart{
+      width: 80%;
+    } 
 
-  .product-holder{
+    .product-holder{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+        outline: 2px solid #b10e0e;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  }
+    
+    .product-holder img{
+        padding: 0% 0%;
+        margin : 0;
+    }
+      
+    .product-holder-img{
+        /* margin: 2% 0%; */
+        height: 100%;
+        width: 100% fit-content !important;
+    }
+      
+    .product-detail-div{
+          width: 100%;
+    }
+
+    .product-detail-description{
+      padding : 8px;
+    }
+
+    .reviews-heading{
+      margin: 20% 0% 0%  0%;
+    }
+
+    .size-and-bag{
+      margin: 0% 0%;
+    }
+
+    .brand-price {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      background-color: #ffffff;
-      border: 2px solid #000000;
-      outline: 2px solid #b10e0e;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-}
-  
-.product-holder img{
-    padding: 0% 0%;
-}
-  
-.product-holder-img{
-     margin: 2% 0%;
-     height: 100%;
-     width: 50%;
-}
-  
-.product-detail-div{
-      width: 100%;
-      font-size: 1.5rem;
-}
+      justify-content: space-between;
+    }
 
-.reviews-heading{
-  margin: 20% 0% 0%  0%;
-}
 
-.size-and-bag{
-  margin: 0% 0%;
-}
+
 }

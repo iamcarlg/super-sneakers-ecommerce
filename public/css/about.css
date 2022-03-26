@@ -1,7 +1,13 @@
 /* Styling for about.ejs */
 
 /* About page style start */
-
+*{
+  margin:0;
+  padding : 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  overflow-x:visible;
+}
 .about-banner {
     margin: 5% 0%;
     padding: 5% 0% ;
@@ -53,7 +59,7 @@
   }
 
   .about-holder-img{
-    width: 70%;
+    width: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,14 +76,102 @@
   }
 
   .about-p{
+    width : fit-content;
     font-size: 1.1rem;
     padding: 1% 0%;
+
+    letter-spacing: 0.6px;
   } 
+
+  .text-center{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-info > div{
+
+    width : 300px;
+
+    margin-left: auto;
+    margin-right : auto;
+
+  }
+
+  .text-center > div{
+
+    width : 300px;
+
+    margin-left: auto;
+    margin-right : auto;
+
+  }
 
 }
   
   
   @media screen and (max-width: 400px) and (min-width: 200px){
- 
-  
+
+   
+  .about-banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .about-holder-img{
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .about-banner-text{
+    margin: 0%;
+    padding: 2% 1% ;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .about-banner-text h2{
+    font-size: 1.6rem;
+    font-weight: 700;
+
+  }
+
+  .about-p{
+    width : fit-content;
+    font-size: 1.1rem;
+    padding: 1% 0%;
+
+    letter-spacing: 0.6px;
+  } 
+
+  .text-center{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-info > div{
+
+    width : 300px;
+
+    margin-left: auto;
+    margin-right : auto;
+
+  }
+
+  .text-center > div{
+
+    width : 300px;
+
+    margin-left: auto;
+    margin-right : auto;
+
+  }
+
   }

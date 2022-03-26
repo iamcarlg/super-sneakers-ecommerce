@@ -38,15 +38,13 @@
                                                 <%= product.title %>
                                             </h2>
                                             <div class="brand-price">
-                                                <p class="product-detail-p"> Brand: <%= product.brand %>
+                                                <p class="product-detail-p"> <strong>Brand : </strong><%= product.brand %>
                                                 </p>
-                                                <p class="product-detail-p">
-                                                    <%= product.price %> SEK. (Incl. VAT)
-                                                </p>
+                                                <p class="product-detail-p"><strong>Price : </strong><%= product.price %> SEK. (Incl. VAT)</p>
                                             </div>
 
-                                            <div class="description">
-                                                <p>Detailed Description</p>
+                                            <div class="product-description">
+                                                <h3>Detailed Description</h3>
                                                 <p class="product-detail-description">
                                                     <%= product.description %>
                                                 </p>

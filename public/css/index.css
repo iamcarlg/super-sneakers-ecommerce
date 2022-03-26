@@ -149,4 +149,22 @@ div.page-banner{
   display:inline-table;
 }
 
+.page-banner-text{
+  margin:auto;
+
+
+}
+
+.page-banner-text > h3{
+  font-size : 25px;
+
+
+}
+
+.page-banner-text-para{
+  max-width:500px;
+
+}
+
+
 }

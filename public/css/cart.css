@@ -18,6 +18,8 @@ padding: 5% 0%;
     margin: 1% 0%;
 }
 
+
+
 .cart-remove-items{
     padding: 1% 0%;
     justify-content: end;
@@ -34,6 +36,7 @@ padding: 5% 0%;
 /* Shadow for holder of items in cart */
 .items {
     -webkit-box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.25);
+    /* background-color: red; */
     box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08)
 }
 
@@ -105,4 +108,104 @@ padding: 5% 0%;
     text-decoration: none;
     bottom: 2px;
     left: 2px;
+  }
+
+
+  @media screen and (max-width: 1500px) and (min-width: 900px) {
+
+  }
+
+  @media screen and (max-width: 900px) and (min-width: 750px){
+
+    .cart-product-details{
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .cart-h4{
+        width : 350px;
+    }
+
+
+    .shopping-item{
+        width : 150px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-qp{
+        margin : 0;
+        width : 200px;
+    }
+    .items{
+        width : 100%;
+
+    }
+
+    .holder-payment-info{
+        position: absolute;
+        left : 0;
+        top : 0;
+        width: 350px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+
+    }
+
+    .holder-payment-info .btn{
+        width: 120px;
+    }
+
+    .trusted-badge{
+        display: none;
+    }
+
+
+  }
+
+  @media screen and (max-width: 750px)and (min-width: 200px) {
+
+    .cart-product-details{
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .cart-h4{
+        width : 350px;
+    }
+
+
+    .shopping-item{
+        width : 150px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-qp{
+        margin : 0;
+        width : 200px;
+    }
+    .items{
+        width : 100%;
+
+    }
+
+    .holder-payment-info{
+        position: absolute;
+        left : 0;
+        top : 0;
+        width: 350px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+
+    }
+
+    .holder-payment-info .btn{
+        width: 120px;
+    }
+
+    .trusted-badge{
+        display: none;
+    }
+
   }
