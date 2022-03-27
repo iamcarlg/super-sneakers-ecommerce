@@ -209,7 +209,7 @@ router.get('/success', (req, res) => {
         // Subject of Email
         subject: 'Thanks for your order',
         // This would be the text of email body
-        text: 'Dear customer, \n\nWe are grateful that you\'ve chosen us to enhance your sneaker game. \nYour order is being processed. \nPlease note that we deliver between monday to friday, which are our couriers\' working days. \nNo need to camp out by the mailbox waiting for the postman.\n\nYours Sincerely,\Mar,\nCustomer Support',
+        text: 'Dear customer, \n\nWe are grateful that you\'ve chosen us to enhance your sneaker game. \nYour order is being processed. \nPlease note that we deliver between monday to friday, which are our couriers\' working days. \nNo need to camp out by the mailbox waiting for the postman.\n\nYours Sincerely,\nCarl,\nCustomer Support',
         
       };
 
