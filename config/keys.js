@@ -2,8 +2,8 @@
 
 module.exports = {
     google: {
-        clientID: '1086619862894-j4h783v8a5ptugd0v4s1j4utqais0sbl.apps.googleusercontent.com',
-        clientSecret: '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'
+        clientID: '386103601093-1blq45vnd6mig98qphn6soo620o1ipnb.apps.googleusercontent.com',
+        clientSecret: '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'
     },
     session: {
         expressKey: 'supershoesexpresskey'
