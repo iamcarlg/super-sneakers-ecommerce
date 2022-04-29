@@ -40,10 +40,8 @@ router.get('/logout', (req, res) => {
         res.clearCookie('connect.sid');
 
         // check after
-        req.logout()
-
- 
-
+        req.logout();
+        
         req.flash('messageloggedout', 'You are now logged out')
         res.redirect('/'); //redirects to login page when logged out
         console.log('user logged out.');
